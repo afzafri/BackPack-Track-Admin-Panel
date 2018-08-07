@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// ----------------- API ROUTES -----------------
+// List all countries names
+Route::get('/api/listCountries', 'APIController@listCountries');
