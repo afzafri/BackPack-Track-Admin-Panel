@@ -21,3 +21,6 @@ Route::get('/api/listCountries', 'APIController@listCountries');
 
 // Create new itinerary
 Route::post('/api/newItinerary', 'APIController@newItinerary');
+
+// List all itineraries
+Route::get('/api/listItineraries', 'APIController@listItineraries');

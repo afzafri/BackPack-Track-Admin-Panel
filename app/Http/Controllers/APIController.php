@@ -27,4 +27,11 @@ class APIController extends Controller
 
       $itinerary->save();
     }
+
+    // List all Itinerary
+    public function listItineraries()
+    {
+      $itineraries = Itinerary::with(['country','backpacker'])->get();
+      return $itineraries;
+    }
 }
