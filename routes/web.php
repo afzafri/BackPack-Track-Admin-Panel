@@ -18,3 +18,6 @@ Route::get('/', function () {
 // ----------------- API ROUTES -----------------
 // List all countries names
 Route::get('/api/listCountries', 'APIController@listCountries');
+
+// Create new itinerary
+Route::post('/api/newItinerary', 'APIController@newItinerary');
