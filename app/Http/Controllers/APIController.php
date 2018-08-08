@@ -23,7 +23,7 @@ class APIController extends Controller
 
       $itinerary->title = $request->title;
       $itinerary->country_id = $request->country_id;
-      $itinerary->backpacker_id = $request->backpacker_id;
+      $itinerary->user_id = $request->user_id;
 
       $itinerary->save();
     }
@@ -31,7 +31,7 @@ class APIController extends Controller
     // List all Itinerary
     public function listItineraries()
     {
-      $itineraries = Itinerary::with(['country','backpacker'])->get();
+      $itineraries = Itinerary::with(['country','user'])->get();
       return $itineraries;
     }
 }
