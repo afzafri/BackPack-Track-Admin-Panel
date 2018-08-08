@@ -19,7 +19,7 @@ class AddColumnsToUsers extends Migration
           $table->string('phone')->after('username');
           $table->string('address')->after('phone');
           $table->integer('country_id')->after('address');
-          $table->string('avatar_url')->after('password');
+          $table->string('avatar_url')->nullable()->after('password');
           $table->string('role')->after('avatar_url');
       });
     }
