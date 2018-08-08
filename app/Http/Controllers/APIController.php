@@ -66,12 +66,21 @@ class APIController extends Controller
       return $itineraries;
     }
 
-    // List itinerary for specific country
+    // List itineraries for specific country
     public function listItinerariesByCountry(Request $request)
     {
       $country_id = $request->country_id;
 
       $itineraries = Itinerary::with(['country','user'])->where('country_id', $country_id)->get();
+      return $itineraries;
+    }
+
+    // List itineraries for specific user
+    public function listItinerariesByUser(Request $request)
+    {
+      $user_id = $request->user_id;
+
+      $itineraries = Itinerary::with(['country','user'])->where('user_id', $user_id)->get();
       return $itineraries;
     }
 

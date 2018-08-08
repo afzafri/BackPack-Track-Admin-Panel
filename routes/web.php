@@ -30,8 +30,11 @@ Route::post('/api/newItinerary', 'APIController@newItinerary');
 // List all itineraries
 Route::get('/api/listItineraries', 'APIController@listItineraries');
 
-// List itineraries for specific Country 
+// List itineraries for specific Country
 Route::get('/api/listItinerariesByCountry/{country_id}', 'APIController@listItinerariesByCountry');
+
+// List itineraries for specific User
+Route::get('/api/listItinerariesByUser/{user_id}', 'APIController@listItinerariesByUser');
 
 // Create activity
 Route::post('/api/newActivity', 'APIController@newActivity');
