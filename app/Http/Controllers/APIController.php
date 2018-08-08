@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 
+use App\User;
 use App\Country;
 use App\Itinerary;
+use App\Activity;
+use App\Comment;
 
 class APIController extends Controller
 {
@@ -61,5 +64,14 @@ class APIController extends Controller
     {
       $itineraries = Itinerary::with(['country','user'])->get();
       return $itineraries;
+    }
+
+    // List activities for an itinerary
+    public function viewActivities(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+
+      $activities = Activity::where('itinerary_id', $itinerary_id)->get();
+      return $activities;
     }
 }

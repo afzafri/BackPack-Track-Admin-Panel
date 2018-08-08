@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
 // ----------------- API ROUTES -----------------
 // List all countries names
 Route::get('/api/listCountries', 'APIController@listCountries');
@@ -25,6 +30,5 @@ Route::post('/api/newItinerary', 'APIController@newItinerary');
 // List all itineraries
 Route::get('/api/listItineraries', 'APIController@listItineraries');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+// View activities for an itinerary
+Route::get('/api/viewActivities/{itinerary_id}', 'APIController@viewActivities');
