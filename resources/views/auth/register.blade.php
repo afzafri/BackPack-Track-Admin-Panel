@@ -71,7 +71,12 @@
                             <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
 
                             <div class="col-md-6">
-                                <input id="country" type="text" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" value="{{ old('country') }}" required autofocus>
+                                <select id="country" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" required autofocus>
+                                  <option value="">Choose country</option>
+                                  @foreach (App\Country::pluck('name', 'id') as $key=>$value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                  @endforeach
+                                </select>
 
                                 @if ($errors->has('country'))
                                     <span class="invalid-feedback" role="alert">
