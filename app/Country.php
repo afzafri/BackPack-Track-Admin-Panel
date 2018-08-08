@@ -12,8 +12,8 @@ class Country extends Model
     	return $this->hasMany('App\Itinerary');
     }
 
-    public function backpacker()
+    public function user()
     {
-      return $this->hasMany('App\Backpacker');
+      return $this->hasMany('App\User');
     }
 }

@@ -12,8 +12,8 @@ class Comment extends Model
       return $this->belongsTo('App\Itinerary');
     }
 
-    public function backpacker()
+    public function user()
     {
-      return $this->belongsTo('App\Backpacker');
+      return $this->belongsTo('App\User');
     }
 }

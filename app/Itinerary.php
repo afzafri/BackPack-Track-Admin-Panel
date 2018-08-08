@@ -12,9 +12,9 @@ class Itinerary extends Model
       return $this->belongsTo('App\Country');
     }
 
-    public function backpacker()
+    public function user()
     {
-      return $this->belongsTo('App\Backpacker');
+      return $this->belongsTo('App\User');
     }
 
     public function activity()

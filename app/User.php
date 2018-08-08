@@ -26,4 +26,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function itinerary()
+    {
+    	return $this->hasMany('App\Itinerary');
+    }
+
+    public function comment()
+    {
+    	return $this->hasMany('App\Comment');
+    }
+
+    public function country()
+    {
+    	return $this->belongsTo('App\Country');
+    }
 }
