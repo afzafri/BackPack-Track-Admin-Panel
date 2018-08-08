@@ -24,3 +24,7 @@ Route::post('/api/newItinerary', 'APIController@newItinerary');
 
 // List all itineraries
 Route::get('/api/listItineraries', 'APIController@listItineraries');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
