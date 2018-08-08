@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 
 use App\Country;
 use App\Itinerary;
@@ -19,13 +20,40 @@ class APIController extends Controller
     // Create new itinerary
     public function newItinerary(Request $request)
     {
-      $itinerary = new Itinerary;
+        $rules = array(
+          'title' => 'required|string|max:255',
+          'country_id' => 'required|numeric',
+          'user_id' => 'required|numeric',
+        );
 
-      $itinerary->title = $request->title;
-      $itinerary->country_id = $request->country_id;
-      $itinerary->user_id = $request->user_id;
+        $validator = Validator::make($request->all(), $rules);
 
-      $itinerary->save();
+        if($validator->fails())
+        {
+            $errors = $validator->errors();
+
+            $arrres['code'] = 400;
+            $arrres['message'] = "Create new itinerary failed!";
+            $arrres['error'] = $errors;
+
+            return json_encode($arrres);
+        }
+        else
+        {
+            $itinerary = new Itinerary;
+
+            $itinerary->title = $request->title;
+            $itinerary->country_id = $request->country_id;
+            $itinerary->user_id = $request->user_id;
+
+            $itinerary->save();
+
+            $arrres['code'] = 200;
+            $arrres['message'] = "New itinerary created.";
+            $arrres['result'] = $itinerary;
+
+            return json_encode($arrres);
+        }
     }
 
     // List all Itinerary
