@@ -37,7 +37,18 @@ Route::get('/api/listItinerariesByCountry/{country_id}', 'APIController@listItin
 Route::get('/api/listItinerariesByUser/{user_id}', 'APIController@listItinerariesByUser');
 
 // Create activity
+// To-do: Upload photos
 Route::post('/api/newActivity', 'APIController@newActivity');
 
 // View activities for an itinerary
 Route::get('/api/viewActivities/{itinerary_id}', 'APIController@viewActivities');
+
+// Register new user
+
+// Login user
+
+// List comments for an itinerary
+
+// List comments for specific users
+
+// Calculate total budget for an Itinerary
