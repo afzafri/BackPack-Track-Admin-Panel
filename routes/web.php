@@ -30,6 +30,9 @@ Route::post('/api/newItinerary', 'APIController@newItinerary');
 // List all itineraries
 Route::get('/api/listItineraries', 'APIController@listItineraries');
 
+// List itineraries for specific Country 
+Route::get('/api/listItinerariesByCountry/{country_id}', 'APIController@listItinerariesByCountry');
+
 // Create activity
 Route::post('/api/newActivity', 'APIController@newActivity');
 
