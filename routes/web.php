@@ -30,5 +30,8 @@ Route::post('/api/newItinerary', 'APIController@newItinerary');
 // List all itineraries
 Route::get('/api/listItineraries', 'APIController@listItineraries');
 
+// Create activity
+Route::post('/api/newActivity', 'APIController@newActivity');
+
 // View activities for an itinerary
 Route::get('/api/viewActivities/{itinerary_id}', 'APIController@viewActivities');
