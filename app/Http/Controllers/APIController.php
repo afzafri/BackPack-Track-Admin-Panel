@@ -140,8 +140,13 @@ class APIController extends Controller
     {
       $itinerary_id = $request->itinerary_id;
 
+      $itinerary = Itinerary::with(['user','country'])->find($itinerary_id);
       $activities = Activity::where('itinerary_id', $itinerary_id)->get();
-      return $activities;
+
+      $result['itinerary'] = $itinerary;
+      $result['activities'] = $activities;
+
+      return json_encode($result);
     }
 
     // Get list of dates and no of day trip
