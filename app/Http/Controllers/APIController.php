@@ -59,6 +59,26 @@ class APIController extends Controller
         }
     }
 
+    // Delete an Itinerary
+    public function deleteItinerary(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+
+      // Delete the itinerary
+      $itinerary = Itinerary::find($itinerary_id);
+      $itinerary->delete();
+
+      // Delete the activities
+      $activities = Activity::where('itinerary_id', $itinerary_id)->delete();
+
+      $result['code'] = 200;
+      $result['message'] = "Itinerary deleted.";
+      $result['result']['itinerary'] = $itinerary;
+      $result['result']['activities'] = $activities;
+
+      return json_encode($result);
+    }
+
     // List all Itinerary
     public function listItineraries()
     {
@@ -188,7 +208,7 @@ class APIController extends Controller
       $itinerary_id = $request->itinerary_id;
       $dates = json_decode($this->getDayDates($request), true)['dates'];
       $result['itinerary_id'] = $itinerary_id;
-      
+
       $i = 0;
       foreach ($dates as $date)
       {

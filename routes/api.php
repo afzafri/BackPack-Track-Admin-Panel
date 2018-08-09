@@ -27,6 +27,7 @@ Route::post('/newItinerary', 'APIController@newItinerary');
 // Edit and update itinerary
 
 // Delete itinerary
+Route::post('/deleteItinerary', 'APIController@deleteItinerary');
 
 // List all itineraries
 Route::get('/listItineraries', 'APIController@listItineraries');
