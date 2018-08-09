@@ -45,6 +45,7 @@ Route::get('/viewActivities/{itinerary_id}', 'APIController@viewActivities');
 // Login user
 
 // List dates and no of day for an itinerary
+Route::get('/getDayDates/{itinerary_id}', 'APIController@getDayDates');
 
 // List comments for an itinerary
 

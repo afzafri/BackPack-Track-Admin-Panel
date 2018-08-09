@@ -143,4 +143,23 @@ class APIController extends Controller
       $activities = Activity::where('itinerary_id', $itinerary_id)->get();
       return $activities;
     }
+
+    // Get list of dates and no of day trip
+    public function getDayDates(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+
+      $dates = Activity::distinct()->where('itinerary_id', $itinerary_id)->get(['date']);
+      $nodays = count($dates);
+      $nonight = $nodays > 0 ? ($nodays-1) : 0;
+      $duration = $nodays."D".$nonight."N";
+
+      $result['itinerary_id'] = $itinerary_id;
+      $result['dates'] = $dates;
+      $result['no_days'] = $nodays;
+      $result['no_night'] = $nonight;
+      $result['trip_duration'] = $duration;
+
+      return json_encode($result);
+    }
 }
