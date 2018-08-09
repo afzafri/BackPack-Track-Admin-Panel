@@ -44,7 +44,8 @@ Route::post('/newActivity', 'APIController@newActivity');
 
 // Edit and Update activity
 
-// Delete activity
+// Delete an activity
+Route::post('/deleteActivity', 'APIController@deleteActivity');
 
 // View activities for an itinerary
 // To-do: Return photos urls

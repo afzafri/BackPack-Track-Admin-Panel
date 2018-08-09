@@ -155,6 +155,21 @@ class APIController extends Controller
         }
     }
 
+    // Delete an Activity
+    public function deleteActivity(Request $request)
+    {
+      $activity_id = $request->activity_id;
+
+      $activity = Activity::find($activity_id);
+      $activity->delete();
+
+      $result['code'] = 200;
+      $result['message'] = "Activity deleted.";
+      $result['result'] = $activity;
+
+      return json_encode($result);
+    }
+
     // List activities for an itinerary
     public function viewActivities(Request $request)
     {
