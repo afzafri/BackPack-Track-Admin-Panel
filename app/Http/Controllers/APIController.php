@@ -182,6 +182,29 @@ class APIController extends Controller
       return json_encode($result);
     }
 
+    // Get total budget for each day of Itinerary
+    public function getTotalBudgetPerDay(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+      $dates = json_decode($this->getDayDates($request), true)['dates'];
+      $result['itinerary_id'] = $itinerary_id;
+      
+      $i = 0;
+      foreach ($dates as $date)
+      {
+        $parseDate = $date['date'];
+
+        $totalbudget = Activity::where([['itinerary_id', $itinerary_id],['date', $parseDate]])->sum('budget');
+
+        $result['detail'][$i]['day'] = "Day ".($i+1);
+        $result['detail'][$i]['date'] = $parseDate;
+        $result['detail'][$i]['totalBudget'] = $totalbudget;
+        $i++;
+      }
+
+      return json_encode($result);
+    }
+
     // Post new comment to an itinerary
     public function newComment(Request $request)
     {

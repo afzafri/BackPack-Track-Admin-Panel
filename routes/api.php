@@ -68,3 +68,4 @@ Route::get('/listCommentsByUser/{user_id}', 'APIController@listCommentsByUser');
 Route::get('/getTotalBudget/{itinerary_id}', 'APIController@getTotalBudget');
 
 // Calculate total budget for each day of a trip
+Route::get('/getTotalBudgetPerDay/{itinerary_id}', 'APIController@getTotalBudgetPerDay');
