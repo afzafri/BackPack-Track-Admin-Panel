@@ -47,8 +47,11 @@ Route::get('/viewActivities/{itinerary_id}', 'APIController@viewActivities');
 // List dates and no of day for an itinerary
 Route::get('/getDayDates/{itinerary_id}', 'APIController@getDayDates');
 
+// Post comments for an itinerary
+
 // List comments for an itinerary
 
 // List comments for specific users
 
 // Calculate total budget for an Itinerary
+Route::get('/getTotalBudget/{itinerary_id}', 'APIController@getTotalBudget');

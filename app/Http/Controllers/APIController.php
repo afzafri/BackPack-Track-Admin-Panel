@@ -162,4 +162,18 @@ class APIController extends Controller
 
       return json_encode($result);
     }
+
+    // Get total budget for an Itinerary
+    public function getTotalBudget(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+      $budgets = Activity::where('itinerary_id', $itinerary_id)->get(['activity','budget']);
+      $totalbudget = Activity::where('itinerary_id', $itinerary_id)->sum('budget');
+
+      $result['itinerary_id'] = $itinerary_id;
+      $result['budgets'] = $budgets;
+      $result['totalbudget'] = $totalbudget;
+
+      return json_encode($result);
+    }
 }
