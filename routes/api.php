@@ -48,6 +48,7 @@ Route::get('/viewActivities/{itinerary_id}', 'APIController@viewActivities');
 Route::get('/getDayDates/{itinerary_id}', 'APIController@getDayDates');
 
 // Post comments for an itinerary
+Route::post('/newComment', 'APIController@newComment');
 
 // List comments for an itinerary
 

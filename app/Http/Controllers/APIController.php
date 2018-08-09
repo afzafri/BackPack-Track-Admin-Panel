@@ -177,4 +177,42 @@ class APIController extends Controller
       return json_encode($result);
     }
 
+    // Post new comment to an itinerary
+    public function newComment(Request $request)
+    {
+      $rules = array(
+        'message' => 'required|string|max:255',
+        'user_id' => 'required|numeric',
+        'itinerary_id' => 'required|numeric',
+      );
+
+      $validator = Validator::make($request->all(), $rules);
+
+      if($validator->fails())
+      {
+          $errors = $validator->errors();
+
+          $result['code'] = 400;
+          $result['message'] = "Comment not posted!";
+          $result['error'] = $errors;
+
+          return json_encode($result);
+      }
+      else
+      {
+          $comment = new Comment;
+
+          $comment->message = $request->message;
+          $comment->user_id = $request->user_id;
+          $comment->itinerary_id = $request->itinerary_id;
+
+          $comment->save();
+
+          $result['code'] = 200;
+          $result['message'] = "Comment posted.";
+          $result['result'] = $comment;
+
+          return json_encode($result);
+      }
+    }
 }
