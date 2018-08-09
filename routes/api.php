@@ -51,6 +51,7 @@ Route::get('/getDayDates/{itinerary_id}', 'APIController@getDayDates');
 Route::post('/newComment', 'APIController@newComment');
 
 // List comments for an itinerary
+Route::get('/listComments/{itinerary_id}', 'APIController@listComments');
 
 // List comments for specific users
 

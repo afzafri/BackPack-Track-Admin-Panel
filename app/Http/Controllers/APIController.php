@@ -220,4 +220,18 @@ class APIController extends Controller
           return json_encode($result);
       }
     }
+
+    // List all comments for an itinerary
+    public function listComments(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+
+      $itinerary = Itinerary::with(['user','country'])->find($itinerary_id);
+      $comments = Comment::with(['user'])->where('itinerary_id', $itinerary_id)->get();
+
+      $result['itinerary'] = $itinerary;
+      $result['comments'] = $comments;
+
+      return json_encode($result);
+    }
 }
