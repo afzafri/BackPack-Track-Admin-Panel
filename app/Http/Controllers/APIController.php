@@ -35,11 +35,11 @@ class APIController extends Controller
         {
             $errors = $validator->errors();
 
-            $arrres['code'] = 400;
-            $arrres['message'] = "Create new itinerary failed!";
-            $arrres['error'] = $errors;
+            $result['code'] = 400;
+            $result['message'] = "Create new itinerary failed!";
+            $result['error'] = $errors;
 
-            return json_encode($arrres);
+            return json_encode($result);
         }
         else
         {
@@ -51,11 +51,11 @@ class APIController extends Controller
 
             $itinerary->save();
 
-            $arrres['code'] = 200;
-            $arrres['message'] = "New itinerary created.";
-            $arrres['result'] = $itinerary;
+            $result['code'] = 200;
+            $result['message'] = "New itinerary created.";
+            $result['result'] = $itinerary;
 
-            return json_encode($arrres);
+            return json_encode($result);
         }
     }
 
@@ -104,11 +104,11 @@ class APIController extends Controller
         {
             $errors = $validator->errors();
 
-            $arrres['code'] = 400;
-            $arrres['message'] = "Create new activity failed!";
-            $arrres['error'] = $errors;
+            $result['code'] = 400;
+            $result['message'] = "Create new activity failed!";
+            $result['error'] = $errors;
 
-            return json_encode($arrres);
+            return json_encode($result);
         }
         else
         {
@@ -127,11 +127,11 @@ class APIController extends Controller
 
             $activity->save();
 
-            $arrres['code'] = 200;
-            $arrres['message'] = "New activity created.";
-            $arrres['result'] = $activity;
+            $result['code'] = 200;
+            $result['message'] = "New activity created.";
+            $result['result'] = $activity;
 
-            return json_encode($arrres);
+            return json_encode($result);
         }
     }
 
@@ -176,4 +176,5 @@ class APIController extends Controller
 
       return json_encode($result);
     }
+
 }
