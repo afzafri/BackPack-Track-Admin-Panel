@@ -234,4 +234,13 @@ class APIController extends Controller
 
       return json_encode($result);
     }
+
+    // List all comments by specific user
+    public function listCommentsByUser(Request $request)
+    {
+      $user_id = $request->user_id;
+
+      $comments = Comment::with(['user','itinerary'])->where('user_id', $user_id)->get();
+      return $comments;
+    }
 }
