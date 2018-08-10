@@ -43,7 +43,6 @@ Route::get('/listItinerariesByCountry/{country_id}', 'APIController@listItinerar
 Route::get('/listItinerariesByUser/{user_id}', 'APIController@listItinerariesByUser');
 
 // Create activity
-// To-do: Upload photos
 Route::post('/newActivity', 'APIController@newActivity');
 
 // Edit and Update activity
