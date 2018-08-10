@@ -118,7 +118,6 @@ class APIController extends Controller
         $pic_msg = $this->deletePhoto($pic_url['pic_url']);
       }
 
-
       // Delete the data
       $activities = Activity::where('itinerary_id', $itinerary_id)->delete();
 
@@ -330,6 +329,15 @@ class APIController extends Controller
       $result['activities'] = $activities;
 
       return json_encode($result);
+    }
+
+    // List all activities photos for an itinerary
+    public function listItineraryImages(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+      $activities_photos = Activity::where([['itinerary_id', $itinerary_id], ['pic_url','<>','']])->get(['id','activity','pic_url']);
+
+      return $activities_photos;
     }
 
     // Get list of dates and no of day trip

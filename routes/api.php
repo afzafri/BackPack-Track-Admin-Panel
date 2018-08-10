@@ -52,10 +52,10 @@ Route::post('/updateActivity', 'APIController@updateActivity');
 Route::post('/deleteActivity', 'APIController@deleteActivity');
 
 // View activities for an itinerary
-// To-do: Return photos urls
 Route::get('/viewActivities/{itinerary_id}', 'APIController@viewActivities');
 
 // List all photos from activities
+Route::get('/listItineraryImages/{itinerary_id}', 'APIController@listItineraryImages');
 
 // Register new user
 
