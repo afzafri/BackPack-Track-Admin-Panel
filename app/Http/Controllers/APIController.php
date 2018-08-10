@@ -111,6 +111,15 @@ class APIController extends Controller
       $itinerary->delete();
 
       // Delete the activities
+      // Delete all images
+      $pic_urls = json_decode(Activity::where('itinerary_id', $itinerary_id)->get(['pic_url']), true);
+      foreach ($pic_urls as $pic_url)
+      {
+        $pic_msg = $this->deletePhoto($pic_url['pic_url']);
+      }
+
+
+      // Delete the data
       $activities = Activity::where('itinerary_id', $itinerary_id)->delete();
 
       $result['code'] = 200;
