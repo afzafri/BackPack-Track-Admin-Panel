@@ -282,10 +282,16 @@ class APIController extends Controller
       $activity_id = $request->activity_id;
 
       $activity = Activity::find($activity_id);
+
+      // delete image
+      $pic_url = $activity->pic_url;
+      $pic_msg = $this->deletePhoto($pic_url);
+
+      // delete data
       $activity->delete();
 
       $result['code'] = 200;
-      $result['message'] = "Activity deleted.";
+      $result['message'] = "Activity deleted. ".$pic_msg;
       $result['result'] = $activity;
 
       return json_encode($result);
