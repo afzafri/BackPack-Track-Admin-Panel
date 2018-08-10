@@ -188,6 +188,7 @@ class APIController extends Controller
             if($request->hasFile('image'))
             {
               $pic_url = $request->file('image')->store('images/activities', 'public');
+              $pic_url = asset('storage/'.$pic_url);
             }
 
             $activity = new Activity;
@@ -200,7 +201,7 @@ class APIController extends Controller
             $activity->lat = $request->lat;
             $activity->lng = $request->lng;
             $activity->budget = $request->budget;
-            $activity->pic_url = asset('storage/'.$pic_url);
+            $activity->pic_url = $pic_url;
             $activity->itinerary_id = $request->itinerary_id;
 
             $activity->save();
