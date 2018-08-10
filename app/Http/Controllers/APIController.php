@@ -381,6 +381,7 @@ class APIController extends Controller
       $result['itinerary_id'] = $itinerary_id;
 
       $i = 0;
+      $grandTotal = 0;
       foreach ($dates as $date)
       {
         $parseDate = $date['date'];
@@ -390,8 +391,11 @@ class APIController extends Controller
         $result['detail'][$i]['day'] = "Day ".($i+1);
         $result['detail'][$i]['date'] = $parseDate;
         $result['detail'][$i]['totalBudget'] = $totalbudget;
+        $grandTotal += $totalbudget;
         $i++;
       }
+
+      $result['grandTotal'] = $grandTotal;
 
       return json_encode($result);
     }
