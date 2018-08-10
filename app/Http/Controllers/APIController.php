@@ -188,7 +188,6 @@ class APIController extends Controller
             if($request->hasFile('image'))
             {
               $pic_url = $request->file('image')->store('images/activities', 'public');
-              $pic_url = asset('storage/'.$pic_url);
             }
 
             $activity = new Activity;
@@ -251,7 +250,6 @@ class APIController extends Controller
             if($request->hasFile('image'))
             {
               $pic_url = $request->file('image')->store('images/activities', 'public');
-              $pic_url = asset('storage/'.$pic_url);
             }
 
             $activity->date = $request->date;
