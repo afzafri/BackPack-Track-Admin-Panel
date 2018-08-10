@@ -32,6 +32,9 @@ Route::post('/deleteItinerary', 'APIController@deleteItinerary');
 // List all itineraries
 Route::get('/listItineraries', 'APIController@listItineraries');
 
+// View specific itinerary
+Route::get('/viewItinerary/{itinerary_id}', 'APIController@viewItinerary');
+
 // List itineraries for specific Country
 Route::get('/listItinerariesByCountry/{country_id}', 'APIController@listItinerariesByCountry');
 
