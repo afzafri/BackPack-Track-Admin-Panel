@@ -245,6 +245,14 @@ class APIController extends Controller
             $activity_id = $request->activity_id;
             $activity = Activity::find($activity_id);
 
+            $pic_url = $activity->pic_url;
+
+            if($request->hasFile('image'))
+            {
+              $pic_url = $request->file('image')->store('images/activities', 'public');
+              $pic_url = asset('storage/'.$pic_url);
+            }
+
             $activity->date = $request->date;
             $activity->time = $request->time;
             $activity->activity = $request->activity;
@@ -253,7 +261,7 @@ class APIController extends Controller
             $activity->lat = $request->lat;
             $activity->lng = $request->lng;
             $activity->budget = $request->budget;
-            $activity->pic_url = $request->pic_url;
+            $activity->pic_url = $pic_url;
             $activity->itinerary_id = $request->itinerary_id;
 
             $activity->save();
