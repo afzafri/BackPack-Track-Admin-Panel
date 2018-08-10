@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use Storage;
 
 use App\User;
 use App\Country;
@@ -286,6 +287,18 @@ class APIController extends Controller
       $result['result'] = $activity;
 
       return json_encode($result);
+    }
+
+    // delete photo
+    public function deletePhoto($url)
+    {
+      $baseurl = asset('/').'storage/';
+      $result = Storage::disk('public')->delete(str_replace($baseurl,'',$url));
+
+      if($result)
+        return "File deleted";
+      else
+        return "File delete failed.";
     }
 
     // List activities for an itinerary
