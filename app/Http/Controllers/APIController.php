@@ -165,6 +165,7 @@ class APIController extends Controller
           'place_name' => 'required|string|max:255',
           'lat' => 'required|string|max:255',
           'lng' => 'required|string|max:255',
+          'image' => 'image',
           'itinerary_id' => 'required|numeric',
         );
 
@@ -182,6 +183,13 @@ class APIController extends Controller
         }
         else
         {
+            $pic_url = "";
+
+            if($request->hasFile('image'))
+            {
+              $pic_url = $request->file('image')->store('images/activities', 'public');
+            }
+
             $activity = new Activity;
 
             $activity->date = $request->date;
@@ -192,7 +200,7 @@ class APIController extends Controller
             $activity->lat = $request->lat;
             $activity->lng = $request->lng;
             $activity->budget = $request->budget;
-            $activity->pic_url = $request->pic_url;
+            $activity->pic_url = asset('storage/'.$pic_url);
             $activity->itinerary_id = $request->itinerary_id;
 
             $activity->save();
