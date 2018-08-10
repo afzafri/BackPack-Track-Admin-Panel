@@ -47,6 +47,7 @@ Route::get('/listItinerariesByUser/{user_id}', 'APIController@listItinerariesByU
 Route::post('/newActivity', 'APIController@newActivity');
 
 // Edit and Update activity
+Route::post('/updateActivity', 'APIController@updateActivity');
 
 // Delete an activity
 Route::post('/deleteActivity', 'APIController@deleteActivity');

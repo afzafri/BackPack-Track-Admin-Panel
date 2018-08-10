@@ -205,6 +205,59 @@ class APIController extends Controller
         }
     }
 
+    // Update an Activity
+    public function updateActivity(Request $request)
+    {
+        $rules = array(
+          'date' => 'required|date',
+          'time' => 'required|date_format:"H:i"',
+          'activity' => 'required|string|max:255',
+          'description' => 'required|string|max:255',
+          'place_name' => 'required|string|max:255',
+          'lat' => 'required|string|max:255',
+          'lng' => 'required|string|max:255',
+          'itinerary_id' => 'required|numeric',
+          'activity_id' => 'required|numeric',
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails())
+        {
+            $errors = $validator->errors();
+
+            $result['code'] = 400;
+            $result['message'] = "Update activity failed!";
+            $result['error'] = $errors;
+
+            return json_encode($result);
+        }
+        else
+        {
+            $activity_id = $request->activity_id;
+            $activity = Activity::find($activity_id);
+
+            $activity->date = $request->date;
+            $activity->time = $request->time;
+            $activity->activity = $request->activity;
+            $activity->description = $request->description;
+            $activity->place_name = $request->place_name;
+            $activity->lat = $request->lat;
+            $activity->lng = $request->lng;
+            $activity->budget = $request->budget;
+            $activity->pic_url = $request->pic_url;
+            $activity->itinerary_id = $request->itinerary_id;
+
+            $activity->save();
+
+            $result['code'] = 200;
+            $result['message'] = "Activity updated.";
+            $result['result'] = $activity;
+
+            return json_encode($result);
+        }
+    }
+
     // Delete an Activity
     public function deleteActivity(Request $request)
     {
