@@ -86,6 +86,9 @@ Route::post('login', 'AuthController@login');
 Route::post('register', 'AuthController@register');
 
 Route::middleware('auth:api')->group(function () {
+  // Logout
   Route::get('logout', 'AuthController@logout');
+
+  // Get logged in User details
   Route::get('user', 'AuthController@user');
 });
