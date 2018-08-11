@@ -21,6 +21,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // List all countries names
 Route::get('/listCountries', 'APIController@listCountries');
 
+// Login User
+Route::post('login', 'AuthController@login');
+
+// Register User
+Route::post('register', 'AuthController@register');
+
 Route::middleware('auth:api')->group(function () {
 
   // Create new itinerary
@@ -79,17 +85,8 @@ Route::middleware('auth:api')->group(function () {
 
   // Calculate total budget for each day of a trip
   Route::get('/getTotalBudgetPerDay/{itinerary_id}', 'APIController@getTotalBudgetPerDay');
-});
 
-// ----------- User API Route -----------
-// Login
-Route::post('login', 'AuthController@login');
-
-// Register
-Route::post('register', 'AuthController@register');
-
-Route::middleware('auth:api')->group(function () {
-  // Logout
+  // Logout user
   Route::get('logout', 'AuthController@logout');
 
   // Get logged in User details
