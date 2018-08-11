@@ -78,17 +78,14 @@ Route::get('/getTotalBudget/{itinerary_id}', 'APIController@getTotalBudget');
 // Calculate total budget for each day of a trip
 Route::get('/getTotalBudgetPerDay/{itinerary_id}', 'APIController@getTotalBudgetPerDay');
 
-// ----------- User API Route, Login and Register -----------
-Route::group([
-    'prefix' => 'auth'
-], function () {
-    Route::post('/login', 'AuthController@login');
-    Route::post('/register', 'AuthController@register');
+// ----------- User API Route -----------
+// Login
+Route::post('login', 'AuthController@login');
 
-    Route::group([
-      'middleware' => 'auth:api'
-    ], function() {
-        Route::get('logout', 'AuthController@logout');
-        Route::get('user', 'AuthController@user');
-    });
+// Register
+Route::post('register', 'AuthController@register');
+
+Route::middleware('auth:api')->group(function () {
+  Route::get('logout', 'AuthController@logout');
+  Route::get('user', 'AuthController@user');
 });
