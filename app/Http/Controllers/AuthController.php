@@ -116,4 +116,19 @@ class AuthController extends Controller
             return json_encode($result);
         }
     }
+
+    // Logout
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+
+        $result['message'] = "Successfully logged out.";
+        return json_encode($result);
+    }
+
+    // Get logged in User details
+    public function user(Request $request)
+    {
+        return $request->user();
+    }
 }
