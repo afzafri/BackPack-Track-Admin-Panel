@@ -42,6 +42,9 @@ Route::get('/listItinerariesByCountry/{country_id}', 'APIController@listItinerar
 // List itineraries for specific User
 Route::get('/listItinerariesByUser/{user_id}', 'APIController@listItinerariesByUser');
 
+// Search itineraries by title
+Route::get('/searchItineraries/{title}', 'APIController@searchItineraries');
+
 // Create activity
 Route::post('/newActivity', 'APIController@newActivity');
 

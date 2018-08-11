@@ -163,6 +163,15 @@ class APIController extends Controller
       return $itineraries;
     }
 
+    // Search itineraries by title
+    public function searchItineraries(Request $request)
+    {
+      $searchTitle = $request->title;
+
+      $itineraries = Itinerary::with(['country','user'])->where('title', 'like', '%' . $searchTitle . '%')->get();
+      return $itineraries;
+    }
+
     // Create new activity
     public function newActivity(Request $request)
     {
