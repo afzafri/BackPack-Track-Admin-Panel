@@ -64,4 +64,59 @@ class AuthController extends Controller
               return json_encode($result);
           }
     }
+
+    // login
+    public function login(Request $request)
+    {
+        $rules = array(
+          'email' => 'required|string|email|max:255',
+          'password' => 'required|string|min:6',
+          'remember_me' => 'boolean',
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails())
+        {
+            $errors = $validator->errors();
+
+            $result['code'] = 400;
+            $result['message'] = "Login failed!";
+            $result['error'] = $errors;
+
+            return json_encode($result);
+        }
+        else
+        {
+            $credentials = request(['email', 'password']);
+
+            if(!Auth::attempt($credentials))
+            {
+                $result['code'] = 400;
+                $result['message'] = "Login failed! Wrong email or password.";
+                return json_encode($result);
+            }
+
+            $user = $request->user();
+
+            $tokenResult = $user->createToken('Personal Access Token');
+            $token = $tokenResult->token;
+
+            if ($request->remember_me)
+            {
+                $token->expires_at = Carbon::now()->addWeeks(1);
+            }
+
+            $token->save();
+
+            $result['code'] = 200;
+            $result['message'] = "Login success!";
+            $result['result'] = $user;
+            $result['access_token'] = $tokenResult->accessToken;
+            $result['token_type'] = 'Bearer';
+            $result['expires_at'] = Carbon::parse($tokenResult->token->expires_at)->toDateTimeString();
+
+            return json_encode($result);
+        }
+    }
 }
