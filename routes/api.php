@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// ----------------- API ROUTES -----------------
+// ----------------- CRUD API ROUTES -----------------
 // List all countries names
 Route::get('/listCountries', 'APIController@listCountries');
 
@@ -60,10 +60,6 @@ Route::get('/viewActivities/{itinerary_id}', 'APIController@viewActivities');
 // List all photos from activities
 Route::get('/listItineraryImages/{itinerary_id}', 'APIController@listItineraryImages');
 
-// Register new user
-
-// Login user
-
 // List dates and no of day for an itinerary
 Route::get('/getDayDates/{itinerary_id}', 'APIController@getDayDates');
 
@@ -81,3 +77,18 @@ Route::get('/getTotalBudget/{itinerary_id}', 'APIController@getTotalBudget');
 
 // Calculate total budget for each day of a trip
 Route::get('/getTotalBudgetPerDay/{itinerary_id}', 'APIController@getTotalBudgetPerDay');
+
+// ----------- User API Route, Login and Register -----------
+Route::group([
+    'prefix' => 'auth'
+], function () {
+    Route::post('/login', 'AuthController@login');
+    Route::post('/register', 'AuthController@register');
+
+    Route::group([
+      'middleware' => 'auth:api'
+    ], function() {
+        Route::get('logout', 'AuthController@logout');
+        Route::get('user', 'AuthController@user');
+    });
+});
