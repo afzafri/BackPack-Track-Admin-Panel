@@ -54,12 +54,9 @@ class AuthController extends Controller
 
               $user->save();
 
-              $token = $user->createToken('BackPackTrack')->accessToken;
-
               $result['code'] = 200;
               $result['message'] = "Successfully register user!";
               $result['result'] = $user;
-              $result['token'] = $token;
 
               return json_encode($result);
           }
