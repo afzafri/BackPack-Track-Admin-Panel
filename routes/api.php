@@ -21,62 +21,65 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // List all countries names
 Route::get('/listCountries', 'APIController@listCountries');
 
-// Create new itinerary
-Route::post('/newItinerary', 'APIController@newItinerary');
+Route::middleware('auth:api')->group(function () {
 
-// Edit and update itinerary
-Route::post('/updateItinerary', 'APIController@updateItinerary');
+  // Create new itinerary
+  Route::post('/newItinerary', 'APIController@newItinerary');
 
-// Delete itinerary
-Route::post('/deleteItinerary', 'APIController@deleteItinerary');
+  // Edit and update itinerary
+  Route::post('/updateItinerary', 'APIController@updateItinerary');
 
-// List all itineraries
-Route::get('/listItineraries', 'APIController@listItineraries');
+  // Delete itinerary
+  Route::post('/deleteItinerary', 'APIController@deleteItinerary');
 
-// View specific itinerary
-Route::get('/viewItinerary/{itinerary_id}', 'APIController@viewItinerary');
+  // List all itineraries
+  Route::get('/listItineraries', 'APIController@listItineraries');
 
-// List itineraries for specific Country
-Route::get('/listItinerariesByCountry/{country_id}', 'APIController@listItinerariesByCountry');
+  // View specific itinerary
+  Route::get('/viewItinerary/{itinerary_id}', 'APIController@viewItinerary');
 
-// List itineraries for specific User
-Route::get('/listItinerariesByUser/{user_id}', 'APIController@listItinerariesByUser');
+  // List itineraries for specific Country
+  Route::get('/listItinerariesByCountry/{country_id}', 'APIController@listItinerariesByCountry');
 
-// Search itineraries by title
-Route::get('/searchItineraries/{title}', 'APIController@searchItineraries');
+  // List itineraries for specific User
+  Route::get('/listItinerariesByUser/{user_id}', 'APIController@listItinerariesByUser');
 
-// Create activity
-Route::post('/newActivity', 'APIController@newActivity');
+  // Search itineraries by title
+  Route::get('/searchItineraries/{title}', 'APIController@searchItineraries');
 
-// Edit and Update activity
-Route::post('/updateActivity', 'APIController@updateActivity');
+  // Create activity
+  Route::post('/newActivity', 'APIController@newActivity');
 
-// Delete an activity
-Route::post('/deleteActivity', 'APIController@deleteActivity');
+  // Edit and Update activity
+  Route::post('/updateActivity', 'APIController@updateActivity');
 
-// View activities for an itinerary
-Route::get('/viewActivities/{itinerary_id}', 'APIController@viewActivities');
+  // Delete an activity
+  Route::post('/deleteActivity', 'APIController@deleteActivity');
 
-// List all photos from activities
-Route::get('/listItineraryImages/{itinerary_id}', 'APIController@listItineraryImages');
+  // View activities for an itinerary
+  Route::get('/viewActivities/{itinerary_id}', 'APIController@viewActivities');
 
-// List dates and no of day for an itinerary
-Route::get('/getDayDates/{itinerary_id}', 'APIController@getDayDates');
+  // List all photos from activities
+  Route::get('/listItineraryImages/{itinerary_id}', 'APIController@listItineraryImages');
 
-// Post comments for an itinerary
-Route::post('/newComment', 'APIController@newComment');
+  // List dates and no of day for an itinerary
+  Route::get('/getDayDates/{itinerary_id}', 'APIController@getDayDates');
 
-// List comments for an itinerary
-Route::get('/listComments/{itinerary_id}', 'APIController@listComments');
+  // Post comments for an itinerary
+  Route::post('/newComment', 'APIController@newComment');
 
-// List comments for specific users
-Route::get('/listCommentsByUser/{user_id}', 'APIController@listCommentsByUser');
+  // List comments for an itinerary
+  Route::get('/listComments/{itinerary_id}', 'APIController@listComments');
 
-// Calculate total budget for an Itinerary
-Route::get('/getTotalBudget/{itinerary_id}', 'APIController@getTotalBudget');
+  // List comments for specific users
+  Route::get('/listCommentsByUser/{user_id}', 'APIController@listCommentsByUser');
 
-// Calculate total budget for each day of a trip
-Route::get('/getTotalBudgetPerDay/{itinerary_id}', 'APIController@getTotalBudgetPerDay');
+  // Calculate total budget for an Itinerary
+  Route::get('/getTotalBudget/{itinerary_id}', 'APIController@getTotalBudget');
+
+  // Calculate total budget for each day of a trip
+  Route::get('/getTotalBudgetPerDay/{itinerary_id}', 'APIController@getTotalBudgetPerDay');
+});
 
 // ----------- User API Route -----------
 // Login
