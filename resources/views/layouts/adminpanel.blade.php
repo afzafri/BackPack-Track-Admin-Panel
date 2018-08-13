@@ -44,7 +44,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                            <img src="{{ asset('images/icon/logo.png') }}" alt="BackPack Track" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -75,7 +75,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
+                    <img src="{{ asset('images/icon/logo.png') }}" alt="BackPack Track" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -107,7 +107,7 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/avatar.png" alt="John Doe" />
+                                            <img src="{{ asset('images/icon/avatar.png') }}" alt="John Doe" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">john doe</a>
@@ -116,7 +116,7 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar.png" alt="John Doe" />
+                                                        <img src="{{ asset('images/icon/avatar.png') }}" alt="John Doe" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -153,7 +153,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="overview-wrap">
-                                    <h2 class="title-1">page header</h2>
+                                    <h2 class="title-1">
+                                      @yield('pageheader')
+                                    </h2>
                                 </div>
                             </div>
                         </div>
