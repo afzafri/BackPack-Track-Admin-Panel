@@ -470,4 +470,59 @@ class APIController extends Controller
       $comments = Comment::with(['user','itinerary'])->where('user_id', $user_id)->get();
       return $comments;
     }
+
+    // Upload user Avatar
+    public function uploadAvatar(Request $request)
+    {
+      $rules = array(
+        'avatar' => 'required|image',
+        'user_id' => 'required|numeric',
+      );
+
+      $validator = Validator::make($request->all(), $rules);
+
+      if($validator->fails())
+      {
+          $errors = $validator->errors();
+
+          $result['code'] = 400;
+          $result['message'] = "Upload avatar failed!";
+          $result['error'] = $errors;
+
+          return json_encode($result);
+      }
+      else
+      {
+          if($request->hasFile('avatar'))
+          {
+            // Get old avatar
+            $old_avatar = json_decode(User::where('id', $request->user_id)->get(['avatar_url']), true)[0]['avatar_url'];
+
+            // Upload new avatar
+            $pic_url = $request->file('avatar')->store('images/avatars', 'public');
+            $pic_url = asset('storage/'.$pic_url);
+
+            // Update new avatar url
+            $user = User::find($request->user_id);
+            $user->avatar_url = $pic_url;
+            $user->save();
+
+            // Delete old avatar file
+            $del_avatar = $this->deletePhoto($old_avatar);
+
+            $result['code'] = 200;
+            $result['message'] = "Upload avatar success!";
+            $result['result'] = $user;
+
+            return json_encode($result);
+          }
+          else
+          {
+            $result['code'] = 400;
+            $result['message'] = "No avatar uploaded.";
+
+            return json_encode($result);
+          }
+      }
+    }
 }
