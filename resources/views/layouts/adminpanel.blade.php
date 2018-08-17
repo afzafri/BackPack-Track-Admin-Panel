@@ -46,7 +46,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="{{ route('dashboard') }}">
                             <img src="{{ asset('images/icon/logo.png') }}" alt="BackPack Track" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
