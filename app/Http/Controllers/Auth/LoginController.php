@@ -55,7 +55,7 @@ class LoginController extends Controller
     {
         if(Auth::user()->role == 'admin')
         {
-          return redirect('testview');
+          return redirect('admin');
         }
 
         if(Auth::user()->role == 'backpacker')
