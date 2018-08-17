@@ -41,7 +41,7 @@
     html, body {
         background-color: #e5e5e5;
     }
-    </style
+    </style>
 
 </head>
 
@@ -52,7 +52,7 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
-                                <img src="images/icon/logo.png" alt="CoolAdmin">
+                                <img src="{{ asset('images/icon/logo.png') }}" alt="BackPack Track" />
                             </a>
                         </div>
                         <div class="login-form">
