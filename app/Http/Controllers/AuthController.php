@@ -66,7 +66,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $rules = array(
-          'email' => 'required|string|email|max:255',
+          'login' => 'required|string|max:255',
           'password' => 'required|string|min:6',
           'remember_me' => 'boolean',
         );
@@ -85,9 +85,13 @@ class AuthController extends Controller
         }
         else
         {
-            $credentials = request(['email', 'password']);
+            $login_type = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL ) ? 'email' : 'username';
 
-            if(!Auth::attempt($credentials))
+            $request->merge([
+                $login_type => $request->input('login')
+            ]);
+
+            if(!Auth::attempt($request->only($login_type, 'password')))
             {
                 $result['code'] = 400;
                 $result['message'] = "Login failed! Wrong email or password.";
