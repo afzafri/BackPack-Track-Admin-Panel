@@ -61,7 +61,7 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         <li>
-                            <a href="index.html">
+                            <a href="{{ route('dashboard') }}">
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li>
@@ -85,7 +85,7 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active">
-                            <a href="index.html">
+                            <a href="{{ route('dashboard') }}">
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li>
