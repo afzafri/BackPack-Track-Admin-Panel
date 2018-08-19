@@ -22,3 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Administrator Pages
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+Route::get('/itineraries', 'ItineraryController@index')->name('itineraries');
