@@ -37,3 +37,7 @@ Route::post('/itineraries/delete', 'ItineraryController@destroy');
 
 // User Profile
 Route::get('/profile', 'ProfileController@index')->name('profile');
+
+Route::post('/profile', 'ProfileController@update');
+
+Route::post('/profile/avatar', 'ProfileController@updateAvatar');
