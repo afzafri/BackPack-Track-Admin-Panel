@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Storage;
+use Validator;
 
 use App\Itinerary;
 use App\Activity;
+use App\Country;
 
 class ItineraryController extends Controller
 {
@@ -106,5 +108,48 @@ class ItineraryController extends Controller
         $totalbudget = $this->getTotalBudget($itinerary_id);
 
         return view('activities', ['data' => $result, 'totalbudget' => $totalbudget]);
+    }
+
+    // Edit an itinerary
+    public function edit(Request $request)
+    {
+        $itinerary_id = $request->itinerary_id;
+
+        $itinerary = Itinerary::with(['user','country'])->find($itinerary_id);
+        $countries = Country::get(['id','name']);
+
+        return view('edit_itinerary', ['itinerary' => $itinerary, 'countries' => $countries]);
+    }
+
+    // Update itinerary data
+    public function update(Request $request)
+    {
+        $rules = array(
+          'title' => 'required|string|max:255',
+          'country_id' => 'required|numeric',
+          'user_id' => 'required|numeric',
+          'itinerary_id' => 'required|numeric',
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails())
+        {
+            $errors = $validator->errors();
+            return redirect('itineraries/'.$request->itinerary_id.'/edit')->with('errors', $errors);
+        }
+        else
+        {
+            $itinerary_id = $request->itinerary_id;
+            $itinerary = Itinerary::find($itinerary_id);
+
+            $itinerary->title = $request->title;
+            $itinerary->country_id = $request->country_id;
+            $itinerary->user_id = $request->user_id;
+
+            $itinerary->save();
+
+            return redirect('itineraries/'.$request->itinerary_id.'/edit')->with('success', "Itinerary updated!");
+        }
     }
 }

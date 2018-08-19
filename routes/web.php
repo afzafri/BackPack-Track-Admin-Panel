@@ -29,4 +29,8 @@ Route::get('/itineraries', 'ItineraryController@index')->name('itineraries');
 
 Route::get('/itineraries/{itinerary_id}/view', 'ItineraryController@view');
 
+Route::get('/itineraries/{itinerary_id}/edit', 'ItineraryController@edit');
+
+Route::post('/itineraries/{itinerary_id}/edit', 'ItineraryController@update');
+
 Route::post('/itineraries/delete', 'ItineraryController@destroy');
