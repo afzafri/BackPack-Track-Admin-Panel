@@ -19,19 +19,19 @@ class ItineraryController extends Controller
         // get all the itineraries
         $itineraries = Itinerary::with(['country','user'])->get();
 
-        // get the durations for each itinerary
+        // get the durations and total budgets for each itinerary
         $durations = [];
+        $totalbudgets = [];
         foreach ($itineraries as $itinerary)
         {
           $duration = $this->getDuration($itinerary->id);
           $durations[$itinerary->id] = $duration;
+
+          $totalbudget = $this->getTotalBudget($itinerary->id);
+          $totalbudgets[$itinerary->id] = $totalbudget;
         }
 
-        // insert the durations into the itineraries
-        //$itineraries->put('durations', $durations);
-
-        //return $itineraries;
-        return view('itineraries', ['itineraries' => $itineraries, 'durations' => collect($durations)]);
+        return view('itineraries', ['itineraries' => $itineraries, 'durations' => collect($durations), 'totalbudgets' => collect($totalbudgets)]);
     }
 
     // Get duration of the trip
@@ -43,5 +43,13 @@ class ItineraryController extends Controller
       $duration = $nodays."D".$nonight."N";
 
       return $duration;
+    }
+
+    // Get total budgets of each trip
+    public function getTotalBudget($itinerary_id)
+    {
+      $totalbudget = Activity::where('itinerary_id', $itinerary_id)->sum('budget');
+
+      return $totalbudget;
     }
 }

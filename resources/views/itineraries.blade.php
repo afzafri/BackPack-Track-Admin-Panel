@@ -27,7 +27,7 @@
                     <td>{{ $itinerary->country->name }}</td>
                     <td>{{ $itinerary->title }}</td>
                     <td>{{ $durations[$itinerary->id] }}</td>
-                    <td></td>
+                    <td>{{ $totalbudgets[$itinerary->id] }}</td>
                     <td></td>
                 </tr>
               @endforeach
