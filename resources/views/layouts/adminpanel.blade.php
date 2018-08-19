@@ -216,6 +216,8 @@
     <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
     <script src="{{ asset('vendor/DataTables/datatables.min.js') }}"></script>
 
+    @stack('scripts')
+
     <!-- Main JS-->
     <script src="{{ asset('js/main.js') }}"></script>
 
