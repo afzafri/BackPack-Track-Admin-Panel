@@ -34,3 +34,6 @@ Route::get('/itineraries/{itinerary_id}/edit', 'ItineraryController@edit');
 Route::post('/itineraries/{itinerary_id}/edit', 'ItineraryController@update');
 
 Route::post('/itineraries/delete', 'ItineraryController@destroy');
+
+// User Profile
+Route::get('/profile', 'ProfileController@index')->name('profile');
