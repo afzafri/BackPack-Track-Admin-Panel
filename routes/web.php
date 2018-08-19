@@ -27,4 +27,6 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 // Itineraries
 Route::get('/itineraries', 'ItineraryController@index')->name('itineraries');
 
+Route::get('/itineraries/{itinerary_id}/view', 'ItineraryController@view');
+
 Route::post('/itineraries/delete', 'ItineraryController@destroy');

@@ -88,4 +88,17 @@ class ItineraryController extends Controller
       else
         return "File delete failed.";
     }
+
+    public function view(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+
+      $itinerary = Itinerary::with(['user','country'])->find($itinerary_id);
+      $activities = Activity::where('itinerary_id', $itinerary_id)->get();
+
+      $result['itinerary'] = $itinerary;
+      $result['activities'] = $activities;
+
+      return view('activities', ['data' => $result]);
+    }
 }

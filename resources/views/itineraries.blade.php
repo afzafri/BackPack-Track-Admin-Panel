@@ -42,16 +42,16 @@
                     <td>{{ $totalbudgets[$itinerary->id] }}</td>
                     <td>
                         <div class="table-data-feature">
-                          <button id="viewButton" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" value="{{ $itinerary->id }}">
+                          <a href="/itineraries/{{ $itinerary->id }}/view" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Activities">
                               <i class="zmdi zmdi-view-list-alt"></i>
-                          </button>
-                          <a href="/itineraries/{{ $itinerary->id }}/edit" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                          </a>
+                          <a href="/itineraries/{{ $itinerary->id }}/edit" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit Itinerary">
                               <i class="zmdi zmdi-edit"></i>
                           </a>
                           <form id="delete-form" action="/itineraries/delete" method="POST" onsubmit="return confirm('Do you really want to delete this itinerary?');">
                               @csrf
                               <input type="hidden" name="itinerary_id" value="{{ $itinerary->id }}">
-                              <button type="submit" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+                              <button type="submit" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete Itinerary">
                                   <i class="zmdi zmdi-delete"></i>
                               </buton>
                           </form>
@@ -68,13 +68,6 @@
   <script>
 
     $(document).ready(function() {
-
-        // View itinerary activities
-        $(document).on('click', '#viewButton', function() {
-            var id = $(this).val();
-
-            alert(id);
-        });
 
         // DataTables
         var table = $('#tableItineraries').DataTable( {
