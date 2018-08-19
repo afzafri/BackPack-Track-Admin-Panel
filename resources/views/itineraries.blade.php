@@ -6,6 +6,14 @@
 
 @section('content')
     <br>
+
+    @if (session('deletestatus'))
+        <div class="alert alert-success">
+            {{ session('deletestatus') }}
+        </div>
+    @endif
+
+    <br>
     <div class="table-responsive table--no-card m-b-30">
       <table class="table table-borderless table-data3">
           <thead>
