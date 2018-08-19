@@ -17,10 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Backpacker Pages
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/dashboard', 'AdminController@index')->name('dashboard');
-
-Route::get('/testview', function() {
-  return view('testview');
-});
+// Administrator Pages
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
