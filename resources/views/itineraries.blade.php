@@ -28,10 +28,40 @@
                     <td>{{ $itinerary->title }}</td>
                     <td>{{ $durations[$itinerary->id] }}</td>
                     <td>{{ $totalbudgets[$itinerary->id] }}</td>
-                    <td></td>
+                    <td>
+                        <div class="table-data-feature">
+                          <button id="viewButton" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" value="{{ $itinerary->id }}">
+                              <i class="zmdi zmdi-view-list-alt"></i>
+                          </button>
+                          <a href="/itineraries/{{ $itinerary->id }}/edit" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                              <i class="zmdi zmdi-edit"></i>
+                          </a>
+                          <a href="/itineraries/{{ $itinerary->id }}/delete" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
+                             onclick="event.preventDefault();
+                                           document.getElementById('delete-form').submit();">
+                              <i class="zmdi zmdi-delete"></i>
+                          </a>
+
+                          <form id="delete-form" action="/itineraries/{{ $itinerary->id }}/delete" method="POST" style="display: none;">
+                              @csrf
+                          </form>
+                        </div>
+                    </td>
                 </tr>
               @endforeach
           </tbody>
       </table>
     </div>
 @endsection
+
+@push('scripts')
+  <script>
+
+    $(document).on('click', '#viewButton', function() {
+        var id = $(this).val();
+
+        alert(id);
+    });
+
+  </script>
+@endpush
