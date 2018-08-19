@@ -5,12 +5,16 @@
 @section('pageheader', 'Itineraries')
 
 @section('content')
-    <br>
 
     @if (session('deletestatus'))
-        <div class="alert alert-success">
-            {{ session('deletestatus') }}
-        </div>
+        <br>
+        <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+					<span class="badge badge-pill badge-success">Success</span>
+					{{ session('deletestatus') }}
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
     @endif
 
     <br>
