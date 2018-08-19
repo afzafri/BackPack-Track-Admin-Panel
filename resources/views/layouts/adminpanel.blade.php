@@ -84,9 +84,13 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active">
+                        <li {{{ (Request::is('dashboard') ? 'class=active' : '') }}}>
                             <a href="{{ route('dashboard') }}">
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        </li>
+                        <li {{{ (Request::is('itineraries') ? 'class=active' : '') }}}>
+                            <a href="{{ route('itineraries') }}">
+                              <i class="fa fa-list-alt"></i>View Itineraries</a>
                         </li>
                         <li>
                             <a href="#">
