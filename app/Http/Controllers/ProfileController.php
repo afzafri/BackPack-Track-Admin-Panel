@@ -64,5 +64,56 @@ class ProfileController extends Controller
     }
 
     // Update profile picture
-    
+    public function updateAvatar(Request $request)
+    {
+        $rules = array(
+          'avatar' => 'required|image',
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails())
+        {
+            $errors = $validator->errors();
+            return redirect('profile')->with('errors', $errors);
+        }
+        else
+        {
+            if($request->hasFile('avatar'))
+            {
+              // Get old avatar
+              $old_avatar = json_decode(User::where('id', Auth::user()->id)->get(['avatar_url']), true)[0]['avatar_url'];
+
+              // Upload new avatar
+              $pic_url = $request->file('avatar')->store('images/avatars', 'public');
+              $pic_url = asset('storage/'.$pic_url);
+
+              // Update new avatar url
+              $user = User::find(Auth::user()->id);
+              $user->avatar_url = $pic_url;
+              $user->save();
+
+              // Delete old avatar file
+              $del_avatar = $this->deletePhoto($old_avatar);
+
+              return redirect('profile')->with('success', "New profile picture uploaded!");
+            }
+            else
+            {
+              return redirect('profile')->with('errors', ['avatar' => 'No profile picture uploaded']);
+            }
+        }
+    }
+
+    // delete photo
+    public function deletePhoto($url)
+    {
+      $baseurl = asset('/').'storage/';
+      $result = Storage::disk('public')->delete(str_replace($baseurl,'',$url));
+
+      if($result)
+        return "File deleted";
+      else
+        return "File delete failed.";
+    }
 }

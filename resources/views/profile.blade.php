@@ -119,14 +119,13 @@
                         <label class="form-control-label">Choose new profile picture</label>
                     </div>
                     <div class="col-12 col-md-10">
-                        <input type="file" name="avatar" class="form-control-file">
+                        <input type="file" name="avatar" class="form-control-file {{ $errors->has('avatar') ? ' is-invalid' : '' }}">
+                        @if ($errors->has('avatar'))
+                            <div class="alert alert-danger" role="alert">
+        											  <strong>{{ $errors->first('avatar') }}</strong>
+        										</div>
+                        @endif
                     </div>
-
-                    @if ($errors->has('avatar'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('avatar') }}</strong>
-                        </span>
-                    @endif
                 </div>
           </div>
           <div class="card-footer">
