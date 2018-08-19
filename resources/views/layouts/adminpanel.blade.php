@@ -33,6 +33,7 @@
     <link href="{{ asset('vendor/select2/select2.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/DataTables/datatables.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('vendor/lightbox2/dist/css/lightbox.css') }}" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet" media="all">
@@ -219,6 +220,7 @@
     <script src="{{ asset('vendor/chartjs/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
     <script src="{{ asset('vendor/DataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('vendor/lightbox2/dist/js/lightbox.min.js') }}"></script>
 
     @stack('scripts')
 

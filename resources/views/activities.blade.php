@@ -19,8 +19,8 @@
                   <th>Activity</th>
                   <th>Description</th>
                   <th>Place</th>
-                  <th>Budget</th>
                   <th>Picture</th>
+                  <th>Budget</th>
               </tr>
           </thead>
           <tbody>
@@ -38,10 +38,14 @@
                             <i class="fas fa-map-marker-alt"></i>
                           </a>
                       </td>
-                      <td>{{ $activities['budget'] }}</td>
                       <td>
-                          <img src="{{ $activities['pic_url'] }}"/>
+                          @if ($activities['pic_url'] != null)
+                            <a href="{{ $activities['pic_url'] }}" data-lightbox="activities-pic" data-title="{{ $activities['place_name'] }} - {{ $activities['activity'] }}">
+                              <img src="{{ $activities['pic_url'] }}">
+                            </a>
+                          @endif
                       </td>
+                      <td>{{ $activities['budget'] }}</td>
                   </tr>
               @endforeach
                   <tr>
