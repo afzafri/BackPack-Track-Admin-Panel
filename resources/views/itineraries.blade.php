@@ -1,6 +1,6 @@
 @extends('layouts.adminpanel')
 
-@section('title', 'Dashboard')
+@section('title', 'Itineraries')
 
 @section('pageheader', 'Itineraries')
 
@@ -19,7 +19,7 @@
 
     <br>
     <div class="table-responsive table--no-card m-b-30">
-      <table class="table table-borderless table-data3">
+      <table class="table table-borderless table-data3" id="tableItineraries">
           <thead>
               <tr>
                   <th>ID.</th>
@@ -67,11 +67,23 @@
 @push('scripts')
   <script>
 
-    $(document).on('click', '#viewButton', function() {
-        var id = $(this).val();
+    $(document).ready(function() {
 
-        alert(id);
+        // View itinerary activities
+        $(document).on('click', '#viewButton', function() {
+            var id = $(this).val();
+
+            alert(id);
+        });
+
+        // DataTables
+        var table = $('#tableItineraries').DataTable( {
+            dom: 'Bfrtilp',
+            buttons: [
+                'copy', 'excel', 'pdf',
+            ]
+        });
+
     });
-
   </script>
 @endpush
