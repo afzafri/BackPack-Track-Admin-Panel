@@ -18,7 +18,7 @@
     @endif
 
     <br>
-    <div class="table-responsive table--no-card m-b-30">
+    <div class="table-responsive m-b-30">
       <table class="table table-borderless table-data3" id="tableItineraries">
           <thead>
               <tr>
