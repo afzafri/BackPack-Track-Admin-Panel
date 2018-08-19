@@ -17,10 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Backpacker Pages
+// -------------- Backpacker Pages --------------
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Administrator Pages
+// -------------- Administrator Pages --------------
+// Dashboard
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
+// Itineraries
 Route::get('/itineraries', 'ItineraryController@index')->name('itineraries');
+
+Route::post('/itineraries/delete', 'ItineraryController@destroy');
