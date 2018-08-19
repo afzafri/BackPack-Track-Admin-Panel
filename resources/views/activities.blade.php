@@ -20,6 +20,7 @@
                   <th>Description</th>
                   <th>Place</th>
                   <th>Budget</th>
+                  <th>Picture</th>
               </tr>
           </thead>
           <tbody>
@@ -38,10 +39,13 @@
                           </a>
                       </td>
                       <td>{{ $activities['budget'] }}</td>
+                      <td>
+                          <img src="{{ $activities['pic_url'] }}"/>
+                      </td>
                   </tr>
               @endforeach
                   <tr>
-                      <th colspan="4" align="right">
+                      <th colspan="5" align="right">
                           <div style="float: right; text-align: right">Total Budget Spent</div>
                       </th>
                       <td><b>{{ $totalbudget }}</b></td>
