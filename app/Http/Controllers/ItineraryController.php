@@ -102,6 +102,9 @@ class ItineraryController extends Controller
         $result['itinerary'] = $itinerary;
         $result['activities'] = $activities;
 
-        return view('activities', ['data' => $result]);
+        // get total budget
+        $totalbudget = $this->getTotalBudget($itinerary_id);
+
+        return view('activities', ['data' => $result, 'totalbudget' => $totalbudget]);
     }
 }

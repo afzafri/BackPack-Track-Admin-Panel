@@ -27,7 +27,7 @@
                   <tr>
                       <td>
                           {{ date('d-m-Y', strtotime($activities['date'])) }} <br>
-                          {{ $activities['time'] }}
+                          {{ date('h:i a', strtotime($activities['time'])) }}
                       </td>
                       <td>{{ $activities['activity'] }}</td>
                       <td>{{ $activities['description'] }}</td>
@@ -40,6 +40,12 @@
                       <td>{{ $activities['budget'] }}</td>
                   </tr>
               @endforeach
+                  <tr>
+                      <th colspan="4" align="right">
+                          <div style="float: right; text-align: right">Total Budget Spent</div>
+                      </th>
+                      <td><b>{{ $totalbudget }}</b></td>
+                  </tr>
           </tbody>
       </table>
   </div>
