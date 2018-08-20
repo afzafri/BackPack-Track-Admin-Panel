@@ -133,7 +133,27 @@ class APIController extends Controller
     public function listItineraries()
     {
       $itineraries = Itinerary::with(['country','user'])->get();
-      return $itineraries;
+
+      // get the durations and total budgets for each itinerary
+      $durations = [];
+      $totalbudgets = [];
+      $newItineraries = [];
+      foreach ($itineraries as $itinerary)
+      {
+        $newReq = new Request();
+        $newReq->setMethod('POST');
+        $newReq->request->add(['itinerary_id' => $itinerary->id]);
+
+        $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
+        
+        //$totalbudget = $this->getTotalBudget($itinerary->id);
+        //$totalbudgets[$itinerary->id] = $totalbudget;
+
+        $itinerary['duration'] = $duration;
+        $newItineraries[] = $itinerary;
+      }
+
+      return $newItineraries;
     }
 
     // View specific itinerary
