@@ -69,6 +69,10 @@
                             <a href="{{ route('itineraries') }}">
                               <i class="fa fa-list-alt"></i>View Itineraries</a>
                         </li>
+                        <li {{{ (Request::is('users') ? 'class=active' : '') }}}>
+                            <a href="{{ route('users') }}">
+                              <i class="fa fa-users"></i>Manage Users' Account</a>
+                        </li>
                         <li {{{ (Request::is('register') ? 'class=active' : '') }}}>
                             <a href="{{ route('register') }}">
                               <i class="fa fa-user"></i>Register Administrator</a>
@@ -100,6 +104,10 @@
                         <li {{{ (Request::is('itineraries') ? 'class=active' : '') }}}>
                             <a href="{{ route('itineraries') }}">
                               <i class="fa fa-list-alt"></i>View Itineraries</a>
+                        </li>
+                        <li {{{ (Request::is('users') ? 'class=active' : '') }}}>
+                            <a href="{{ route('users') }}">
+                              <i class="fa fa-users"></i>Manage Users' Account</a>
                         </li>
                         <li {{{ (Request::is('register') ? 'class=active' : '') }}}>
                             <a href="{{ route('register') }}">
