@@ -30,25 +30,10 @@ class ItineraryController extends Controller
     // Delete an itinerary
     public function destroy(Request $request)
     {
-        $itinerary_id = $request->itinerary_id;
+        $APIobj = new APIController();
+        $APIobj->deleteItinerary($request);
 
-        // Delete the itinerary
-        $itinerary = Itinerary::find($itinerary_id);
-        $itinerary->delete();
-
-        // Delete the activities
-        // Delete all images
-        $pic_urls = json_decode(Activity::where('itinerary_id', $itinerary_id)->get(['pic_url']), true);
-        foreach ($pic_urls as $pic_url)
-        {
-          $pic_msg = $this->deletePhoto($pic_url['pic_url']);
-        }
-
-        // Delete the activities data
-        $activities = Activity::where('itinerary_id', $itinerary_id)->delete();
-
-
-        return redirect('itineraries')->with('deletestatus', 'Delete itinerary ID: '.$itinerary_id.' success!');
+        return redirect('itineraries')->with('deletestatus', 'Delete itinerary ID: '.$request->itinerary_id.' success!');
     }
 
     // delete photo
