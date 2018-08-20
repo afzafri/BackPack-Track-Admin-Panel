@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label">Name</label>
-                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}">
+                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" required>
 
                     @if ($errors->has('name'))
                         <span class="invalid-feedback" role="alert">
