@@ -525,4 +525,52 @@ class APIController extends Controller
           }
       }
     }
+
+    // Update user profile data
+    public function updateProfile(Request $request)
+    {
+      $rules = array(
+        'name' => 'required|string|max:255',
+        'username' => 'required|string|max:255',
+        'phone' => 'required|string|max:11',
+        'address' => 'required|string|max:255',
+        'country_id' => 'required|string|max:100',
+        'email' => 'required|string|email|max:255',
+        'user_id' => 'required|numeric',
+      );
+
+      $validator = Validator::make($request->all(), $rules);
+
+      if($validator->fails())
+      {
+          $errors = $validator->errors();
+
+          $result['code'] = 400;
+          $result['message'] = "Update profile failed!";
+          $result['error'] = $errors;
+
+          return json_encode($result);
+      }
+      else
+      {
+          $user_id = $request->user_id;
+          $user = User::find($user_id);
+
+          $user->name = $request->name;
+          $user->username = $request->username;
+          $user->phone = $request->phone;
+          $user->address = $request->address;
+          $user->country_id = $request->country_id;
+          $user->email = $request->email;
+
+          $user->save();
+
+          $result['code'] = 200;
+          $result['message'] = "User profile updated.";
+          $result['result'] = $user;
+
+          return json_encode($result);
+      }
+    }
+
 }

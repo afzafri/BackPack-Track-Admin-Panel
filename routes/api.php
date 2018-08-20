@@ -94,4 +94,7 @@ Route::middleware('auth:api')->group(function () {
 
   // Upload user avatar
   Route::post('uploadAvatar', 'APIController@uploadAvatar');
+
+  // Update user profile
+  Route::post('updateProfile', 'APIController@updateProfile');
 });
