@@ -26,12 +26,20 @@
             @foreach ($users as $user)
               <tr>
                   <td>{{ $user->id }}</td>
-                  <td>{{ $user->avatar_url }}</td>
+                  <td>
+                    @if ($user->avatar_url != null)
+                      <a href="{{ $user->avatar_url }}" data-lightbox="user{{ $user->id }}-pic" data-title="{{ $user->name }}">
+                        <img src="{{ $user->avatar_url }}" width="150px">
+                      </a>
+                    @else
+                      <img src="/images/icon/avatar.png" width="150px">
+                    @endif
+                  </td>
                   <td>{{ $user->name }}</td>
                   <td>{{ $user->username }}</td>
                   <td>{{ $user->phone }}</td>
                   <td>{{ $user->address }}</td>
-                  <td>{{ $user->country_id }}</td>
+                  <td>{{ $user->country->name }}</td>
                   <td>{{ $user->email }}</td>
                   <td>{{ $user->role }}</td>
                   <td>
