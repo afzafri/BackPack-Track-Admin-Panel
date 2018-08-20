@@ -5,6 +5,18 @@
 @section('pageheader', 'List of Users')
 
 @section('content')
+
+  @if (session('deletestatus'))
+      <br>
+      <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+        <span class="badge badge-pill badge-success">Success</span>
+        {{ session('deletestatus') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+  @endif
+  
   <br>
   <div class="table-responsive m-b-30">
     <table class="table table-borderless table-data3" id="tableUsers">
