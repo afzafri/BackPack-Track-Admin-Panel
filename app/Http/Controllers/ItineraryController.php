@@ -26,16 +26,18 @@ class ItineraryController extends Controller
         // get the durations and total budgets for each itinerary
         $durations = [];
         $totalbudgets = [];
+        $newItineraries = [];
         foreach ($itineraries as $itinerary)
         {
           $duration = $this->getDuration($itinerary->id);
-          $durations[$itinerary->id] = $duration;
-
           $totalbudget = $this->getTotalBudget($itinerary->id);
-          $totalbudgets[$itinerary->id] = $totalbudget;
+
+          $itinerary['duration'] = $duration;
+          $itinerary['totalbudget'] = $totalbudget;
+          $newItineraries[] = $itinerary;
         }
 
-        return view('itineraries', ['itineraries' => $itineraries, 'durations' => collect($durations), 'totalbudgets' => collect($totalbudgets)]);
+        return view('itineraries', ['itineraries' => collect($newItineraries)]);
     }
 
     // Get duration of the trip

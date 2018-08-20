@@ -38,8 +38,8 @@
                     <td>{{ $itinerary->user->name }}</td>
                     <td>{{ $itinerary->country->name }}</td>
                     <td>{{ $itinerary->title }}</td>
-                    <td>{{ $durations[$itinerary->id] }}</td>
-                    <td>{{ $totalbudgets[$itinerary->id] }}</td>
+                    <td>{{ $itinerary->duration }}</td>
+                    <td>{{ $itinerary->totalbudget }}</td>
                     <td>
                         <div class="table-data-feature">
                           <a href="/itineraries/{{ $itinerary->id }}/view" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Activities">
