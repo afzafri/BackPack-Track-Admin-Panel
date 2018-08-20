@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\MessageBag;
 use Storage;
 use Validator;
 
+use App\Http\Controllers\APIController;
 use App\Country;
 use App\User;
 
@@ -29,37 +31,21 @@ class ProfileController extends Controller
     // Update profile data
     public function update(Request $request)
     {
-        $rules = array(
-          'name' => 'required|string|max:255',
-          'username' => 'required|string|max:255',
-          'phone' => 'required|string|max:11',
-          'address' => 'required|string|max:255',
-          'country_id' => 'required|string|max:100',
-          'email' => 'required|string|email|max:255',
-        );
+        $request->request->add(['user_id' => Auth::user()->id]);
 
-        $validator = Validator::make($request->all(), $rules);
+        $APIobj = new APIController();
+        $result = $APIobj->updateProfile($request);
 
-        if($validator->fails())
+        $result = json_decode($result, true);
+        if($result['code'] == 400)
         {
-            $errors = $validator->errors();
-            return redirect('profile')->with('errors', $errors);
+          $errors = new MessageBag($result['error']);
+
+          return redirect('profile')->with('errors', $errors);
         }
-        else
+        else if($result['code'] == 200)
         {
-            $user_id = Auth::user()->id;
-            $user = User::find($user_id);
-
-            $user->name = $request->name;
-            $user->username = $request->username;
-            $user->phone = $request->phone;
-            $user->address = $request->address;
-            $user->country_id = $request->country_id;
-            $user->email = $request->email;
-
-            $user->save();
-
-            return redirect('profile')->with('success', "User account updated!");
+          return redirect('profile')->with('success', "User account updated!");
         }
     }
 
