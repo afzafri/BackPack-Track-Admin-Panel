@@ -16,7 +16,7 @@ class UserController extends Controller
     // List all itineraries
     public function index()
     {
-        $users = User::all();
+        $users = User::with(['country'])->get();
 
         return view('users', ['users' => $users]);
     }
