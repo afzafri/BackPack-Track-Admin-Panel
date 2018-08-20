@@ -36,18 +36,6 @@ class ItineraryController extends Controller
         return redirect('itineraries')->with('deletestatus', 'Delete itinerary ID: '.$request->itinerary_id.' success!');
     }
 
-    // delete photo
-    public function deletePhoto($url)
-    {
-        $baseurl = asset('/').'storage/';
-        $result = Storage::disk('public')->delete(str_replace($baseurl,'',$url));
-
-        if($result)
-          return "File deleted";
-        else
-          return "File delete failed.";
-    }
-
     // View activitites of an itinerary
     public function view(Request $request)
     {
