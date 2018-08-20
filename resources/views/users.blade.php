@@ -5,5 +5,49 @@
 @section('pageheader', 'List of Users')
 
 @section('content')
-  {{ $users }}
+  <br>
+  <div class="table-responsive m-b-30">
+    <table class="table table-borderless table-data3" id="tableUsers">
+        <thead>
+            <tr>
+                <th>ID.</th>
+                <th>Avatar</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Country</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+              <tr>
+                  <td>{{ $user->id }}</td>
+                  <td>{{ $user->avatar_url }}</td>
+                  <td>{{ $user->name }}</td>
+                  <td>{{ $user->username }}</td>
+                  <td>{{ $user->phone }}</td>
+                  <td>{{ $user->address }}</td>
+                  <td>{{ $user->country_id }}</td>
+                  <td>{{ $user->email }}</td>
+                  <td>{{ $user->role }}</td>
+                  <td>
+                      <div class="table-data-feature">
+                        <form id="delete-form" action="/users/delete" method="POST" onsubmit="return confirm('Do you really want to delete this user account?');">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
+                            <button type="submit" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete User Account">
+                                <i class="zmdi zmdi-delete"></i>
+                            </buton>
+                        </form>
+                      </div>
+                  </td>
+              </tr>
+            @endforeach
+        </tbody>
+    </table>
+  </div>
 @endsection
