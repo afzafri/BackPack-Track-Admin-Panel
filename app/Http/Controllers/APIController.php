@@ -145,11 +145,10 @@ class APIController extends Controller
         $newReq->request->add(['itinerary_id' => $itinerary->id]);
 
         $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
-        
-        //$totalbudget = $this->getTotalBudget($itinerary->id);
-        //$totalbudgets[$itinerary->id] = $totalbudget;
+        $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
 
         $itinerary['duration'] = $duration;
+        $itinerary['totalbudget'] = $totalbudget;
         $newItineraries[] = $itinerary;
       }
 
