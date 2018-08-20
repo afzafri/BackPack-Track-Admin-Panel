@@ -66,18 +66,14 @@ class ItineraryController extends Controller
     // View activitites of an itinerary
     public function view(Request $request)
     {
-        $itinerary_id = $request->itinerary_id;
-
-        $itinerary = Itinerary::with(['user','country'])->find($itinerary_id);
-        $activities = Activity::where('itinerary_id', $itinerary_id)->get();
-
-        $result['itinerary'] = $itinerary;
-        $result['activities'] = $activities;
+        // get activities
+        $APIobj = new APIController();
+        $result = $APIobj->viewActivities($request);
 
         // get total budget
-        $totalbudget = $this->getTotalBudget($itinerary_id);
+        $totalbudget = json_decode($APIobj->getTotalBudget($request), true)['totalbudget'];
 
-        return view('activities', ['data' => $result, 'totalbudget' => $totalbudget]);
+        return view('activities', ['data' => json_decode($result, true), 'totalbudget' => $totalbudget]);
     }
 
     // Edit an itinerary
