@@ -59,3 +59,20 @@
     </table>
   </div>
 @endsection
+
+@push('scripts')
+  <script>
+
+    $(document).ready(function() {
+
+        // DataTables
+        var table = $('#tableUsers').DataTable( {
+            dom: 'Bfrtilp',
+            buttons: [
+                'copy', 'excel', 'pdf',
+            ]
+        });
+
+    });
+  </script>
+@endpush
