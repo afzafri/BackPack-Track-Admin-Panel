@@ -52,10 +52,10 @@ class ItineraryController extends Controller
     // Edit an itinerary
     public function edit(Request $request)
     {
-        $itinerary_id = $request->itinerary_id;
+        $APIobj = new APIController();
 
-        $itinerary = Itinerary::with(['user','country'])->find($itinerary_id);
-        $countries = Country::get(['id','name']);
+        $itinerary = $APIobj->viewItinerary($request);
+        $countries = $APIobj->listCountries();
 
         return view('edit_itinerary', ['itinerary' => $itinerary, 'countries' => $countries]);
     }
