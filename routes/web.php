@@ -36,7 +36,9 @@ Route::post('/itineraries/{itinerary_id}/edit', 'ItineraryController@update');
 Route::post('/itineraries/delete', 'ItineraryController@destroy');
 
 // Users
-Route::get('/users', 'UserController@index')->name('users'); 
+Route::get('/users', 'UserController@index')->name('users');
+
+Route::post('/users/delete', 'UserController@destroy');
 
 // Admin User Profile
 Route::get('/profile', 'ProfileController@index')->name('profile');
