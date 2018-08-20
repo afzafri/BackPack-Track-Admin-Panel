@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\MessageBag;
 use Storage;
 use Validator;
 
@@ -63,32 +64,19 @@ class ItineraryController extends Controller
     // Update itinerary data
     public function update(Request $request)
     {
-        $rules = array(
-          'title' => 'required|string|max:255',
-          'country_id' => 'required|numeric',
-          'user_id' => 'required|numeric',
-          'itinerary_id' => 'required|numeric',
-        );
+        $APIobj = new APIController();
+        $result = $APIobj->updateItinerary($request);
 
-        $validator = Validator::make($request->all(), $rules);
-
-        if($validator->fails())
+        $result = json_decode($result, true);
+        if($result['code'] == 400)
         {
-            $errors = $validator->errors();
-            return redirect('itineraries/'.$request->itinerary_id.'/edit')->with('errors', $errors);
+          $errors = new MessageBag($result['error']);
+
+          return redirect('itineraries/'.$request->itinerary_id.'/edit')->with('errors', $errors);
         }
-        else
+        else if($result['code'] == 200)
         {
-            $itinerary_id = $request->itinerary_id;
-            $itinerary = Itinerary::find($itinerary_id);
-
-            $itinerary->title = $request->title;
-            $itinerary->country_id = $request->country_id;
-            $itinerary->user_id = $request->user_id;
-
-            $itinerary->save();
-
-            return redirect('itineraries/'.$request->itinerary_id.'/edit')->with('success', "Itinerary updated!");
+          return redirect('itineraries/'.$request->itinerary_id.'/edit')->with('success', "Itinerary updated!");
         }
     }
 }
