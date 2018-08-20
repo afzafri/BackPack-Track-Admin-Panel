@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Storage;
 use Validator;
 
+use App\Http\Controllers\APIController;
 use App\Itinerary;
 use App\Activity;
 use App\Country;
@@ -20,43 +21,10 @@ class ItineraryController extends Controller
     // List all itineraries
     public function index()
     {
-        // get all the itineraries
-        $itineraries = Itinerary::with(['country','user'])->get();
+        $APIobj = new APIController();
+        $itineraries = $APIobj->listItineraries();
 
-        // get the durations and total budgets for each itinerary
-        $durations = [];
-        $totalbudgets = [];
-        $newItineraries = [];
-        foreach ($itineraries as $itinerary)
-        {
-          $duration = $this->getDuration($itinerary->id);
-          $totalbudget = $this->getTotalBudget($itinerary->id);
-
-          $itinerary['duration'] = $duration;
-          $itinerary['totalbudget'] = $totalbudget;
-          $newItineraries[] = $itinerary;
-        }
-
-        return view('itineraries', ['itineraries' => collect($newItineraries)]);
-    }
-
-    // Get duration of the trip
-    public function getDuration($itinerary_id)
-    {
-        $dates = Activity::distinct()->where('itinerary_id', $itinerary_id)->get(['date']);
-        $nodays = count($dates);
-        $nonight = $nodays > 0 ? ($nodays-1) : 0;
-        $duration = $nodays."D".$nonight."N";
-
-        return $duration;
-    }
-
-    // Get total budgets of each trip
-    public function getTotalBudget($itinerary_id)
-    {
-        $totalbudget = Activity::where('itinerary_id', $itinerary_id)->sum('budget');
-
-        return $totalbudget;
+        return view('itineraries', ['itineraries' => collect($itineraries)]);
     }
 
     // Delete an itinerary
