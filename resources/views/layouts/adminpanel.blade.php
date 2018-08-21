@@ -35,6 +35,8 @@
     <link href="{{ asset('vendor/DataTables/datatables.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/lightbox2/dist/css/lightbox.css') }}" rel="stylesheet" media="all">
 
+    @stack('styles')
+
     <!-- Main CSS-->
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet" media="all">
 
