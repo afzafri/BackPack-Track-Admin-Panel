@@ -74,6 +74,15 @@ class ArticleController extends Controller
         }
     }
 
+    // Show edit article form
+    public function edit(Request $request)
+    {
+        $APIobj = new APIController();
+        $article = $APIobj->viewArticle($request);
+
+        return view('edit_article', ['article' => $article]);
+    }
+
     // Delete an article
     public function destroy(Request $request)
     {

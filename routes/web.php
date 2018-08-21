@@ -54,6 +54,10 @@ Route::get('/articles/create', 'ArticleController@create');
 
 Route::post('/articles/create', 'ArticleController@store');
 
+Route::get('/articles/{article_id}/edit', 'ArticleController@edit');
+
+Route::post('/articles/{article_id}/edit', 'ArticleController@update');
+
 Route::post('/articles/delete', 'ArticleController@destroy');
 
 // Admin User Profile
