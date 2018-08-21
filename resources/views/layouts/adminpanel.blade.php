@@ -73,6 +73,10 @@
                             <a href="{{ route('users') }}">
                               <i class="fa fa-users"></i>Manage Users' Account</a>
                         </li>
+                        <li {{{ (Request::is('comments') ? 'class=active' : '') }}}>
+                            <a href="{{ route('comments') }}">
+                              <i class="fa fa-commenting"></i>Manage Users' Comments</a>
+                        </li>
                         <li {{{ (Request::is('register') ? 'class=active' : '') }}}>
                             <a href="{{ route('register') }}">
                               <i class="fa fa-user"></i>Register Administrator</a>
@@ -109,13 +113,13 @@
                             <a href="{{ route('users') }}">
                               <i class="fa fa-users"></i>Manage Users' Account</a>
                         </li>
+                        <li {{{ (Request::is('comments') ? 'class=active' : '') }}}>
+                            <a href="{{ route('comments') }}">
+                              <i class="fa fa-commenting"></i>Manage Users' Comments</a>
+                        </li>
                         <li {{{ (Request::is('register') ? 'class=active' : '') }}}>
                             <a href="{{ route('register') }}">
                               <i class="fa fa-user"></i>Register Administrator</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                              <i class="fas fa-tachometer-alt"></i>Text</a>
                         </li>
                     </ul>
                 </nav>

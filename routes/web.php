@@ -40,6 +40,9 @@ Route::get('/users', 'UserController@index')->name('users');
 
 Route::post('/users/delete', 'UserController@destroy');
 
+// Comments
+Route::get('/comments', 'CommentController@index')->name('comments');
+
 // Admin User Profile
 Route::get('/profile', 'ProfileController@index')->name('profile');
 
