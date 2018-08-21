@@ -50,7 +50,7 @@
                         <form id="delete-form" action="/articles/delete" method="POST" onsubmit="return confirm('Do you really want to delete this article?');">
                             @csrf
                             <input type="hidden" name="article_id" value="{{ $article->id }}">
-                            <button type="submit" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete User Comment">
+                            <button type="submit" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete Article">
                                 <i class="zmdi zmdi-delete"></i>
                             </buton>
                         </form>
