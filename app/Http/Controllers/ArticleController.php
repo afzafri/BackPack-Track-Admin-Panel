@@ -83,6 +83,43 @@ class ArticleController extends Controller
         return view('edit_article', ['article' => $article]);
     }
 
+    // Update an article data
+    public function update(Request $request)
+    {
+        $rules = array(
+          'title' => 'required|string|max:255',
+          'author' => 'required|string|max:255',
+          'date' => 'required|date',
+          'summary' => 'required|string|max:255',
+          'content' => 'required|string',
+          'article_id' => 'required|numeric',
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails())
+        {
+            $errors = $validator->errors();
+
+            return redirect('articles/'.$request->article_id.'/edit')->with('errors', $errors);
+        }
+        else
+        {
+            $article_id = $request->article_id;
+            $article = Article::find($article_id);
+
+            $article->title = $request->title;
+            $article->author = $request->author;
+            $article->date = $request->date;
+            $article->summary = $request->summary;
+            $article->content = $request->content;
+
+            $article->save();
+
+            return redirect('articles/'.$request->article_id.'/edit')->with('success', "Article updated!");
+        }
+    }
+
     // Delete an article
     public function destroy(Request $request)
     {
