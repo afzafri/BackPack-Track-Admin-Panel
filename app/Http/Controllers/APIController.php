@@ -288,8 +288,15 @@ class APIController extends Controller
 
             if($request->hasFile('image'))
             {
+              // Get old pic
+              $old_image = $pic_url;
+
+              // Upload new pic
               $pic_url = $request->file('image')->store('images/activities', 'public');
               $pic_url = asset('storage/'.$pic_url);
+
+              // Delete old pic file
+              $del_pic = $this->deletePhoto($old_image);
             }
 
             $activity->date = $request->date;
