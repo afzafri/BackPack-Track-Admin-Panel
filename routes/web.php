@@ -43,6 +43,8 @@ Route::post('/users/delete', 'UserController@destroy');
 // Comments
 Route::get('/comments', 'CommentController@index')->name('comments');
 
+Route::post('/comments/delete', 'CommentController@destroy');
+
 // Admin User Profile
 Route::get('/profile', 'ProfileController@index')->name('profile');
 
