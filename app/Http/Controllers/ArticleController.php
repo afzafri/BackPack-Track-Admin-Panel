@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 
+use App\Http\Controllers\APIController;
 use App\Article;
 
 class ArticleController extends Controller
@@ -17,7 +18,8 @@ class ArticleController extends Controller
     // List all articles posted
     public function index()
     {
-        $articles = Article::all();
+        $APIobj = new APIController();
+        $articles = $APIobj->listArticles();
 
         return view('articles', ['articles' => $articles]);
     }
