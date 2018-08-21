@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Comment;
+use App\User;
 
 class CommentController extends Controller
 {
@@ -16,8 +17,8 @@ class CommentController extends Controller
     // List all itineraries
     public function index()
     {
-        $comments = Comment::all();
-
+        $comments = Comment::with(['user','itinerary.user'])->get();
+        
         return $comments;
     }
 }
