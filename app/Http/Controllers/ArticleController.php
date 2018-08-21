@@ -30,6 +30,15 @@ class ArticleController extends Controller
         return view('create_article');
     }
 
+    // View specific article
+    public function view(Request $request)
+    {
+        $APIobj = new APIController();
+        $article = $APIobj->viewArticle($request);
+
+        return $article;
+    }
+
     // Insert article to database
     public function store(Request $request)
     {

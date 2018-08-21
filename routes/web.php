@@ -48,6 +48,8 @@ Route::post('/comments/delete', 'CommentController@destroy');
 // Articles
 Route::get('/articles', 'ArticleController@index')->name('articles');
 
+Route::get('/articles/{article_id}/view', 'ArticleController@view');
+
 Route::get('/articles/create', 'ArticleController@create');
 
 Route::post('/articles/create', 'ArticleController@store');
