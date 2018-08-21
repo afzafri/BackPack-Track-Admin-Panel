@@ -20,4 +20,10 @@ class ArticleController extends Controller
 
         return view('articles', ['articles' => $articles]);
     }
+
+    // Display create form
+    public function create()
+    {
+        return view('create_article');
+    }
 }
