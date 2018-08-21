@@ -2,6 +2,22 @@
 
 @section('title', 'Edit Article')
 
+@section('breadcrumb')
+  <li class="list-inline-item">
+      <a href="{{ route('dashboard') }}">Dashboard</a>
+  </li>
+  <li class="list-inline-item seprate">
+      <span>/</span>
+  </li>
+  <li class="list-inline-item">
+      <a href="{{ route('articles') }}">Articles</a>
+  </li>
+  <li class="list-inline-item seprate">
+      <span>/</span>
+  </li>
+  <li class="list-inline-item active">Article ID:{{ $article->id }}</li>
+@endsection
+
 @section('pageheader', 'Edit Article')
 
 @section('content')

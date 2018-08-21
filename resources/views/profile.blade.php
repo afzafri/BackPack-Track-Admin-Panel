@@ -2,6 +2,16 @@
 
 @section('title', 'User Profile')
 
+@section('breadcrumb')
+  <li class="list-inline-item">
+      <a href="{{ route('dashboard') }}">Dashboard</a>
+  </li>
+  <li class="list-inline-item seprate">
+      <span>/</span>
+  </li>
+  <li class="list-inline-item active">User Profile</li>
+@endsection
+
 @section('pageheader', 'User Profile')
 
 @section('content')

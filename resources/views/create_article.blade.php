@@ -2,6 +2,22 @@
 
 @section('title', 'Create new article')
 
+@section('breadcrumb')
+  <li class="list-inline-item">
+      <a href="{{ route('dashboard') }}">Dashboard</a>
+  </li>
+  <li class="list-inline-item seprate">
+      <span>/</span>
+  </li>
+  <li class="list-inline-item">
+      <a href="{{ route('articles') }}">Articles</a>
+  </li>
+  <li class="list-inline-item seprate">
+      <span>/</span>
+  </li>
+  <li class="list-inline-item active">Create new article</li>
+@endsection
+
 @section('pageheader', 'Create new article')
 
 @section('content')

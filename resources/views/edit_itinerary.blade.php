@@ -2,6 +2,22 @@
 
 @section('title', 'Edit Itinerary')
 
+@section('breadcrumb')
+  <li class="list-inline-item">
+      <a href="{{ route('dashboard') }}">Dashboard</a>
+  </li>
+  <li class="list-inline-item seprate">
+      <span>/</span>
+  </li>
+  <li class="list-inline-item">
+      <a href="{{ route('itineraries') }}">Itineraries</a>
+  </li>
+  <li class="list-inline-item seprate">
+      <span>/</span>
+  </li>
+  <li class="list-inline-item active">Itinerary ID:{{ $itinerary->id }}</li>
+@endsection
+
 @section('pageheader', 'Edit Itinerary')
 
 @section('content')

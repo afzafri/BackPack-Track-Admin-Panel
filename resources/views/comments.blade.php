@@ -2,6 +2,16 @@
 
 @section('title', 'Manage User Comments')
 
+@section('breadcrumb')
+  <li class="list-inline-item">
+      <a href="{{ route('dashboard') }}">Dashboard</a>
+  </li>
+  <li class="list-inline-item seprate">
+      <span>/</span>
+  </li>
+  <li class="list-inline-item active">Manage Users Comments</li>
+@endsection
+
 @section('pageheader', 'Manage User Comments')
 
 @section('content')

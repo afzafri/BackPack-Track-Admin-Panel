@@ -204,6 +204,20 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                        <!-- BREADCRUMB-->
+                        <div class="row">
+                            <div class="col-md-12">
+                              <div class="au-breadcrumb-content">
+                                  <div class="au-breadcrumb-left">
+                                      <span class="au-breadcrumb-span">You are here:</span>
+                                      <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                          @yield('breadcrumb')
+                                      </ul>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                        <!-- END BREADCRUMB-->
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="overview-wrap">
@@ -219,7 +233,7 @@
                           <!-- contents -->
                           @yield('content')
                           <br>
-                          
+
                         <!-- END CONTENTS HERE -->
 
                     </div>

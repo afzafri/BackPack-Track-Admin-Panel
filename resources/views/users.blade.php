@@ -2,6 +2,16 @@
 
 @section('title', 'Manage Users Acccount')
 
+@section('breadcrumb')
+  <li class="list-inline-item">
+      <a href="{{ route('dashboard') }}">Dashboard</a>
+  </li>
+  <li class="list-inline-item seprate">
+      <span>/</span>
+  </li>
+  <li class="list-inline-item active">Manage Users Acccount</li>
+@endsection
+
 @section('pageheader', 'Manage Users Acccount')
 
 @section('content')
