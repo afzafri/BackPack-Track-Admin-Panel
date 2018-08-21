@@ -11,6 +11,7 @@ use App\Country;
 use App\Itinerary;
 use App\Activity;
 use App\Comment;
+use App\Article;
 
 class APIController extends Controller
 {
@@ -488,6 +489,22 @@ class APIController extends Controller
 
       $comments = Comment::with(['user','itinerary'])->where('user_id', $user_id)->get();
       return $comments;
+    }
+
+    // List all articles
+    public function listArticles()
+    {
+      $articles = Article::get(['id','title','author','date','summary']);
+      return $articles;
+    }
+
+    // View specific article
+    public function viewArticle(Request $request)
+    {
+      $article_id = $request->article_id;
+      $article = Article::find($article_id);
+
+      return $article;
     }
 
     // Upload user Avatar

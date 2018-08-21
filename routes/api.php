@@ -86,6 +86,12 @@ Route::middleware('auth:api')->group(function () {
   // Calculate total budget for each day of a trip
   Route::get('/getTotalBudgetPerDay/{itinerary_id}', 'APIController@getTotalBudgetPerDay');
 
+  // List all articles in database
+  Route::get('/listArticles', 'APIController@listArticles');
+
+  // View specific article
+  Route::get('/viewArticle/{article_id}', 'APIController@viewArticle');
+
   // Logout user
   Route::get('logout', 'AuthController@logout');
 
