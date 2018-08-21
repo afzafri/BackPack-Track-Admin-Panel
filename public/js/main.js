@@ -69,7 +69,7 @@
       });
     }
 
-    //DataTables 
+    //DataTables
     $(document).ready(function() {
       $('#datatable').DataTable();
     } );
