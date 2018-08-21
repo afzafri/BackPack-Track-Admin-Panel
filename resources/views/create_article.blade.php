@@ -89,7 +89,9 @@
     $(document).ready(function() {
 
         // CKEditor
-        CKEDITOR.replace('content');
+        CKEDITOR.replace('content', {
+          height: 400,
+        });
     });
   </script>
 @endpush
