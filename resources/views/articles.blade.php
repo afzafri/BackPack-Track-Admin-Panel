@@ -19,7 +19,7 @@
 
   <br>
   <div class="table-responsive m-b-30">
-    <a href="/articles/create" class="btn btn-success float-right"/><i class="fa fa-plus"></i> Create new article</a> <br>
+    <a href="/articles/create" class="au-btn au-btn-icon au-btn--green float-right"/><i class="zmdi zmdi-plus"></i> Create new article</a> <br>
     <table class="table table-borderless table-data3" id="tableArticles">
         <thead>
             <tr>
