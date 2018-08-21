@@ -65,6 +65,10 @@
                             <a href="{{ route('dashboard') }}">
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
+                        <li {{{ (Request::is('articles') ? 'class=active' : '') }}}>
+                            <a href="{{ route('articles') }}">
+                              <i class="fa fa-newspaper-o"></i>Articles</a>
+                        </li>
                         <li {{{ (Request::is('itineraries') ? 'class=active' : '') }}}>
                             <a href="{{ route('itineraries') }}">
                               <i class="fa fa-list-alt"></i>View Itineraries</a>
@@ -80,10 +84,6 @@
                         <li {{{ (Request::is('register') ? 'class=active' : '') }}}>
                             <a href="{{ route('register') }}">
                               <i class="fa fa-user"></i>Register Administrator</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                              <i class="fas fa-tachometer-alt"></i>Text</a>
                         </li>
                     </ul>
                 </div>
@@ -104,6 +104,10 @@
                         <li {{{ (Request::is('dashboard') ? 'class=active' : '') }}}>
                             <a href="{{ route('dashboard') }}">
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        </li>
+                        <li {{{ (Request::is('articles') ? 'class=active' : '') }}}>
+                            <a href="{{ route('articles') }}">
+                              <i class="fa fa-newspaper-o"></i>Articles</a>
                         </li>
                         <li {{{ (Request::is('itineraries') ? 'class=active' : '') }}}>
                             <a href="{{ route('itineraries') }}">

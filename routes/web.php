@@ -45,6 +45,9 @@ Route::get('/comments', 'CommentController@index')->name('comments');
 
 Route::post('/comments/delete', 'CommentController@destroy');
 
+// Articles
+Route::get('/articles', 'ArticleController@index')->name('articles');
+
 // Admin User Profile
 Route::get('/profile', 'ProfileController@index')->name('profile');
 
