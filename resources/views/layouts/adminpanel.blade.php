@@ -218,7 +218,8 @@
 
                           <!-- contents -->
                           @yield('content')
-
+                          <br>
+                          
                         <!-- END CONTENTS HERE -->
 
                     </div>
