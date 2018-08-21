@@ -18,7 +18,7 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::with(['user','itinerary.user'])->get();
-        
-        return $comments;
+
+        return view('comments', ['comments' => $comments]);
     }
 }
