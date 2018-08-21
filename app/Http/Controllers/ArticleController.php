@@ -62,4 +62,16 @@ class ArticleController extends Controller
             return redirect('articles/create')->with('success', "Article created!");
         }
     }
+
+    // Delete an article
+    public function destroy(Request $request)
+    {
+        $article_id = $request->article_id;
+
+        // Delete the itinerary
+        $article = Article::find($article_id);
+        $article->delete();
+
+        return redirect('articles')->with('deletestatus', 'Delete article ID: '.$request->article_id.' success!');
+    }
 }

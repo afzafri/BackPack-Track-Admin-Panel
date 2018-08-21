@@ -52,6 +52,8 @@ Route::get('/articles/create', 'ArticleController@create');
 
 Route::post('/articles/create', 'ArticleController@store');
 
+Route::post('/articles/delete', 'ArticleController@destroy');
+
 // Admin User Profile
 Route::get('/profile', 'ProfileController@index')->name('profile');
 
