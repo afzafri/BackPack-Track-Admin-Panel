@@ -4,14 +4,6 @@
 
 @section('pageheader', 'Create new article')
 
-@push('styles')
-  <style>
-    .ck-editor__editable {
-        min-height: 400px;
-    }
-  </style>
-@endpush
-
 @section('content')
 
   @if (session('success'))
@@ -72,7 +64,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label">Content</label>
-                    <textarea rows="9" id="content" class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}" name="content" required>{{ old('content') }}</textarea>
+                    <textarea rows="20" id="content" class="form-control {{ $errors->has('content') ? ' is-invalid' : '' }}" name="content" required>{{ old('content') }}</textarea>
 
                     @if ($errors->has('content'))
                         <span class="invalid-feedback" role="alert">
@@ -97,12 +89,7 @@
     $(document).ready(function() {
 
         // CKEditor
-        ClassicEditor
-          .create( document.querySelector( '#content' ) )
-          .catch( error => {
-              console.error( error );
-          } );
-
+        CKEDITOR.replace('content');
     });
   </script>
 @endpush

@@ -251,7 +251,7 @@
     <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
     <script src="{{ asset('vendor/DataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('vendor/lightbox2/dist/js/lightbox.min.js') }}"></script>
-    <script src="{{ asset('vendor/ckeditor5/ckeditor.js') }}"></script>
+    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
 
     @stack('scripts')
 
