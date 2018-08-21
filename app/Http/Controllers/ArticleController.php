@@ -36,7 +36,7 @@ class ArticleController extends Controller
         $APIobj = new APIController();
         $article = $APIobj->viewArticle($request);
 
-        return $article;
+        return view('view_article', ['article' => $article]);
     }
 
     // Insert article to database
