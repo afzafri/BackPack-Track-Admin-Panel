@@ -1,8 +1,8 @@
 @extends('layouts.adminpanel')
 
-@section('title', 'List of Users')
+@section('title', 'Manage Users Acccount')
 
-@section('pageheader', 'List of Users')
+@section('pageheader', 'Manage Users Acccount')
 
 @section('content')
 
@@ -16,7 +16,7 @@
         </button>
       </div>
   @endif
-  
+
   <br>
   <div class="table-responsive m-b-30">
     <table class="table table-borderless table-data3" id="tableUsers">
