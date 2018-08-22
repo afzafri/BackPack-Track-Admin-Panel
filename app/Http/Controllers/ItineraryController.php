@@ -42,12 +42,9 @@ class ItineraryController extends Controller
     {
         // get activities
         $APIobj = new APIController();
-        $result = $APIobj->viewActivities($request);
+        $result = json_decode($APIobj->viewActivities($request));
 
-        // get total budget
-        $totalbudget = json_decode($APIobj->getTotalBudget($request), true)['totalbudget'];
-
-        return view('activities', ['data' => json_decode($result, true), 'totalbudget' => $totalbudget]);
+        return view('activities', ['data' => $result]);
     }
 
     // Edit an itinerary
