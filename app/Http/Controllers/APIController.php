@@ -361,7 +361,7 @@ class APIController extends Controller
       $itinerary = Itinerary::with(['user','country'])->find($itinerary_id);
       $activities = Activity::where('itinerary_id', $itinerary_id)->get();
 
-      $result['itinerary'] = $itinerary;
+      $result = $itinerary;
       $result['activities'] = $activities;
 
       return json_encode($result);
