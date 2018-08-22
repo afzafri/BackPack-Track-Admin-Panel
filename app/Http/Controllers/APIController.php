@@ -358,11 +358,16 @@ class APIController extends Controller
     {
       $itinerary_id = $request->itinerary_id;
 
+      // get itinerary info and all the activities
       $itinerary = Itinerary::with(['user','country'])->find($itinerary_id);
       $activities = Activity::where('itinerary_id', $itinerary_id)->get();
 
+      // get total budget
+      $totalbudget = json_decode($this->getTotalBudget($request), true)['totalbudget'];
+
       $result = $itinerary;
       $result['activities'] = $activities;
+      $result['totalbudget'] = $totalbudget;
 
       return json_encode($result);
     }
