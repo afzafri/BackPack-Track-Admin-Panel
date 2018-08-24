@@ -125,11 +125,9 @@
                 <img src="{{ $user->avatar_url }}" width="150px" id="preview_avatar"/><br><br>
 
                 <div class="row form-group">
-                    <div class="col col-md-2">
-                        <label class="form-control-label">Choose new profile picture</label>
-                    </div>
-                    <div class="col-12 col-md-10">
-                        <input type="file" name="avatar" id="avatar" class="form-control-file {{ $errors->has('avatar') ? ' is-invalid' : '' }}">
+                    <div class="col-12 col-md-4 custom-file">
+                        <input type="file" name="avatar" id="avatar" class="custom-file-input {{ $errors->has('avatar') ? ' is-invalid' : '' }}">
+                        <label class="custom-file-label" for="avatar" id="custom-file-label">Choose new profile picture</label>
                         @if ($errors->has('avatar'))
                             <div class="alert alert-danger" role="alert">
         											  <strong>{{ $errors->first('avatar') }}</strong>
@@ -158,7 +156,10 @@
 
           reader.onload = function(e) {
             $('#preview_avatar').attr('src', e.target.result);
+            $('#preview_avatar').hide();
+            $('#preview_avatar').fadeIn(650);
             $('#avatar_label').text("New profile picture");
+            $('#custom-file-label').text(input.files[0].name);
           }
 
           reader.readAsDataURL(input.files[0]);
