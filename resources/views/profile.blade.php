@@ -121,15 +121,15 @@
       <form action="/profile/avatar" method="post" onsubmit="return confirm('Do you really want to update your profile picture?');" enctype="multipart/form-data">
           @csrf
           <div class="card-body card-block">
-                <label class="form-control-label">Current profile picture</label><br>
-                <img src="{{ $user->avatar_url }}" width="150px"/><br><br>
+                <label class="form-control-label" id="avatar_label">Current profile picture</label><br>
+                <img src="{{ $user->avatar_url }}" width="150px" id="preview_avatar"/><br><br>
 
                 <div class="row form-group">
                     <div class="col col-md-2">
                         <label class="form-control-label">Choose new profile picture</label>
                     </div>
                     <div class="col-12 col-md-10">
-                        <input type="file" name="avatar" class="form-control-file {{ $errors->has('avatar') ? ' is-invalid' : '' }}">
+                        <input type="file" name="avatar" id="avatar" class="form-control-file {{ $errors->has('avatar') ? ' is-invalid' : '' }}">
                         @if ($errors->has('avatar'))
                             <div class="alert alert-danger" role="alert">
         											  <strong>{{ $errors->first('avatar') }}</strong>
@@ -148,3 +148,25 @@
   <br>
 
 @endsection
+
+@push('scripts')
+  <script>
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function(e) {
+            $('#preview_avatar').attr('src', e.target.result);
+            $('#avatar_label').text("New profile picture");
+          }
+
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      $("#avatar").change(function() {
+        readURL(this);
+      });
+  </script>
+@endpush
