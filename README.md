@@ -7,7 +7,7 @@ Laravel based web application Admin Panel and API for BackPack Track
 git clone https://github.com/afzafri/BackPack-Track-Admin-Panel.git
 ```
 - Create a new database
-- Copy or rename file ```.env.example``` to ```.env```, and edit the file to change the attributes for database to your database configurations (host,username,password etc)
+- Copy or rename file ```.env.example``` to ```.env```, and edit the file to change the attributes for database to your database configurations (host,username,password etc) and email smtp driver
 - Run commands through Terminal/CMD/SSH:
   - ```
     sudo chgrp -R www-data /var/www/html/your-project
