@@ -117,6 +117,45 @@
 
   <br>
   <div class="card">
+          <div class="card-header">Change Password</div>
+      <form action="/profile/password" method="post" onsubmit="return confirm('Do you really want to change your password?');">
+          @csrf
+          <div class="card-body card-block">
+                <div class="form-group">
+                    <label class="form-control-label">Old Password</label>
+                    <input id="old_password" type="password" class="form-control{{ $errors->has('old_password') ? ' is-invalid' : '' }}" name="old_password" required>
+
+                    @if ($errors->has('old_password'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('old_password') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label">New Password</label>
+                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                    @if ($errors->has('password'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label">Confirm New Password</label>
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                </div>
+          </div>
+          <div class="card-footer">
+              <button type="submit" class="btn btn-primary btn-sm">
+                  <i class="fa fa-save"></i> Change password
+              </button>
+          </div>
+      </form>
+  </div>
+
+  <br>
+  <div class="card">
           <div class="card-header">Profile Picture</div>
       <form action="/profile/avatar" method="post" onsubmit="return confirm('Do you really want to update your profile picture?');" enctype="multipart/form-data">
           @csrf
