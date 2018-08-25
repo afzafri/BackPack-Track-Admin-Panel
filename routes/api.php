@@ -103,4 +103,7 @@ Route::middleware('auth:api')->group(function () {
 
   // Update user profile
   Route::post('updateProfile', 'APIController@updateProfile');
+
+  // Change user password
+  Route::post('updatePassword', 'APIController@updatePassword');
 });
