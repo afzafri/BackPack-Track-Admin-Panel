@@ -30,7 +30,6 @@ class APIController extends Controller
         $rules = array(
           'title' => 'required|string|max:255',
           'country_id' => 'required|numeric',
-          'user_id' => 'required|numeric',
         );
 
         $validator = Validator::make($request->all(), $rules);
@@ -51,7 +50,7 @@ class APIController extends Controller
 
             $itinerary->title = $request->title;
             $itinerary->country_id = $request->country_id;
-            $itinerary->user_id = $request->user_id;
+            $itinerary->user_id = Auth::user()->id;
 
             $itinerary->save();
 
@@ -448,7 +447,6 @@ class APIController extends Controller
     {
       $rules = array(
         'message' => 'required|string|max:255',
-        'user_id' => 'required|numeric',
         'itinerary_id' => 'required|numeric',
       );
 
@@ -469,7 +467,7 @@ class APIController extends Controller
           $comment = new Comment;
 
           $comment->message = $request->message;
-          $comment->user_id = $request->user_id;
+          $comment->user_id = Auth::user()->id;
           $comment->itinerary_id = $request->itinerary_id;
 
           $comment->save();
@@ -526,7 +524,6 @@ class APIController extends Controller
     {
       $rules = array(
         'avatar' => 'required|image',
-        'user_id' => 'required|numeric',
       );
 
       $validator = Validator::make($request->all(), $rules);
@@ -545,15 +542,16 @@ class APIController extends Controller
       {
           if($request->hasFile('avatar'))
           {
+            $user_id = Auth::user()->id;
             // Get old avatar
-            $old_avatar = json_decode(User::where('id', $request->user_id)->get(['avatar_url']), true)[0]['avatar_url'];
+            $old_avatar = json_decode(User::where('id', $user_id)->get(['avatar_url']), true)[0]['avatar_url'];
 
             // Upload new avatar
             $pic_url = $request->file('avatar')->store('images/avatars', 'public');
             $pic_url = asset('storage/'.$pic_url);
 
             // Update new avatar url
-            $user = User::find($request->user_id);
+            $user = User::find($user_id);
             $user->avatar_url = $pic_url;
             $user->save();
 
@@ -586,7 +584,6 @@ class APIController extends Controller
         'address' => 'required|string|max:255',
         'country_id' => 'required|string|max:100',
         'email' => 'required|string|email|max:255',
-        'user_id' => 'required|numeric',
       );
 
       $validator = Validator::make($request->all(), $rules);
@@ -603,7 +600,7 @@ class APIController extends Controller
       }
       else
       {
-          $user_id = $request->user_id;
+          $user_id = Auth::user()->id;
           $user = User::find($user_id);
 
           $user->name = $request->name;
