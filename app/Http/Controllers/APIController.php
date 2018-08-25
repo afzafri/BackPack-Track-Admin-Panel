@@ -68,7 +68,6 @@ class APIController extends Controller
       $rules = array(
         'title' => 'required|string|max:255',
         'country_id' => 'required|numeric',
-        'user_id' => 'required|numeric',
         'itinerary_id' => 'required|numeric',
       );
 
@@ -91,7 +90,17 @@ class APIController extends Controller
 
           $itinerary->title = $request->title;
           $itinerary->country_id = $request->country_id;
-          $itinerary->user_id = $request->user_id;
+
+          $user_id = "";
+          if($request->has('user_id'))
+          {
+            $user_id = $request->user_id;
+          }
+          else
+          {
+            $user_id = Auth::user()->id;
+          }
+          $itinerary->user_id = $user_id;
 
           $itinerary->save();
 
