@@ -47,6 +47,25 @@ class ProfileController extends Controller
         }
     }
 
+    // Change user account password
+    public function updatePassword(Request $request)
+    {
+        $APIobj = new APIController();
+        $result = $APIobj->updatePassword($request);
+
+        $result = json_decode($result, true);
+        if($result['code'] == 400)
+        {
+          $errors = new MessageBag($result['error']);
+
+          return redirect('profile')->with('errors', $errors);
+        }
+        else if($result['code'] == 200)
+        {
+          return redirect('profile')->with('success', "Password changed!");
+        }
+    }
+
     // Update profile picture
     public function updateAvatar(Request $request)
     {

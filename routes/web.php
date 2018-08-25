@@ -65,4 +65,6 @@ Route::get('/profile', 'ProfileController@index')->name('profile');
 
 Route::post('/profile', 'ProfileController@update');
 
+Route::post('/profile/password', 'ProfileController@updatePassword');
+
 Route::post('/profile/avatar', 'ProfileController@updateAvatar');
