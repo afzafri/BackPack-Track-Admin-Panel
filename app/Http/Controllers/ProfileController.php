@@ -31,8 +31,6 @@ class ProfileController extends Controller
     // Update profile data
     public function update(Request $request)
     {
-        $request->request->add(['user_id' => Auth::user()->id]);
-
         $APIobj = new APIController();
         $result = $APIobj->updateProfile($request);
 
@@ -52,8 +50,6 @@ class ProfileController extends Controller
     // Update profile picture
     public function updateAvatar(Request $request)
     {
-        $request->request->add(['user_id' => Auth::user()->id]);
-
         $APIobj = new APIController();
         $result = $APIobj->uploadAvatar($request);
 
