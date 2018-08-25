@@ -669,7 +669,7 @@ class APIController extends Controller
           {
             $result['code'] = 400;
             $result['message'] = "Change password failed!";
-            $errors['password'] = ["Old password incorrect."];
+            $errors['old_password'] = ["Old password incorrect."];
             $result['error'] = $errors;
 
             return json_encode($result);
