@@ -19,7 +19,8 @@ class CountriesTableSeeder extends Seeder
         {
           Country::create(array(
             'code' => $obj->code,
-            'name' => $obj->name
+            'name' => $obj->name,
+            'currency' => $obj->currency
           ));
         }
     }
