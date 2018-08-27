@@ -49,7 +49,7 @@
                     <td>{{ $itinerary->country->name }}</td>
                     <td>{{ $itinerary->title }}</td>
                     <td>{{ $itinerary->duration }}</td>
-                    <td>{{ $itinerary->totalbudget }}</td>
+                    <td>{{ $itinerary->country->currency }} {{ $itinerary->totalbudget }}</td>
                     <td>
                         <div class="table-data-feature">
                           <a href="/itineraries/{{ $itinerary->id }}/view" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Activities">

@@ -61,14 +61,14 @@
                             </a>
                           @endif
                       </td>
-                      <td>{{ $activities->budget }}</td>
+                      <td>{{ $data->country->currency }} {{ $activities->budget }}</td>
                   </tr>
               @endforeach
                   <tr>
                       <th colspan="5" align="right">
                           <div style="float: right; text-align: right">Total Budget Spent</div>
                       </th>
-                      <td><b>{{ $data->totalbudget }}</b></td>
+                      <td><b>{{ $data->country->currency }} {{ $data->totalbudget }}</b></td>
                   </tr>
           </tbody>
       </table>
