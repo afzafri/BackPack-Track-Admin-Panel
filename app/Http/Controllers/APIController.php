@@ -143,7 +143,7 @@ class APIController extends Controller
     // List all Itinerary
     public function listItineraries()
     {
-      $itineraries = Itinerary::with(['country','user'])->get();
+      $itineraries = Itinerary::with(['country','user'])->orderBy('id', 'DESC')->get();
 
       // get the durations and total budgets for each itinerary
       $durations = [];
@@ -180,7 +180,7 @@ class APIController extends Controller
     {
       $country_id = $request->country_id;
 
-      $itineraries = Itinerary::with(['country','user'])->where('country_id', $country_id)->get();
+      $itineraries = Itinerary::with(['country','user'])->where('country_id', $country_id)->orderBy('id', 'DESC')->get();
       return $itineraries;
     }
 
@@ -189,7 +189,7 @@ class APIController extends Controller
     {
       $user_id = $request->user_id;
 
-      $itineraries = Itinerary::with(['country','user'])->where('user_id', $user_id)->get();
+      $itineraries = Itinerary::with(['country','user'])->where('user_id', $user_id)->orderBy('id', 'DESC')->get();
       return $itineraries;
     }
 
@@ -198,7 +198,7 @@ class APIController extends Controller
     {
       $searchTitle = $request->title;
 
-      $itineraries = Itinerary::with(['country','user'])->where('title', 'like', '%' . $searchTitle . '%')->get();
+      $itineraries = Itinerary::with(['country','user'])->where('title', 'like', '%' . $searchTitle . '%')->orderBy('id', 'DESC')->get();
       return $itineraries;
     }
 
@@ -508,14 +508,14 @@ class APIController extends Controller
     {
       $user_id = $request->user_id;
 
-      $comments = Comment::with(['user','itinerary'])->where('user_id', $user_id)->get();
+      $comments = Comment::with(['user','itinerary'])->where('user_id', $user_id)->orderBy('id', 'DESC')->get();
       return $comments;
     }
 
     // List all articles
     public function listArticles()
     {
-      $articles = Article::get(['id','title','author','date','summary']);
+      $articles = Article::orderBy('id', 'DESC')->get(['id','title','author','date','summary']);
       return $articles;
     }
 
