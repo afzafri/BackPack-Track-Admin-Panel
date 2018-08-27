@@ -82,3 +82,15 @@
       </form>
   </div>
 @endsection
+
+@push('scripts')
+  <script>
+
+    $(document).ready(function() {
+        $('#country_id').select2({
+          theme: 'bootstrap4',
+        });
+    });
+
+  </script>
+@endpush

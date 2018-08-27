@@ -31,6 +31,7 @@
     <link href="{{ asset('vendor/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/slick/slick.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/select2/select2.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('vendor/select2/select2-bootstrap4.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/DataTables/datatables.min.css') }}" rel="stylesheet" media="all">
 
@@ -178,6 +179,16 @@
 
     <!-- Main JS-->
     <script src="{{ asset('js/main.js') }}"></script>
+
+    <script>
+
+      $(document).ready(function() {
+          $('#country').select2({
+            theme: 'bootstrap4',
+          });
+      });
+
+    </script>
 
 </body>
 
