@@ -78,6 +78,9 @@
             dom: 'Bfrtilp',
             buttons: [
                 'copy', 'excel', 'pdf',
+            ],
+            order: [
+              [0,"desc"]
             ]
         });
 
