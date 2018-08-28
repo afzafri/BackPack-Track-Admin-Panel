@@ -540,17 +540,14 @@ class APIController extends Controller
                  ->take(5)
                  ->get();
 
-      $popular = [];
       $listCountries = [];
       foreach ($countries as $country)
       {
-        $popular['country_id'] = $country->country_id;
-        $popular['country_name'] = (Country::find($country->country_id))->name;
-        $popular['total_itineraries'] = $country->total;
-        $listCountries[] = $popular;
+        $country->country_name = (Country::find($country->country_id))->name;
+        $listCountries[] = $country;
       }
 
-      return json_encode($listCountries);
+      return $listCountries;
     }
 
     // Upload user Avatar
