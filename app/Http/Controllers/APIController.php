@@ -541,16 +541,16 @@ class APIController extends Controller
                  ->get();
 
       $popular = [];
-      $i = 0;
+      $listCountries = [];
       foreach ($countries as $country)
       {
-        $popular[$i]['country_id'] = $country->country_id;
-        $popular[$i]['country_name'] = (Country::find($country->country_id))->name;
-        $popular[$i]['total_itineraries'] = $country->total;
-        $i++;
+        $popular['country_id'] = $country->country_id;
+        $popular['country_name'] = (Country::find($country->country_id))->name;
+        $popular['total_itineraries'] = $country->total;
+        $listCountries[] = $popular;
       }
 
-      return json_encode($popular);
+      return json_encode($listCountries);
     }
 
     // Upload user Avatar
