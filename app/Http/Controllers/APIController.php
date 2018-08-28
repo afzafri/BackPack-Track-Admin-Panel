@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 use Storage;
+use DB;
 
 use App\User;
 use App\Country;
@@ -526,6 +527,30 @@ class APIController extends Controller
       $article = Article::find($article_id);
 
       return $article;
+    }
+
+    // Top 5 popular countries
+    public function listPopularCountries()
+    {
+      $countries = DB::table('itineraries')
+                 ->select('country_id', DB::raw('count(*) as total'))
+                 ->join('countries', 'countries.id', '=', 'itineraries.country_id')
+                 ->groupBy('country_id')
+                 ->orderBy('total', 'desc')
+                 ->take(5)
+                 ->get();
+
+      $popular = [];
+      $i = 0;
+      foreach ($countries as $country)
+      {
+        $popular[$i]['country_id'] = $country->country_id;
+        $popular[$i]['country_name'] = (Country::find($country->country_id))->name;
+        $popular[$i]['total_itineraries'] = $country->total;
+        $i++;
+      }
+
+      return $popular;
     }
 
     // Upload user Avatar
