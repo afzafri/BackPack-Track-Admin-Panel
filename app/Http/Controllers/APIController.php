@@ -550,7 +550,7 @@ class APIController extends Controller
         $i++;
       }
 
-      return $popular;
+      return json_encode($popular);
     }
 
     // Upload user Avatar
