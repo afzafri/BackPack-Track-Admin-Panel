@@ -43,9 +43,9 @@
       </div>
       <div class="tab-pane fade" id="Yearly" role="tabpanel" aria-labelledby="Yearly-tab">
 
-        New registered Users <span class="badge badge-primary"></span><br>
-        New posted Itineraries <span class="badge badge-warning"></span><br>
-        New posted Comments <span class="badge badge-success"></span>
+        New registered Users <span class="badge badge-primary">{{ $statistics['yearly']['users'] }}</span><br>
+        New posted Itineraries <span class="badge badge-warning">{{ $statistics['yearly']['itineraries'] }}</span><br>
+        New posted Comments <span class="badge badge-success">{{ $statistics['yearly']['comments'] }}</span>
 
       </div>
     </div>

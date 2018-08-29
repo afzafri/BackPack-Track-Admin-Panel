@@ -37,6 +37,7 @@ class DashboardController extends Controller
         // Statistics
         $statistics['daily'] = $this->dailyStats();
         $statistics['monthly'] = $this->monthlyStats();
+        $statistics['yearly'] = $this->yearlyStats();
 
         return view('dashboard', ['popularCountries' => $popularCountries, 'statistics' => $statistics]);
     }
@@ -82,5 +83,22 @@ class DashboardController extends Controller
         $monthly['comments'] = Comment::whereMonth('created_at', Carbon::now()->month)->count();
 
         return $monthly;
+    }
+
+    // Yearly statistics
+    public function yearlyStats()
+    {
+        $yearly = [];
+
+        // Users
+        $yearly['users'] = User::whereYear('created_at', Carbon::now()->year)->count();
+
+        // Itineraries
+        $yearly['itineraries'] = Itinerary::whereYear('created_at', Carbon::now()->year)->count();
+
+        // Comments
+        $yearly['comments'] = Comment::whereYear('created_at', Carbon::now()->year)->count();
+
+        return $yearly;
     }
 }
