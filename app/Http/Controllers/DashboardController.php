@@ -40,6 +40,8 @@ class DashboardController extends Controller
         $countries = $APIobj->listPopularCountries();
 
         $popularCountries = [];
+        $popularCountries['labels'] = [];
+        $popularCountries['data'] = [];
         foreach($countries as $country)
         {
           $popularCountries['labels'][] = $country->country_name;
