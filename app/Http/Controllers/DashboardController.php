@@ -19,14 +19,18 @@ class DashboardController extends Controller
 
         $countrylabels = [];
         $totalitinerary = [];
+        $popularCountries = [];
         foreach($countries as $country)
         {
           $countrylabels[] = $country->country_name;
           $totalitinerary[] = $country->total;
+
+          $popularCountries['labels'][] = $country->country_name;
+          $popularCountries['data'][] = $country->total;
         }
 
 
-        return view('dashboard', ['countrylabels' => json_encode($countrylabels), 'totalitinerary' => json_encode($totalitinerary)]);
+        return view('dashboard', ['popularCountries' => $popularCountries]);
     }
 
     public function listPopularCountries()

@@ -19,7 +19,6 @@
         <canvas id="countriesBarChart"></canvas>
       </div>
   </div>
-
 @endsection
 
 @push('scripts')
@@ -34,11 +33,11 @@
           var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-              labels: {!!  $countrylabels !!},
+              labels: {!! json_encode($popularCountries['labels']) !!},
               datasets: [
                 {
                   label: "Total Itineraries",
-                  data: {!!  $totalitinerary !!},
+                  data: {!! json_encode($popularCountries['data']) !!},
                   borderColor: "rgba(0, 123, 255, 0.9)",
                   borderWidth: "0",
                   backgroundColor: "rgba(0, 123, 255, 0.5)"
