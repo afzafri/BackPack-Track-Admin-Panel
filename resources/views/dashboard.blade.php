@@ -30,16 +30,25 @@
       </ul>
       <div class="tab-content pl-3 p-1" id="myTabContent">
         <div class="tab-pane fade show active" id="daily" role="tabpanel" aria-labelledby="daily-tab">
-          <h3>Home</h3>
-          <p>Some content here.</p>
+
+          New registered Users <span class="badge badge-primary">{{ $daily['users'] }}</span><br>
+          New posted Itineraries <span class="badge badge-warning">{{ $daily['itineraries'] }}</span><br>
+          New posted Comments <span class="badge badge-success">{{ $daily['comments'] }}</span>
+
         </div>
         <div class="tab-pane fade" id="monthly" role="tabpanel" aria-labelledby="monthly-tab">
-          <h3>Menu 1</h3>
-          <p>Some content here.</p>
+
+          New registered Users <span class="badge badge-primary"></span><br>
+          New posted Itineraries <span class="badge badge-warning"></span><br>
+          New posted Comments <span class="badge badge-success"></span>
+
         </div>
         <div class="tab-pane fade" id="Yearly" role="tabpanel" aria-labelledby="Yearly-tab">
-          <h3>Menu 2</h3>
-          <p>Some content here.</p>
+
+          New registered Users <span class="badge badge-primary"></span><br>
+          New posted Itineraries <span class="badge badge-warning"></span><br>
+          New posted Comments <span class="badge badge-success"></span>
+
         </div>
       </div>
 
