@@ -12,6 +12,42 @@
 
   <br>
   <div class="card">
+    <div class="card-header">
+        <strong class="card-title mb-3">Statistics</strong>
+    </div>
+    <div class="card-body">
+
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="daily-tab" data-toggle="tab" href="#daily" role="tab" aria-controls="daily" aria-selected="true">Daily</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="monthly-tab" data-toggle="tab" href="#monthly" role="tab" aria-controls="monthly" aria-selected="false">Monthly</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="Yearly-tab" data-toggle="tab" href="#Yearly" role="tab" aria-controls="Yearly" aria-selected="false">Yearly</a>
+        </li>
+      </ul>
+      <div class="tab-content pl-3 p-1" id="myTabContent">
+        <div class="tab-pane fade show active" id="daily" role="tabpanel" aria-labelledby="daily-tab">
+          <h3>Home</h3>
+          <p>Some content here.</p>
+        </div>
+        <div class="tab-pane fade" id="monthly" role="tabpanel" aria-labelledby="monthly-tab">
+          <h3>Menu 1</h3>
+          <p>Some content here.</p>
+        </div>
+        <div class="tab-pane fade" id="Yearly" role="tabpanel" aria-labelledby="Yearly-tab">
+          <h3>Menu 2</h3>
+          <p>Some content here.</p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="card">
       <div class="card-header">
           <strong class="card-title mb-3">Top 5 Popular Countries</strong>
       </div>
