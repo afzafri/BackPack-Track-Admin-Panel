@@ -1265,7 +1265,6 @@
       outClass: 'fade-out',
       inDuration: 900,
       outDuration: 900,
-      //linkElement: 'a:not([target="_blank"]):not([href^=\\#])',
       linkElement: 'a:not([target="_blank"]):not([href^="#"]):not([class^="chosen-single"]):not([class^="cke_"])',
       loading: true,
       loadingParentElement: 'html',
