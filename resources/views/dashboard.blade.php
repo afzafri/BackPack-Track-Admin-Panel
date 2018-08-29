@@ -15,44 +15,39 @@
     <div class="card-header">
         <strong class="card-title mb-3">Statistics</strong>
     </div>
-    <div class="card-body">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="daily-tab" data-toggle="tab" href="#daily" role="tab" aria-controls="daily" aria-selected="true">Daily</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="monthly-tab" data-toggle="tab" href="#monthly" role="tab" aria-controls="monthly" aria-selected="false">Monthly</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="Yearly-tab" data-toggle="tab" href="#Yearly" role="tab" aria-controls="Yearly" aria-selected="false">Yearly</a>
+      </li>
+    </ul>
+    <div class="tab-content pl-3 p-1" id="myTabContent">
+      <div class="tab-pane fade show active" id="daily" role="tabpanel" aria-labelledby="daily-tab">
 
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="daily-tab" data-toggle="tab" href="#daily" role="tab" aria-controls="daily" aria-selected="true">Daily</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="monthly-tab" data-toggle="tab" href="#monthly" role="tab" aria-controls="monthly" aria-selected="false">Monthly</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="Yearly-tab" data-toggle="tab" href="#Yearly" role="tab" aria-controls="Yearly" aria-selected="false">Yearly</a>
-        </li>
-      </ul>
-      <div class="tab-content pl-3 p-1" id="myTabContent">
-        <div class="tab-pane fade show active" id="daily" role="tabpanel" aria-labelledby="daily-tab">
+        New registered Users <span class="badge badge-primary">{{ $daily['users'] }}</span><br>
+        New posted Itineraries <span class="badge badge-warning">{{ $daily['itineraries'] }}</span><br>
+        New posted Comments <span class="badge badge-success">{{ $daily['comments'] }}</span>
 
-          New registered Users <span class="badge badge-primary">{{ $daily['users'] }}</span><br>
-          New posted Itineraries <span class="badge badge-warning">{{ $daily['itineraries'] }}</span><br>
-          New posted Comments <span class="badge badge-success">{{ $daily['comments'] }}</span>
-
-        </div>
-        <div class="tab-pane fade" id="monthly" role="tabpanel" aria-labelledby="monthly-tab">
-
-          New registered Users <span class="badge badge-primary"></span><br>
-          New posted Itineraries <span class="badge badge-warning"></span><br>
-          New posted Comments <span class="badge badge-success"></span>
-
-        </div>
-        <div class="tab-pane fade" id="Yearly" role="tabpanel" aria-labelledby="Yearly-tab">
-
-          New registered Users <span class="badge badge-primary"></span><br>
-          New posted Itineraries <span class="badge badge-warning"></span><br>
-          New posted Comments <span class="badge badge-success"></span>
-
-        </div>
       </div>
+      <div class="tab-pane fade" id="monthly" role="tabpanel" aria-labelledby="monthly-tab">
 
+        New registered Users <span class="badge badge-primary"></span><br>
+        New posted Itineraries <span class="badge badge-warning"></span><br>
+        New posted Comments <span class="badge badge-success"></span>
 
+      </div>
+      <div class="tab-pane fade" id="Yearly" role="tabpanel" aria-labelledby="Yearly-tab">
+
+        New registered Users <span class="badge badge-primary"></span><br>
+        New posted Itineraries <span class="badge badge-warning"></span><br>
+        New posted Comments <span class="badge badge-success"></span>
+
+      </div>
     </div>
   </div>
 
