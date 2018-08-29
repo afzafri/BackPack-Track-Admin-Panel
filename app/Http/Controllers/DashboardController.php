@@ -19,20 +19,8 @@ class DashboardController extends Controller
 
     public function index()
     {
-        // top 5 popular countries
-        $countries = $this->listPopularCountries();
-
-        $countrylabels = [];
-        $totalitinerary = [];
-        $popularCountries = [];
-        foreach($countries as $country)
-        {
-          $countrylabels[] = $country->country_name;
-          $totalitinerary[] = $country->total;
-
-          $popularCountries['labels'][] = $country->country_name;
-          $popularCountries['data'][] = $country->total;
-        }
+        // Top 5 popular countries
+        $popularCountries = $this->listPopularCountries();
 
         // Statistics
         $statistics['daily'] = $this->dailyStats();
@@ -46,9 +34,16 @@ class DashboardController extends Controller
     public function listPopularCountries()
     {
         $APIobj = new APIController();
-        $popular = $APIobj->listPopularCountries();
+        $countries = $APIobj->listPopularCountries();
 
-        return collect($popular);
+        $popularCountries = [];
+        foreach($countries as $country)
+        {
+          $popularCountries['labels'][] = $country->country_name;
+          $popularCountries['data'][] = $country->total;
+        }
+
+        return $popularCountries;
     }
 
     // Daily statistics
