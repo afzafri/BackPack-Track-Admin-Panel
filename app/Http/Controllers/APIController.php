@@ -549,6 +549,28 @@ class APIController extends Controller
       return $listCountries;
     }
 
+    // Top 5 popular itineraries (most commented)
+    public function listPopularItineraries()
+    {
+      $comments = DB::table('comments')
+                 ->select('itinerary_id', DB::raw('count(*) as total'))
+                 ->groupBy('itinerary_id')
+                 ->orderBy('total', 'desc')
+                 ->take(5)
+                 ->get();
+
+       $listItineraries = [];
+       foreach ($comments as $comment)
+       {
+         $itinerary = Itinerary::with(['user'])->find($comment->itinerary_id);
+         $comment->itinerary_title = $itinerary->title;
+         $comment->itinerary_poster = $itinerary->user->name;
+         $listItineraries[] = $comment;
+       }
+
+       return $listItineraries;
+    }
+
     // Upload user Avatar
     public function uploadAvatar(Request $request)
     {
