@@ -34,10 +34,11 @@ class DashboardController extends Controller
           $popularCountries['data'][] = $country->total;
         }
 
-        // Daily statistics
-        $daily = $this->dailyStats();
+        // Statistics
+        $statistics['daily'] = $this->dailyStats();
+        $statistics['monthly'] = $this->monthlyStats();
 
-        return view('dashboard', ['popularCountries' => $popularCountries, 'daily' => $daily]);
+        return view('dashboard', ['popularCountries' => $popularCountries, 'statistics' => $statistics]);
     }
 
     // list top 5 popular countries
@@ -62,7 +63,24 @@ class DashboardController extends Controller
 
         // Comments
         $daily['comments'] = Comment::whereDate('created_at', Carbon::today())->count();
-        
+
         return $daily;
+    }
+
+    // Monthly statistics
+    public function monthlyStats()
+    {
+        $monthly = [];
+
+        // Users
+        $monthly['users'] = User::whereMonth('created_at', Carbon::now()->month)->count();
+
+        // Itineraries
+        $monthly['itineraries'] = Itinerary::whereMonth('created_at', Carbon::now()->month)->count();
+
+        // Comments
+        $monthly['comments'] = Comment::whereMonth('created_at', Carbon::now()->month)->count();
+
+        return $monthly;
     }
 }

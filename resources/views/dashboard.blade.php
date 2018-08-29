@@ -29,16 +29,16 @@
     <div class="tab-content pl-3 p-1" id="myTabContent">
       <div class="tab-pane fade show active" id="daily" role="tabpanel" aria-labelledby="daily-tab">
 
-        New registered Users <span class="badge badge-primary">{{ $daily['users'] }}</span><br>
-        New posted Itineraries <span class="badge badge-warning">{{ $daily['itineraries'] }}</span><br>
-        New posted Comments <span class="badge badge-success">{{ $daily['comments'] }}</span>
+        New registered Users <span class="badge badge-primary">{{ $statistics['daily']['users'] }}</span><br>
+        New posted Itineraries <span class="badge badge-warning">{{ $statistics['daily']['itineraries'] }}</span><br>
+        New posted Comments <span class="badge badge-success">{{ $statistics['daily']['comments'] }}</span>
 
       </div>
       <div class="tab-pane fade" id="monthly" role="tabpanel" aria-labelledby="monthly-tab">
 
-        New registered Users <span class="badge badge-primary"></span><br>
-        New posted Itineraries <span class="badge badge-warning"></span><br>
-        New posted Comments <span class="badge badge-success"></span>
+        New registered Users <span class="badge badge-primary">{{ $statistics['monthly']['users'] }}</span><br>
+        New posted Itineraries <span class="badge badge-warning">{{ $statistics['monthly']['itineraries'] }}</span><br>
+        New posted Comments <span class="badge badge-success">{{ $statistics['monthly']['comments'] }}</span>
 
       </div>
       <div class="tab-pane fade" id="Yearly" role="tabpanel" aria-labelledby="Yearly-tab">
