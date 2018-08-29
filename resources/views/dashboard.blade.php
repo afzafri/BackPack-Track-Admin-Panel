@@ -11,6 +11,7 @@
 @section('content')
 
   <br>
+  <!-- Statistics -->
   <div class="card">
     <div class="card-header">
         <strong class="card-title mb-3">Statistics</strong>
@@ -51,14 +52,14 @@
     </div>
   </div>
 
-  <div class="card">
-      <div class="card-header">
-          <strong class="card-title mb-3">Top 5 Popular Countries</strong>
-      </div>
-      <div class="card-body">
-        <canvas id="countriesBarChart"></canvas>
+  <!-- Top 5 popular countries bar chart -->
+  <div class="au-card m-b-30">
+      <div class="au-card-inner">
+          <h3 class="title-2 m-b-40">Top 5 Popular Countries</h3>
+          <canvas id="countriesBarChart" style="width: 512px; height: 256px"></canvas>
       </div>
   </div>
+
 @endsection
 
 @push('scripts')
