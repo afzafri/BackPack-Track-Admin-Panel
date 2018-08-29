@@ -22,12 +22,15 @@ class DashboardController extends Controller
         // Top 5 popular countries
         $popularCountries = $this->listPopularCountries();
 
+        // Top 5 most commented itineraries
+        $popularItineraries = $this->listPopularItineraries();
+
         // Statistics
         $statistics['daily'] = $this->dailyStats();
         $statistics['monthly'] = $this->monthlyStats();
         $statistics['yearly'] = $this->yearlyStats();
 
-        return view('dashboard', ['popularCountries' => $popularCountries, 'statistics' => $statistics]);
+        return view('dashboard', ['popularCountries' => $popularCountries, 'popularItineraries' => $popularItineraries, 'statistics' => $statistics]);
     }
 
     // list top 5 popular countries
@@ -44,6 +47,15 @@ class DashboardController extends Controller
         }
 
         return $popularCountries;
+    }
+
+    // List top 5 most commented itineraries
+    public function listPopularItineraries()
+    {
+        $APIobj = new APIController();
+        $itineraries = $APIobj->listPopularItineraries();
+
+        return $itineraries;
     }
 
     // Daily statistics

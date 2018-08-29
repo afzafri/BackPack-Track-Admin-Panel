@@ -52,13 +52,45 @@
     </div>
   </div>
 
-  <!-- Top 5 popular countries bar chart -->
-  <div class="au-card m-b-30">
-      <div class="au-card-inner">
-          <h3 class="title-2 m-b-40">Top 5 Popular Countries</h3>
-          <canvas id="countriesBarChart" style="width: 512px; height: 256px"></canvas>
-      </div>
+<div class="row">
+
+  <!-- Top 5 most commented itineraries -->
+  <div class="col-lg-6">
+    <div class="au-card m-b-30">
+        <div class="au-card-inner">
+            <h3 class="title-2 m-b-40">Top 5 Most Commented Itineraries</h3>
+
+            <ul class="list-group list-group-flush">
+
+                @foreach ($popularItineraries as $itinerary)
+
+                  <li class="list-group-item">
+                      <a href="/itineraries/{{ $itinerary->itinerary_id }}/view">
+                          {{ $itinerary->itinerary_title }} by {{ $itinerary->itinerary_poster }}
+                      </a>
+                      -
+                      <span class="badge badge-info">{{ $itinerary->total }}</span> Comments
+                  </li>
+
+                @endforeach
+
+            </ul>
+
+        </div>
+    </div>
   </div>
+
+  <!-- Top 5 popular countries bar chart -->
+  <div class="col-lg-6">
+    <div class="au-card m-b-30">
+        <div class="au-card-inner">
+            <h3 class="title-2 m-b-40">Top 5 Popular Countries</h3>
+            <canvas id="countriesBarChart"></canvas>
+        </div>
+    </div>
+  </div>
+
+</div>
 
 @endsection
 
