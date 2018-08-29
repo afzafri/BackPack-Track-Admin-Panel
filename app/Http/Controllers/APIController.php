@@ -534,7 +534,6 @@ class APIController extends Controller
     {
       $countries = DB::table('itineraries')
                  ->select('country_id', DB::raw('count(*) as total'))
-                 ->join('countries', 'countries.id', '=', 'itineraries.country_id')
                  ->groupBy('country_id')
                  ->orderBy('total', 'desc')
                  ->take(5)
