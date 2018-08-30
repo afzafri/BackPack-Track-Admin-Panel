@@ -35,6 +35,8 @@
     <link href="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/DataTables/datatables.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/lightbox2/dist/css/lightbox.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('vendor/bootstrap-fileinput/css/fileinput.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fa/theme.min.css') }}" rel="stylesheet" media="all">
 
     @stack('styles')
 
@@ -268,6 +270,9 @@
     <script src="{{ asset('vendor/DataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('vendor/lightbox2/dist/js/lightbox.min.js') }}"></script>
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fa/theme.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap-fileinput/themes/fa/theme.min.js') }}"></script>
 
     @stack('scripts')
 
