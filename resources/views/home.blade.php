@@ -20,56 +20,84 @@
                 </ul>
               </div>
               <div class="card-body">
+                <div class="tab-content pl-3 p-1" id="myTabContent">
+                  <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                      <p><img src="{{ $user->avatar_url }}" class="text-center"/><p>
+                      <table class="table">
+                        <tr>
+                          <th>Name</th>
+                          <td>{{ $user->name }}</td>
+                        </tr>
+                        <tr>
+                          <th>Username</th>
+                          <td>{{ $user->username }}</td>
+                        </tr>
+                        <tr>
+                          <th>Phone</th>
+                          <td>{{ $user->phone }}</td>
+                        </tr>
+                        <tr>
+                          <th>Address</th>
+                          <td>{{ $user->address }}</td>
+                        </tr>
+                        <tr>
+                          <th>Country</th>
+                          <td>{{ $user->country_name }}</td>
+                        </tr>
+                        <tr>
+                          <th>Email</th>
+                          <td>{{ $user->email }}</td>
+                        </tr>
+                        <tr>
+                          <th>Date Registered</th>
+                          <td>{{ $user->created_at }}</td>
+                        </tr>
+                      </table>
+                  </div>
 
-                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <p><img src="{{ $user->avatar_url }}" class="text-center"/><p>
-                    <table class="table">
-                      <tr>
-                        <th>Name</th>
-                        <td>{{ $user->name }}</td>
-                      </tr>
-                      <tr>
-                        <th>Username</th>
-                        <td>{{ $user->username }}</td>
-                      </tr>
-                      <tr>
-                        <th>Phone</th>
-                        <td>{{ $user->phone }}</td>
-                      </tr>
-                      <tr>
-                        <th>Address</th>
-                        <td>{{ $user->address }}</td>
-                      </tr>
-                      <tr>
-                        <th>Country</th>
-                        <td>{{ $user->country_name }}</td>
-                      </tr>
-                      <tr>
-                        <th>Email</th>
-                        <td>{{ $user->email }}</td>
-                      </tr>
-                      <tr>
-                        <th>Date Registered</th>
-                        <td>{{ $user->created_at }}</td>
-                      </tr>
-                    </table>
+                  <div class="tab-pane fade" id="itineraries" role="tabpanel" aria-labelledby="itineraries-tab">
+                    <div class="table-responsive m-b-30">
+                      <table class="table table-striped" id="tableItineraries">
+                          <thead>
+                              <tr>
+                                  <th>ID.</th>
+                                  <th>User</th>
+                                  <th>Country</th>
+                                  <th>Trip Title</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              @foreach ($itineraries as $itinerary)
+                                <tr>
+                                    <td>{{ $itinerary->id }}</td>
+                                    <td>{{ $itinerary->user->name }}</td>
+                                    <td>{{ $itinerary->country->name }}</td>
+                                    <td>{{ $itinerary->title }}</td>
+                              @endforeach
+                          </tbody>
+                      </table>
+                    </div>
+                  </div>
 
+                  <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+
+                  </div>
                 </div>
-
-                <div class="tab-pane fade show active" id="itineraries" role="tabpanel" aria-labelledby="itineraries-tab">
-
-                </div>
-
-                <div class="tab-pane fade show active" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-
-                </div>
-
               </div>
             </div>
         </div>
     </div>
 </div>
 
-
-
 @endsection
+
+@push('scripts')
+  <script>
+
+    $(document).ready(function() {
+        $.noConflict();
+        // DataTables
+        var table = $('#tableItineraries').DataTable();
+    });
+  </script>
+@endpush

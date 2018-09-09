@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\APIController;
 use App\Country;
 
 class HomeController extends Controller
@@ -32,7 +33,8 @@ class HomeController extends Controller
         }
 
         $user = $this->getUserData();
-        return view('home', ['user' => $user]);
+        $itineraries = $this->getUserItineraries();
+        return view('home', ['user' => $user, 'itineraries' => $itineraries]);
     }
 
     public function getUserData()
@@ -42,5 +44,19 @@ class HomeController extends Controller
         $user->country_name = $country->name;
 
         return $user;
+    }
+
+    public function getUserItineraries()
+    {
+        $user_id = Auth::user()->id;
+
+        $newReq = new Request();
+        $newReq->setMethod('POST');
+        $newReq->request->add(['user_id' => $user_id]);
+
+        $APIobj = new APIController();
+        $itineraries = $APIobj->listItinerariesByUser($newReq);
+
+        return $itineraries;
     }
 }
