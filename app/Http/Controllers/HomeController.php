@@ -34,7 +34,9 @@ class HomeController extends Controller
 
         $user = $this->getUserData();
         $itineraries = $this->getUserItineraries();
-        return view('home', ['user' => $user, 'itineraries' => $itineraries]);
+        $comments = $this->getUserComments();
+
+        return view('home', ['user' => $user, 'itineraries' => $itineraries, 'comments' => $comments]);
     }
 
     public function getUserData()
@@ -58,5 +60,19 @@ class HomeController extends Controller
         $itineraries = $APIobj->listItinerariesByUser($newReq);
 
         return $itineraries;
+    }
+
+    public function getUserComments()
+    {
+        $user_id = Auth::user()->id;
+
+        $newReq = new Request();
+        $newReq->setMethod('POST');
+        $newReq->request->add(['user_id' => $user_id]);
+
+        $APIobj = new APIController();
+        $comments = $APIobj->listCommentsByUser($newReq);
+
+        return $comments;
     }
 }

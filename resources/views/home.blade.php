@@ -22,7 +22,7 @@
               <div class="card-body">
                 <div class="tab-content pl-3 p-1" id="myTabContent">
                   <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                      <p><img src="{{ $user->avatar_url }}" class="text-center"/><p>
+                      <p class="text-center"><img src="{{ $user->avatar_url }}" width="150px" class="img-thumbnail"/><p>
                       <table class="table">
                         <tr>
                           <th>Name</th>
@@ -80,7 +80,32 @@
                   </div>
 
                   <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-
+                    <div class="table-responsive m-b-30">
+                      <table class="table table-striped" id="tableComments">
+                        <thead>
+                            <tr>
+                                <th>ID.</th>
+                                <th>Commenter</th>
+                                <th>Email</th>
+                                <th>Comment</th>
+                                <th>Itinerary Title</th>
+                                <th>Itinerary Owner</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($comments as $comment)
+                              <tr>
+                                  <td>{{ $comment->id }}</td>
+                                  <td>{{ $comment->user->name }}</td>
+                                  <td>{{ $comment->user->email }}</td>
+                                  <td>{{ $comment->message }}</td>
+                                  <td>{{ $comment->itinerary->title }}</td>
+                                  <td>{{ $comment->itinerary->user->name }}</td>
+                              </tr>
+                            @endforeach
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -97,7 +122,7 @@
     $(document).ready(function() {
         $.noConflict();
         // DataTables
-        var table = $('#tableItineraries').DataTable();
+        $('#tableItineraries, #tableComments').DataTable();
     });
   </script>
 @endpush
