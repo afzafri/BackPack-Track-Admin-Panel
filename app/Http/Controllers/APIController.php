@@ -203,6 +203,14 @@ class APIController extends Controller
       return $itineraries;
     }
 
+    // List Countries that have been visited only
+    public function listVisitedCountries()
+    {
+      //$countries = Country::with('itinerary')->where('itinerary','!=',null)->get();
+      $countries = Country::has('itinerary')->get();
+      return $countries;
+    }
+
     // Create new activity
     public function newActivity(Request $request)
     {

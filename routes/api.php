@@ -53,6 +53,9 @@ Route::middleware('auth:api')->group(function () {
   // Search itineraries by title
   Route::get('/searchItineraries/{title}', 'APIController@searchItineraries');
 
+  // List all itineraries that have been at least 1 itinerary (have been visited)
+  Route::get('/listVisitedCountries', 'APIController@listVisitedCountries');
+
   // Create activity
   Route::post('/newActivity', 'APIController@newActivity');
 
