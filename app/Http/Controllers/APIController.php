@@ -21,7 +21,7 @@ class APIController extends Controller
     // List all country name
     public function listCountries()
     {
-      $countries = Country::get(['id','name']);
+      $countries = Country::get(['id','code','name']);
       return $countries;
     }
 
