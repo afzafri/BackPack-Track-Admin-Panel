@@ -206,7 +206,6 @@ class APIController extends Controller
     // List Countries that have been visited only
     public function listVisitedCountries()
     {
-      //$countries = Country::with('itinerary')->where('itinerary','!=',null)->get();
       $countries = Country::has('itinerary')->get();
       return $countries;
     }
