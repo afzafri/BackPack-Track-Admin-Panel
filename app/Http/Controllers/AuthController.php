@@ -131,8 +131,9 @@ class AuthController extends Controller
     }
 
     // Get logged in User details
-    public function user(Request $request)
+    public function user()
     {
-        return $request->user();
+        $user = User::with(['country'])->find(Auth::user()->id);
+        return $user;
     }
 }
