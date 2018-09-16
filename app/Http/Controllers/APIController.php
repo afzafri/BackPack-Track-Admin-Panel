@@ -585,6 +585,13 @@ class APIController extends Controller
         'avatar' => 'required|image',
       );
 
+      if($request->imgType == "base64")
+      {
+        $request->merge([
+            'avatar' => base64_decode($request->avatar),
+        ]);
+      }
+      
       $validator = Validator::make($request->all(), $rules);
 
       if($validator->fails())
