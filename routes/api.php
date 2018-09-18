@@ -41,6 +41,9 @@ Route::middleware('auth:api')->group(function () {
   // List all itineraries
   Route::get('/listItineraries', 'APIController@listItineraries');
 
+  // List all itineraries in pages
+  Route::get('/listItinerariesPaginated', 'APIController@listItinerariesPaginated');
+
   // View specific itinerary
   Route::get('/viewItinerary/{itinerary_id}', 'APIController@viewItinerary');
 
