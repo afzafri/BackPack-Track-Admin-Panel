@@ -86,6 +86,8 @@
         <div class="au-card-inner">
             <h3 class="title-2 m-b-40">Top 5 Popular Countries</h3>
             <canvas id="countriesBarChart"></canvas>
+            <br>
+            <p class="text-center">*statistics are based on total number of itineraries for each countries</p>
         </div>
     </div>
   </div>
