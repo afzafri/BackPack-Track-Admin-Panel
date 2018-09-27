@@ -229,8 +229,25 @@ class APIController extends Controller
     public function listItinerariesByUser(Request $request)
     {
       $user_id = $request->user_id;
+      $numdata = 5; // set total contents to display per page
+      $itineraries = Itinerary::with(['country','user'])->where('user_id', $user_id)->orderBy('id', 'DESC')->paginate($numdata);
 
-      $itineraries = Itinerary::with(['country','user'])->where('user_id', $user_id)->orderBy('id', 'DESC')->get();
+      // Transform collection to include the durations and total budgets for each itinerary
+      $itineraries->getCollection()->transform(function ($itinerary){
+
+        $newReq = new Request();
+        $newReq->setMethod('POST');
+        $newReq->request->add(['itinerary_id' => $itinerary->id]);
+
+        $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
+        $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
+
+        $itinerary->duration = $duration;
+        $itinerary->totalbudget = $totalbudget;
+
+        return $itinerary;
+      });
+
       return $itineraries;
     }
 
