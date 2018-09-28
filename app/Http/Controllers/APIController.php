@@ -280,7 +280,7 @@ class APIController extends Controller
     // List Countries that have been visited only
     public function listVisitedCountries()
     {
-      $numdata = 5;
+      $numdata = 6;
       $countries = Country::has('itinerary')->paginate($numdata);
       return $countries;
     }
