@@ -225,7 +225,33 @@ class APIController extends Controller
       return $itineraries;
     }
 
-    // List itineraries for specific user
+    // List itineraries for auth user
+    public function listItinerariesByAuthUser()
+    {
+      $user_id = Auth::user()->id;
+      $numdata = 5; // set total contents to display per page
+      $itineraries = Itinerary::with(['country','user'])->where('user_id', $user_id)->orderBy('id', 'DESC')->paginate($numdata);
+
+      // Transform collection to include the durations and total budgets for each itinerary
+      $itineraries->getCollection()->transform(function ($itinerary){
+
+        $newReq = new Request();
+        $newReq->setMethod('POST');
+        $newReq->request->add(['itinerary_id' => $itinerary->id]);
+
+        $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
+        $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
+
+        $itinerary->duration = $duration;
+        $itinerary->totalbudget = $totalbudget;
+
+        return $itinerary;
+      });
+
+      return $itineraries;
+    }
+
+    // List itineraries for specific user, by ID
     public function listItinerariesByUser(Request $request)
     {
       $user_id = $request->user_id;
