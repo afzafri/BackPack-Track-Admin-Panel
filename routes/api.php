@@ -74,6 +74,9 @@ Route::middleware('auth:api')->group(function () {
   // View activities for an itinerary
   Route::get('/viewActivities/{itinerary_id}', 'APIController@viewActivities');
 
+  // View activities for an itinerary, separated by Day/Date
+  Route::get('/viewActivitiesByDay/{itinerary_id}', 'APIController@viewActivitiesByDay');
+
   // List all photos from activities
   Route::get('/listItineraryImages/{itinerary_id}', 'APIController@listItineraryImages');
 

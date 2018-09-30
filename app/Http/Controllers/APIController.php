@@ -491,6 +491,25 @@ class APIController extends Controller
       return json_encode($result);
     }
 
+    // List activities for an itinerary
+    public function viewActivitiesByDay(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+
+      // get itinerary info and all the activities
+      $itinerary = Itinerary::with(['user','country'])->find($itinerary_id);
+      $activities = Activity::where('itinerary_id', $itinerary_id)->get()->groupBy("date");
+
+      // get total budget
+      $totalbudget = json_decode($this->getTotalBudget($request), true)['totalbudget'];
+
+      $result = $itinerary;
+      $result['activities'] = $activities;
+      $result['totalbudget'] = $totalbudget;
+
+      return json_encode($result);
+    }
+
     // List all activities photos for an itinerary
     public function listItineraryImages(Request $request)
     {
