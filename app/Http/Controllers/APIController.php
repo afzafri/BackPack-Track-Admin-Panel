@@ -647,6 +647,14 @@ class APIController extends Controller
       return $articles;
     }
 
+    // List all articles
+    public function listArticlesPaginated()
+    {
+      $numdata = 5;
+      $articles = Article::paginate($numdata,['id','title','author','date','summary']);
+      return $articles;
+    }
+
     // View specific article
     public function viewArticle(Request $request)
     {

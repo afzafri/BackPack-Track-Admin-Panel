@@ -101,6 +101,9 @@ Route::middleware('auth:api')->group(function () {
   // List all articles in database
   Route::get('/listArticles', 'APIController@listArticles');
 
+  // List all articles in pages
+  Route::get('/listArticlesPaginated', 'APIController@listArticlesPaginated');
+
   // View specific article
   Route::get('/viewArticle/{article_id}', 'APIController@viewArticle');
 
