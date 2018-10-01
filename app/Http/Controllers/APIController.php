@@ -651,7 +651,7 @@ class APIController extends Controller
     public function listArticlesPaginated()
     {
       $numdata = 5;
-      $articles = Article::paginate($numdata,['id','title','author','date','summary']);
+      $articles = Article::orderBy('date', 'DESC')->paginate($numdata,['id','title','author','date','summary']);
       return $articles;
     }
 
