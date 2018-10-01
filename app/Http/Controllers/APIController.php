@@ -643,7 +643,7 @@ class APIController extends Controller
     // List all articles
     public function listArticles()
     {
-      $articles = Article::orderBy('id', 'DESC')->get(['id','title','author','date','summary']);
+      $articles = Article::orderBy('date', 'DESC')->get(['id','title','author','date','summary']);
       return $articles;
     }
 
