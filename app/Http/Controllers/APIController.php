@@ -518,7 +518,7 @@ class APIController extends Controller
 
       // get all the activities
       $activities = Activity::orderBy('id', 'DESC')->where('itinerary_id', $itinerary_id)->paginate($numdata);
-      return $articles;
+      return $activities;
     }
 
     // List all activities photos for an itinerary
