@@ -491,7 +491,7 @@ class APIController extends Controller
       return json_encode($result);
     }
 
-    // List activities for an itinerary
+    // List activities for an itinerary by day
     public function viewActivitiesByDay(Request $request)
     {
       $itinerary_id = $request->itinerary_id;
@@ -508,6 +508,17 @@ class APIController extends Controller
       $result['totalbudget'] = $totalbudget;
 
       return json_encode($result);
+    }
+
+    // List activites for an itinerary paginated
+    public function viewActivitiesPaginated(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+      $numdata = 5;
+
+      // get all the activities
+      $activities = Activity::orderBy('id', 'DESC')->where('itinerary_id', $itinerary_id)->paginate($numdata);
+      return $articles;
     }
 
     // List all activities photos for an itinerary
@@ -647,7 +658,7 @@ class APIController extends Controller
       return $articles;
     }
 
-    // List all articles
+    // List all articles paginated
     public function listArticlesPaginated()
     {
       $numdata = 5;
