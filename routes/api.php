@@ -65,6 +65,9 @@ Route::middleware('auth:api')->group(function () {
   // Create activity
   Route::post('/newActivity', 'APIController@newActivity');
 
+  // View an Activity
+  Route::get('/viewActivity/{activity_id}', 'APIController@viewActivity');
+
   // Edit and Update activity
   Route::post('/updateActivity', 'APIController@updateActivity');
 

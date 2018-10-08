@@ -371,6 +371,15 @@ class APIController extends Controller
         }
     }
 
+    // View an Activity
+    public function viewActivity(Request $request)
+    {
+        $activity_id = $request->activity_id;
+        $activity = Activity::find($activity_id);
+
+        return $activity;
+    }
+
     // Update an Activity
     public function updateActivity(Request $request)
     {
