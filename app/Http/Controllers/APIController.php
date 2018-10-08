@@ -516,9 +516,16 @@ class APIController extends Controller
       $itinerary_id = $request->itinerary_id;
       $numdata = 5;
 
+      // get Itineraries
+      $itinerary = Itinerary::with(['user','country'])->find($itinerary_id);
+      $country = collect(['country' => $itinerary->country]);
+
       // get all the activities
       $activities = Activity::orderBy('id', 'DESC')->where('itinerary_id', $itinerary_id)->paginate($numdata);
-      return $activities;
+      // include country info into the activities
+      $newActivities = $country->merge($activities);
+
+      return $newActivities;
     }
 
     // List all activities photos for an itinerary
