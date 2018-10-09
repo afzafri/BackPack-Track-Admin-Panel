@@ -569,7 +569,7 @@ class APIController extends Controller
     public function getLatLng(Request $request)
     {
       $itinerary_id = $request->itinerary_id;
-      $coordinates = Activity::where('itinerary_id', $itinerary_id)->get(['place_name','lat','lng']);
+      $coordinates = Activity::where('itinerary_id', $itinerary_id)->get(['place_name','activity','lat','lng']);
 
       return $coordinates;
     }
