@@ -565,6 +565,15 @@ class APIController extends Controller
       return json_encode($result);
     }
 
+    // Get list of all latitudes and longitudes corrdinate of activities
+    public function getLatLng(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+      $coordinates = Activity::where('itinerary_id', $itinerary_id)->get(['place_name','lat','lng']);
+
+      return $coordinates;
+    }
+
     // Get total budget for an Itinerary
     public function getTotalBudget(Request $request)
     {

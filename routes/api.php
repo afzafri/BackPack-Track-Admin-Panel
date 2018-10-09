@@ -89,6 +89,9 @@ Route::middleware('auth:api')->group(function () {
   // List dates and no of day for an itinerary
   Route::get('/getDayDates/{itinerary_id}', 'APIController@getDayDates');
 
+  // List all latitudes and longitudes of activities in an itinerary
+  Route::get('/getLatLng/{itinerary_id}', 'APIController@getLatLng');
+
   // Post comments for an itinerary
   Route::post('/newComment', 'APIController@newComment');
 
