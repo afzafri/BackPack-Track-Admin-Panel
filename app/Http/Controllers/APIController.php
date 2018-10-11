@@ -611,7 +611,12 @@ class APIController extends Controller
         $i++;
       }
 
+      // grand total of all budget spend
       $result['grandTotal'] = $grandTotal;
+
+      // currency of the country
+      $currency = (Itinerary::with('country')->find($itinerary_id))->country->currency;
+      $result['currency'] = $currency;
 
       return json_encode($result);
     }
@@ -621,6 +626,39 @@ class APIController extends Controller
     {
       $budgets = Budget::get(['id','type']);
       return $budgets;
+    }
+
+    // List total budget for each budget types for an itinerary
+    public function getTotalBudgetPerType(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+      $result['itinerary_id'] = $itinerary_id;
+
+      $budgets = DB::table('activities')
+                 ->select('budget_id', DB::raw('sum(budget) as totalBudget'))
+                 ->where('itinerary_id', $itinerary_id)
+                 ->groupBy('budget_id')
+                 ->get();
+
+      $i = 0;
+      $grandtotal = 0;
+      foreach ($budgets as $budget)
+      {
+        $budget->budget_type = (Budget::find($budget->budget_id))->type;
+        $result['detail'][$i] = $budget;
+        $grandtotal += $budget->totalBudget;
+
+        $i++;
+      }
+
+      // grand total of all budget spend
+      $result['grandTotal'] = $grandtotal;
+
+      // currency of the country
+      $currency = (Itinerary::with('country')->find($itinerary_id))->country->currency;
+      $result['currency'] = $currency;
+
+      return $result;
     }
 
     // Post new comment to an itinerary

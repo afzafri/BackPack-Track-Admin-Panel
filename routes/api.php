@@ -110,6 +110,9 @@ Route::middleware('auth:api')->group(function () {
   // List all budget types
   Route::get('/listBudgetTypes', 'APIController@listBudgetTypes');
 
+  // Calculate total budget for each budget type
+  Route::get('/getTotalBudgetPerType/{itinerary_id}', 'APIController@getTotalBudgetPerType');
+
   // List all articles in database
   Route::get('/listArticles', 'APIController@listArticles');
 
