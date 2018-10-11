@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Budget extends Model
+class BudgetType extends Model
 {
     //
     public function activity()

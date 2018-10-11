@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
           CountriesTableSeeder::class,
           UsersTableSeeder::class,
-          BudgetsTableSeeder::class,
+          BudgetTypesTableSeeder::class,
         ]);
     }
 }

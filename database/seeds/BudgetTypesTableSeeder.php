@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class BudgetsTableSeeder extends Seeder
+class BudgetTypesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class BudgetsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('budgets')->insert([
+        DB::table('budget_types')->insert([
             ['type' => "Food"],
             ['type' => "Transportation"],
             ['type' => "Accommodation"],
