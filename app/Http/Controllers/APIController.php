@@ -15,6 +15,7 @@ use App\Itinerary;
 use App\Activity;
 use App\Comment;
 use App\Article;
+use App\Budget;
 
 class APIController extends Controller
 {
@@ -613,6 +614,13 @@ class APIController extends Controller
       $result['grandTotal'] = $grandTotal;
 
       return json_encode($result);
+    }
+
+    // List all budget types
+    public function listBudgetTypes()
+    {
+      $budgets = Budget::get(['id','type']);
+      return $budgets;
     }
 
     // Post new comment to an itinerary
