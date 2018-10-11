@@ -61,7 +61,7 @@
                             </a>
                           @endif
                       </td>
-                      <td>{{ $data->country->currency }} {{ $activities->budget }}</td>
+                      <td>{{ $data->country->currency }} {{ $activities->budget }} ({{ $activities->budgettype->type }})</td>
                   </tr>
               @endforeach
                   <tr>
