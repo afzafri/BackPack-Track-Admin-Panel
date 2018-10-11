@@ -359,6 +359,7 @@ class APIController extends Controller
             $activity->lat = $request->lat;
             $activity->lng = $request->lng;
             $activity->budget = $request->budget;
+            $activity->budget_id = $request->budget_type;
             $activity->pic_url = $pic_url;
             $activity->itinerary_id = $request->itinerary_id;
 
@@ -436,6 +437,7 @@ class APIController extends Controller
             $activity->lat = $request->lat;
             $activity->lng = $request->lng;
             $activity->budget = $request->budget;
+            $activity->budget_id = $request->budget_type;
             $activity->pic_url = $pic_url;
             $activity->itinerary_id = $request->itinerary_id;
 
