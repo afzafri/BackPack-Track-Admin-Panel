@@ -15,7 +15,7 @@ use App\Itinerary;
 use App\Activity;
 use App\Comment;
 use App\Article;
-use App\Budget;
+use App\BudgetType;
 
 class APIController extends Controller
 {
@@ -377,7 +377,7 @@ class APIController extends Controller
     public function viewActivity(Request $request)
     {
         $activity_id = $request->activity_id;
-        $activity = Activity::find($activity_id);
+        $activity = Activity::with(['budgettype'])->find($activity_id);
 
         return $activity;
     }
@@ -626,7 +626,7 @@ class APIController extends Controller
     // List all budget types
     public function listBudgetTypes()
     {
-      $budgets = Budget::get(['id','type']);
+      $budgets = BudgetType::get(['id','type']);
       return $budgets;
     }
 
@@ -646,7 +646,7 @@ class APIController extends Controller
       $grandtotal = 0;
       foreach ($budgets as $budget)
       {
-        $budget->budget_type = (Budget::find($budget->budget_id))->type;
+        $budget->budget_type = (BudgetType::find($budget->budget_id))->type;
         $result['detail'][$i] = $budget;
         $grandtotal += $budget->totalBudget;
 
