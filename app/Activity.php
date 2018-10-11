@@ -11,4 +11,9 @@ class Activity extends Model
     {
       return $this->belongsTo('App\Itinerary');
     }
+
+    public function budget()
+    {
+      return $this->belongsTo('App\Budget');
+    }
 }
