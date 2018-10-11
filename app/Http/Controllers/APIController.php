@@ -491,7 +491,7 @@ class APIController extends Controller
 
       // get itinerary info and all the activities
       $itinerary = Itinerary::with(['user','country'])->find($itinerary_id);
-      $activities = Activity::where('itinerary_id', $itinerary_id)->get();
+      $activities = Activity::with(['budgettype'])->where('itinerary_id', $itinerary_id)->get();
 
       // get total budget
       $totalbudget = json_decode($this->getTotalBudget($request), true)['totalbudget'];
@@ -510,7 +510,7 @@ class APIController extends Controller
 
       // get itinerary info and all the activities
       $itinerary = Itinerary::with(['user','country'])->find($itinerary_id);
-      $activities = Activity::where('itinerary_id', $itinerary_id)->get()->groupBy("date");
+      $activities = Activity::with(['budgettype'])->where('itinerary_id', $itinerary_id)->get()->groupBy("date");
 
       // get total budget
       $totalbudget = json_decode($this->getTotalBudget($request), true)['totalbudget'];
@@ -533,7 +533,7 @@ class APIController extends Controller
       $country = collect(['country' => $itinerary->country]);
 
       // get all the activities
-      $activities = Activity::orderBy('id', 'DESC')->where('itinerary_id', $itinerary_id)->paginate($numdata);
+      $activities = Activity::with(['budgettype'])->orderBy('id', 'DESC')->where('itinerary_id', $itinerary_id)->paginate($numdata);
       // include country info into the activities
       $newActivities = $country->merge($activities);
 
