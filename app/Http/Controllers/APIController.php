@@ -637,16 +637,16 @@ class APIController extends Controller
       $result['itinerary_id'] = $itinerary_id;
 
       $budgets = DB::table('activities')
-                 ->select('budget_id', DB::raw('sum(budget) as totalBudget'))
+                 ->select('budgettype_id', DB::raw('sum(budget) as totalBudget'))
                  ->where('itinerary_id', $itinerary_id)
-                 ->groupBy('budget_id')
+                 ->groupBy('budgettype_id')
                  ->get();
 
       $i = 0;
       $grandtotal = 0;
       foreach ($budgets as $budget)
       {
-        $budget->budget_type = (BudgetType::find($budget->budget_id))->type;
+        $budget->budget_type = (BudgetType::find($budget->budgettype_id))->type;
         $result['detail'][$i] = $budget;
         $grandtotal += $budget->totalBudget;
 
