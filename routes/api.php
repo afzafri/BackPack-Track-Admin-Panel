@@ -98,6 +98,9 @@ Route::middleware('auth:api')->group(function () {
   // List comments for an itinerary
   Route::get('/listComments/{itinerary_id}', 'APIController@listComments');
 
+  // List comments for an itinerary in pages
+  Route::get('/listCommentsPaginated/{itinerary_id}', 'APIController@listCommentsPaginated');
+
   // List comments for specific users
   Route::get('/listCommentsByUser/{user_id}', 'APIController@listCommentsByUser');
 
