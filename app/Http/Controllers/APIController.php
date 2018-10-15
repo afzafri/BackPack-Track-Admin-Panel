@@ -701,6 +701,22 @@ class APIController extends Controller
       }
     }
 
+    // Delete a comment
+    public function deleteComment(Request $request)
+    {
+      $comment_id = $request->comment_id;
+
+      $comment = Comment::find($comment_id);
+
+      // delete data
+      $comment->delete();
+
+      $result['code'] = 200;
+      $result['message'] = "Comment deleted.";
+
+      return json_encode($result);
+    }
+
     // List all comments for an itinerary
     public function listComments(Request $request)
     {
