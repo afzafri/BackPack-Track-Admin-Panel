@@ -95,6 +95,9 @@ Route::middleware('auth:api')->group(function () {
   // Post comments for an itinerary
   Route::post('/newComment', 'APIController@newComment');
 
+  // Delete a comment
+  Route::post('/deleteComment', 'APIController@deleteComment');
+
   // List comments for an itinerary
   Route::get('/listComments/{itinerary_id}', 'APIController@listComments');
 
