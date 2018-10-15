@@ -97,6 +97,26 @@
                     @endif
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label">Bio</label>
+                    <textarea id="bio" class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }}" name="bio">{{ $user->bio }}</textarea>
+
+                    @if ($errors->has('bio'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('bio') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label">Website</label>
+                    <input id="website" type="text" class="form-control{{ $errors->has('website') ? ' is-invalid' : '' }}" name="website" value="{{ $user->website }}">
+
+                    @if ($errors->has('website'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('website') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
                     <label class="form-control-label">Email</label>
                     <textarea id="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required>{{ $user->email }}</textarea>
 

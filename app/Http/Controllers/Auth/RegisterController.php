@@ -74,6 +74,8 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'address' => $data['address'],
             'country_id' => $data['country'],
+            'bio' => $data['bio'],
+            'website' => $data['website'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'avatar_url' => $data['avatar_url'],

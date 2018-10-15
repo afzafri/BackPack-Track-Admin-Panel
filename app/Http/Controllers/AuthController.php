@@ -47,6 +47,8 @@ class AuthController extends Controller
               $user->phone = $request->phone;
               $user->address = $request->address;
               $user->country_id = $request->country;
+              $user->bio = $request->bio;
+              $user->website = $request->website;
               $user->email = $request->email;
               $user->password = Hash::make($request->password);
               $user->avatar_url = "";

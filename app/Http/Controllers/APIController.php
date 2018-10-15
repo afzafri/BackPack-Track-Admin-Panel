@@ -906,6 +906,8 @@ class APIController extends Controller
           $user->phone = $request->phone;
           $user->address = $request->address;
           $user->country_id = $request->country_id;
+          $user->bio = $request->bio;
+          $user->website = $request->website;
           $user->email = $request->email;
 
           $user->save();

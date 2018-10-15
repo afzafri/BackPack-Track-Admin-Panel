@@ -39,6 +39,8 @@
                 <th>Phone</th>
                 <th>Address</th>
                 <th>Country</th>
+                <th>Bio</th>
+                <th>Website</th>
                 <th>Email</th>
                 <th>Role</th>
                 <th>Action</th>
@@ -62,6 +64,8 @@
                   <td>{{ $user->phone }}</td>
                   <td>{{ $user->address }}</td>
                   <td>{{ $user->country->name }}</td>
+                  <td>{{ $user->bio }}</td>
+                  <td>{{ $user->website }}</td>
                   <td>{{ $user->email }}</td>
                   <td>{{ $user->role }}</td>
                   <td>
