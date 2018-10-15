@@ -715,11 +715,11 @@ class APIController extends Controller
       return json_encode($result);
     }
 
-    // List all comments for an itinerary
+    // List all comments for an itinerary in pages
     public function listCommentsPaginated(Request $request)
     {
       $itinerary_id = $request->itinerary_id;
-      $numdata = 5;
+      $numdata = 10;
 
       $comments = Comment::with(['user'])->where('itinerary_id', $itinerary_id)->paginate($numdata);
 
