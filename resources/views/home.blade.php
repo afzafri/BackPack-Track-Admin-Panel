@@ -23,7 +23,9 @@
                 <div class="tab-content pl-3 p-1" id="myTabContent">
                   <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                       <p class="text-center"><img src="{{ $user->avatar_url }}" width="150px" class="img-thumbnail"/><p>
-                      <p><i>{{ $user->bio }}</i></p>
+                      @if($user->website != null || $user->website != "")
+                        <p><i>{{ $user->bio }}</i></p>
+                      @endif
                       <table class="table">
                         <tr>
                           <th>Name</th>
@@ -45,10 +47,12 @@
                           <th>Country</th>
                           <td>{{ $user->country_name }}</td>
                         </tr>
-                        <tr>
-                          <th>Website</th>
-                          <td><a href="{{ $user->website }}">{{ $user->website }}</a></td>
-                        </tr>
+                        @if($user->website != null || $user->website != "")
+                          <tr>
+                            <th>Website</th>
+                            <td><a href="{{ $user->website }}">{{ $user->website }}</a></td>
+                          </tr>
+                        @endif
                         <tr>
                           <th>Email</th>
                           <td>{{ $user->email }}</td>
