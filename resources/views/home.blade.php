@@ -23,7 +23,7 @@
                 <div class="tab-content pl-3 p-1" id="myTabContent">
                   <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                       <p class="text-center"><img src="{{ $user->avatar_url }}" width="150px" class="img-thumbnail"/><p>
-                      @if($user->website != null || $user->website != "")
+                      @if($user->bio != null || $user->bio != "")
                         <p><i>{{ $user->bio }}</i></p>
                       @endif
                       <table class="table">
