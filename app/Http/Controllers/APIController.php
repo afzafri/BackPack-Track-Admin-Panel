@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 use Validator;
 use Storage;
 use DB;
@@ -773,6 +774,18 @@ class APIController extends Controller
       $article = Article::find($article_id);
 
       return $article;
+    }
+
+    // Get daily comments count and data
+    public function getCommentsNotification()
+    {
+      $user_id = Auth::user()->id;
+
+      $comments = Comment::whereHas('itinerary', function ($q) use($user_id){
+          $q->where('user_id', $user_id);
+      })->with(['user', 'itinerary'])->whereDate('created_at', Carbon::today())->get();
+
+      return $comments;
     }
 
     // Top 5 popular countries
