@@ -781,11 +781,15 @@ class APIController extends Controller
     {
       $user_id = Auth::user()->id;
 
+      // get list of comments on user's itinerary for today
       $comments = Comment::whereHas('itinerary', function ($q) use($user_id){
           $q->where('user_id', $user_id);
       })->with(['user', 'itinerary'])->whereDate('created_at', Carbon::today())->get();
 
-      return $comments;
+      $result['total_comments'] = count($comments); // include total number of comments
+      $result['comments'] = $comments;
+
+      return json_encode($result);
     }
 
     // Top 5 popular countries
