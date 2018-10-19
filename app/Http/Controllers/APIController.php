@@ -916,7 +916,7 @@ class APIController extends Controller
       return $listCountries;
     }
 
-    // Top 5 popular itineraries (most commented)
+    // Top 5 popular itineraries (most likes)
     public function listPopularItineraries()
     {
       $likes = DB::table('likes')
