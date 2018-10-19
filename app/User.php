@@ -42,4 +42,9 @@ class User extends Authenticatable
     {
     	return $this->belongsTo('App\Country');
     }
+
+    public function like()
+    {
+    	return $this->hasMany('App\Like');
+    }
 }
