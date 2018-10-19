@@ -58,7 +58,7 @@
   <div class="col-lg-6">
     <div class="au-card m-b-30">
         <div class="au-card-inner">
-            <h3 class="title-2 m-b-40">Top 5 Most Commented Itineraries</h3>
+            <h3 class="title-2 m-b-40">Top 5 Most Popular Itineraries</h3>
 
             <ul class="list-group list-group-flush">
 
@@ -69,7 +69,7 @@
                           {{ $itinerary->itinerary_title }} by {{ $itinerary->itinerary_poster }}
                       </a>
                       -
-                      <span class="badge badge-info">{{ $itinerary->total }}</span> Comments
+                      <span class="badge badge-danger">{{ $itinerary->total }}</span> Likes
                   </li>
 
                 @endforeach
