@@ -158,9 +158,13 @@ class APIController extends Controller
 
         $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
         $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
+        $totallikes = json_decode($this->getTotalLikes($newReq),true);
+        $totalcomments = json_decode($this->getTotalComments($newReq),true);
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
+        $itinerary->totallikes = $totallikes;
+        $itinerary->totalcomments = $totalcomments;
 
         return $itinerary;
       });
@@ -183,9 +187,13 @@ class APIController extends Controller
 
         $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
         $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
+        $totallikes = json_decode($this->getTotalLikes($newReq),true);
+        $totalcomments = json_decode($this->getTotalComments($newReq),true);
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
+        $itinerary->totallikes = $totallikes;
+        $itinerary->totalcomments = $totalcomments;
 
         return $itinerary;
       });
@@ -218,9 +226,13 @@ class APIController extends Controller
 
         $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
         $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
+        $totallikes = json_decode($this->getTotalLikes($newReq),true);
+        $totalcomments = json_decode($this->getTotalComments($newReq),true);
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
+        $itinerary->totallikes = $totallikes;
+        $itinerary->totalcomments = $totalcomments;
 
         return $itinerary;
       });
@@ -244,9 +256,13 @@ class APIController extends Controller
 
         $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
         $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
+        $totallikes = json_decode($this->getTotalLikes($newReq),true);
+        $totalcomments = json_decode($this->getTotalComments($newReq),true);
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
+        $itinerary->totallikes = $totallikes;
+        $itinerary->totalcomments = $totalcomments;
 
         return $itinerary;
       });
@@ -270,9 +286,13 @@ class APIController extends Controller
 
         $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
         $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
+        $totallikes = json_decode($this->getTotalLikes($newReq),true);
+        $totalcomments = json_decode($this->getTotalComments($newReq),true);
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
+        $itinerary->totallikes = $totallikes;
+        $itinerary->totalcomments = $totalcomments;
 
         return $itinerary;
       });
@@ -296,9 +316,13 @@ class APIController extends Controller
 
         $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
         $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
+        $totallikes = json_decode($this->getTotalLikes($newReq),true);
+        $totalcomments = json_decode($this->getTotalComments($newReq),true);
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
+        $itinerary->totallikes = $totallikes;
+        $itinerary->totalcomments = $totalcomments;
 
         return $itinerary;
       });
