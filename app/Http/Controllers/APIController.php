@@ -919,7 +919,7 @@ class APIController extends Controller
     // Top 5 popular itineraries (most commented)
     public function listPopularItineraries()
     {
-      $comments = DB::table('comments')
+      $likes = DB::table('likes')
                  ->select('itinerary_id', DB::raw('count(*) as total'))
                  ->groupBy('itinerary_id')
                  ->orderBy('total', 'desc')
@@ -927,12 +927,12 @@ class APIController extends Controller
                  ->get();
 
        $listItineraries = [];
-       foreach ($comments as $comment)
+       foreach ($likes as $like)
        {
-         $itinerary = Itinerary::with(['user'])->find($comment->itinerary_id);
-         $comment->itinerary_title = $itinerary->title;
-         $comment->itinerary_poster = $itinerary->user->name;
-         $listItineraries[] = $comment;
+         $itinerary = Itinerary::with(['user'])->find($like->itinerary_id);
+         $like->itinerary_title = $itinerary->title;
+         $like->itinerary_poster = $itinerary->user->name;
+         $listItineraries[] = $like;
        }
 
        return $listItineraries;
