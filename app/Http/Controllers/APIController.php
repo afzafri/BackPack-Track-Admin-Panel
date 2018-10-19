@@ -809,7 +809,7 @@ class APIController extends Controller
       $itinerary_id = $request->itinerary_id;
 
       // only like if user never like the itinerary before
-      if (!Like::where([['user_id', $user_id], ['itinerary_id', $itinerary_id]])->exists())
+      if (!$this->isLiked($user_id, $itinerary_id))
       {
         $like = new Like;
         $like->user_id = $user_id;
@@ -860,6 +860,11 @@ class APIController extends Controller
     {
       $articles = Article::orderBy('date', 'DESC')->get(['id','title','author','date','summary']);
       return $articles;
+    }
+
+    public function isLiked($user_id, $itinerary_id)
+    {
+      return Like::where([['user_id', $user_id], ['itinerary_id', $itinerary_id]])->exists();
     }
 
     // List all articles paginated
