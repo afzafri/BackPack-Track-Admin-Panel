@@ -808,12 +808,27 @@ class APIController extends Controller
       $user_id = Auth::user()->id;
       $itinerary_id = $request->itinerary_id;
 
-      $like = new Like;
-      $like->user_id = $user_id;
-      $like->itinerary_id = $itinerary_id;
-      $like->save();
+      // only like if user never like the itinerary before
+      if (!Like::where([['user_id', $user_id], ['itinerary_id', $itinerary_id]])->exists())
+      {
+        $like = new Like;
+        $like->user_id = $user_id;
+        $like->itinerary_id = $itinerary_id;
+        $like->save();
 
-      return $like;
+        $result['code'] = 200;
+        $result['message'] = "liked.";
+        $result['result'] = $like;
+
+        return json_encode($result);
+      }
+      else
+      {
+        $result['code'] = 400;
+        $result['message'] = "You already liked this itinerary.";
+
+        return json_encode($result);
+      }
     }
 
     // Unlike an itinerary
@@ -824,7 +839,11 @@ class APIController extends Controller
 
       $like = Like::where([['user_id', $user_id], ['itinerary_id', $itinerary_id]])->delete();
 
-      return $like;
+      $result['code'] = 200;
+      $result['message'] = "unliked.";
+      $result['result'] = $like;
+
+      return json_encode($result);
     }
 
     // Get total number of likes for an itinerary
