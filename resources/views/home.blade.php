@@ -86,6 +86,7 @@
                                     <td>{{ $itinerary->user->name }}</td>
                                     <td>{{ $itinerary->country->name }}</td>
                                     <td>{{ $itinerary->title }}</td>
+                                    <td>{{ $itinerary->duration }}</td>
                                     <td>{{ $itinerary->totallikes }}</td>
                                     <td>{{ $itinerary->totalcomments }}</td>
                                     <td>{{ $itinerary->country->currency }} {{ $itinerary->totalbudget }}</td>
