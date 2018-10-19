@@ -75,7 +75,7 @@
                                   <th>Trip Title</th>
                                   <th>Duration</th>
                                   <th>Likes</th>
-                                  <th>Comments<th>
+                                  <th>Comments</th>
                                   <th>Total Budget</th>
                               </tr>
                           </thead>
