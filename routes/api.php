@@ -107,6 +107,12 @@ Route::middleware('auth:api')->group(function () {
   // List comments for specific users
   Route::get('/listCommentsByUser/{user_id}', 'APIController@listCommentsByUser');
 
+  // Like an Itinerary
+  Route::post('/likeItinerary', 'APIController@likeItinerary');
+
+  // Unlike an Itinerary
+  Route::post('/unlikeItinerary', 'APIController@unlikeItinerary');
+
   // Calculate total budget for an Itinerary
   Route::get('/getTotalBudget/{itinerary_id}', 'APIController@getTotalBudget');
 

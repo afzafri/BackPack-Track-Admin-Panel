@@ -14,6 +14,7 @@ use App\User;
 use App\Country;
 use App\Itinerary;
 use App\Activity;
+use App\Like;
 use App\Comment;
 use App\Article;
 use App\BudgetType;
@@ -752,6 +753,65 @@ class APIController extends Controller
       return $comments;
     }
 
+    // Get total comments for an itinerary
+    public function getTotalComments(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+
+      $totalcomments = Comment::where('itinerary_id', $itinerary_id)->count();
+      return $totalcomments;
+    }
+
+    // Get daily comments count and data
+    public function getCommentsNotification()
+    {
+      $user_id = Auth::user()->id;
+
+      // get list of comments on user's itinerary for today
+      $comments = Comment::whereHas('itinerary', function ($q) use($user_id){
+          $q->where('user_id', $user_id);
+      })->with(['user', 'itinerary'])->whereDate('created_at', Carbon::today())->get();
+
+      $result['total_comments'] = count($comments); // include total number of comments
+      $result['comments'] = $comments;
+
+      return json_encode($result);
+    }
+
+    // Like an itinerary
+    public function likeItinerary(Request $request)
+    {
+      $user_id = Auth::user()->id;
+      $itinerary_id = $request->itinerary_id;
+
+      $like = new Like;
+      $like->user_id = $user_id;
+      $like->itinerary_id = $itinerary_id;
+      $like->save();
+
+      return $like;
+    }
+
+    // Unlike an itinerary
+    public function unlikeItinerary(Request $request)
+    {
+      $user_id = Auth::user()->id;
+      $itinerary_id = $request->itinerary_id;
+
+      $like = Like::where([['user_id', $user_id], ['itinerary_id', $itinerary_id]])->delete();
+
+      return $like;
+    }
+
+    // Get total number of likes for an itinerary
+    public function getTotalLikes(Request $request)
+    {
+      $itinerary_id = $request->itinerary_id;
+
+      $totallikes = Like::where('itinerary_id', $itinerary_id)->count();
+      return $totallikes;
+    }
+
     // List all articles
     public function listArticles()
     {
@@ -774,22 +834,6 @@ class APIController extends Controller
       $article = Article::find($article_id);
 
       return $article;
-    }
-
-    // Get daily comments count and data
-    public function getCommentsNotification()
-    {
-      $user_id = Auth::user()->id;
-
-      // get list of comments on user's itinerary for today
-      $comments = Comment::whereHas('itinerary', function ($q) use($user_id){
-          $q->where('user_id', $user_id);
-      })->with(['user', 'itinerary'])->whereDate('created_at', Carbon::today())->get();
-
-      $result['total_comments'] = count($comments); // include total number of comments
-      $result['comments'] = $comments;
-
-      return json_encode($result);
     }
 
     // Top 5 popular countries
