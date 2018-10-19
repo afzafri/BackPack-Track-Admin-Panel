@@ -73,6 +73,10 @@
                                   <th>User</th>
                                   <th>Country</th>
                                   <th>Trip Title</th>
+                                  <th>Duration</th>
+                                  <th>Likes</th>
+                                  <th>Comments<th>
+                                  <th>Total Budget</th>
                               </tr>
                           </thead>
                           <tbody>
@@ -82,6 +86,9 @@
                                     <td>{{ $itinerary->user->name }}</td>
                                     <td>{{ $itinerary->country->name }}</td>
                                     <td>{{ $itinerary->title }}</td>
+                                    <td>{{ $itinerary->totallikes }}</td>
+                                    <td>{{ $itinerary->totalcomments }}</td>
+                                    <td>{{ $itinerary->country->currency }} {{ $itinerary->totalbudget }}</td>
                               @endforeach
                           </tbody>
                       </table>
@@ -97,6 +104,7 @@
                                 <th>Commenter</th>
                                 <th>Email</th>
                                 <th>Comment</th>
+                                <th>Date Time</th>
                                 <th>Itinerary Title</th>
                                 <th>Itinerary Owner</th>
                             </tr>
@@ -108,6 +116,7 @@
                                   <td>{{ $comment->user->name }}</td>
                                   <td>{{ $comment->user->email }}</td>
                                   <td>{{ $comment->message }}</td>
+                                  <td>{{ $comment->created_at }}</td>
                                   <td>{{ $comment->itinerary->title }}</td>
                                   <td>{{ $comment->itinerary->user->name }}</td>
                               </tr>

@@ -37,6 +37,8 @@
                   <th>Country</th>
                   <th>Trip Title</th>
                   <th>Duration</th>
+                  <th>Likes</th>
+                  <th>Comments</th>
                   <th>Total Budget</th>
                   <th>Action</th>
               </tr>
@@ -49,6 +51,8 @@
                     <td>{{ $itinerary->country->name }}</td>
                     <td>{{ $itinerary->title }}</td>
                     <td>{{ $itinerary->duration }}</td>
+                    <td>{{ $itinerary->totallikes }}</td>
+                    <td>{{ $itinerary->totalcomments }}</td>
                     <td>{{ $itinerary->country->currency }} {{ $itinerary->totalbudget }}</td>
                     <td>
                         <div class="table-data-feature">
