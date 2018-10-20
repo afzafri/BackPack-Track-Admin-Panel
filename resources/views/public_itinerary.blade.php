@@ -42,8 +42,8 @@
         z-index: 400;
       }
       ul.timeline > li {
-        margin: 20px 0;
-        padding-left: 20px;
+        margin: 30px 0;
+        padding-left: 40px;
       }
       ul.timeline > li:before {
         content: ' ';
@@ -56,6 +56,12 @@
         width: 20px;
         height: 20px;
         z-index: 400;
+      }
+
+      .card-img-top {
+          width: 100%;
+          height: 25vw;
+          object-fit: cover;
       }
 
       /* Set the size of the div element that contains the map */
@@ -105,10 +111,11 @@
                     @foreach ($activities as $activity)
 
   				            <li>
-                        <div class="card" style="width: 28rem;">
+                        <div class="row">
+                        <div class="card" >
                           @if ($activity->pic_url != "" && $activity->pic_url != null)
                             <a href="{{ $activity->pic_url }}" data-lightbox="{{ $activity->id }}" data-title="{{ $activity->place_name }} - {{ $activity->activity }}">
-                              <img class="card-img-top" src="{{ $activity->pic_url }}" height="250px"/>
+                              <img class="card-img-top" src="{{ $activity->pic_url }}"/>
                             </a>
                           @endif
                           <div class="card-body">
@@ -122,7 +129,7 @@
                               </tr>
                             </table>
                           </div>
-                        </div>
+                        </div></div>
                       </li>
 
                     @endforeach
