@@ -142,6 +142,7 @@
                     <h5><i class="fas fa-user"></i> {{ $data->user->name }} </h5>
                     <h5><i class="fas fa-map-marker-alt"></i> {{ $data->country->name }} </h5>
                     <h5><i class="far fa-calendar"></i> {{ date_format(date_create($data->created_at),"d/m/Y") }} </h5>
+                    <h5><i class="fas fa-heart"></i>({{ $totallikes }}) &nbsp;&nbsp; <i class="fas fa-comments"></i>({{ $totalcomments }})</h5>
                   </div>
                 </div>
                 <br>
