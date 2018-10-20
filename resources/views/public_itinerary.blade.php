@@ -26,6 +26,39 @@
     <!-- Vendor CSS -->
     <link href="{{ asset('vendor/lightbox2/dist/css/lightbox.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fa/theme.min.css') }}" rel="stylesheet" media="all">
+
+    <style media="screen">
+      ul.timeline {
+        list-style-type: none;
+        position: relative;
+      }
+      ul.timeline:before {
+        content: ' ';
+        background: #d4d9df;
+        display: inline-block;
+        position: absolute;
+        left: 29px;
+        width: 2px;
+        height: 100%;
+        z-index: 400;
+      }
+      ul.timeline > li {
+        margin: 20px 0;
+        padding-left: 20px;
+      }
+      ul.timeline > li:before {
+        content: ' ';
+        background: white;
+        display: inline-block;
+        position: absolute;
+        border-radius: 50%;
+        border: 3px solid #22c0e8;
+        left: 20px;
+        width: 20px;
+        height: 20px;
+        z-index: 400;
+      }
+    </style>
   </head>
   <body>
 
@@ -63,29 +96,32 @@
 
                   <h4>Day {{$i++}} ({{ date_format(date_create($date),"d/m/Y") }})</h4>
 
-                  @foreach ($activities as $activity)
+                  <ul class="timeline">
+                    @foreach ($activities as $activity)
 
-                    <div class="card" style="width: 28rem;">
-                      @if ($activity->pic_url != "" && $activity->pic_url != null)
-                        <a href="{{ $activity->pic_url }}" data-lightbox="{{ $activity->id }}" data-title="{{ $activity->place_name }} - {{ $activity->activity }}">
-                          <img class="card-img-top" src="{{ $activity->pic_url }}" height="250px"/>
-                        </a>
-                      @endif
-                      <div class="card-body">
-                        <h5 class="card-title">{{ $activity->activity }}</h5>
-                        <p class="card-text">{{ $activity->description }}</p>
-                        <table cellpadding="10">
-                          <tr>
-                            <td><i class="far fa-clock"></i> {{ $activity->time }}</td>
-                            <td><i class="fas fa-map-marker-alt"></i> {{ $activity->place_name }}</td>
-                            <td><i class="fas fa-dollar-sign"></i> {{ $data->country->currency }} {{ $activity->budget }} ({{ $activity->budgettype->type }})</td>
-                          </tr>
-                        </table>
-                      </div>
-                    </div>
-                    <br>
+  				            <li>
+                        <div class="card" style="width: 28rem;">
+                          @if ($activity->pic_url != "" && $activity->pic_url != null)
+                            <a href="{{ $activity->pic_url }}" data-lightbox="{{ $activity->id }}" data-title="{{ $activity->place_name }} - {{ $activity->activity }}">
+                              <img class="card-img-top" src="{{ $activity->pic_url }}" height="250px"/>
+                            </a>
+                          @endif
+                          <div class="card-body">
+                            <h5 class="card-title">{{ $activity->activity }}</h5>
+                            <p class="card-text">{{ $activity->description }}</p>
+                            <table cellpadding="10">
+                              <tr>
+                                <td><i class="far fa-clock"></i> {{ $activity->time }}</td>
+                                <td><i class="fas fa-map-marker-alt"></i> {{ $activity->place_name }}</td>
+                                <td><i class="fas fa-dollar-sign"></i> {{ $data->country->currency }} {{ $activity->budget }} ({{ $activity->budgettype->type }})</td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </li>
 
-                  @endforeach
+                    @endforeach
+                  </ul>
 
                   <br><br>
 
