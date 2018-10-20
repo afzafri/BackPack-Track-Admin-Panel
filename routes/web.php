@@ -11,9 +11,13 @@
 |
 */
 
+// -------------- Public Pages --------------
 Route::get('/', function () {
     return view('landing');
 });
+
+// View itineraries data
+Route::get('/viewItinerary/{itinerary_id}', 'PublicItineraryController@view');
 
 Auth::routes();
 
