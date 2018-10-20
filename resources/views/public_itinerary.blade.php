@@ -111,7 +111,7 @@
                             <p class="card-text">{{ $activity->description }}</p>
                             <table cellpadding="10">
                               <tr>
-                                <td><i class="far fa-clock"></i> {{ $activity->time }}</td>
+                                <td><i class="far fa-clock"></i> {{ date("g:i a", strtotime($activity->time)) }}</td>
                                 <td><i class="fas fa-map-marker-alt"></i> {{ $activity->place_name }}</td>
                                 <td><i class="fas fa-dollar-sign"></i> {{ $data->country->currency }} {{ $activity->budget }} ({{ $activity->budgettype->type }})</td>
                               </tr>
