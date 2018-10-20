@@ -17,7 +17,8 @@ class PublicItineraryController extends Controller
       // get activities
       $APIobj = new APIController();
       $result = json_decode($APIobj->viewActivitiesByDay($request));
+      $coordinates = json_decode($APIobj->getLatLng($request));
 
-      return view('public_itinerary', ['data' => $result]);
+      return view('public_itinerary', ['data' => $result, 'coordinates' => $coordinates]);
     }
 }
