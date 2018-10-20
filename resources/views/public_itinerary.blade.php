@@ -175,8 +175,10 @@
 
         // Info Window Content
         var infoWindowContent = new Array();
+        var flightPlanCoordinates = new Array(); // coordinate for polylines
         for( i = 0; i < coordinates.length; i++ ) {
           infoWindowContent[i] = "<h4>"+coordinates[i]['place_name']+"</h4><p>"+coordinates[i]['activity']+"</p>";
+          flightPlanCoordinates[i] = new google.maps.LatLng(coordinates[i]['lat'], coordinates[i]['lng']);
         }
         var infoWindow = new google.maps.InfoWindow(), marker, i;
 
@@ -201,6 +203,17 @@
             }
           })(marker, i));
         }
+
+        var flightPath = new google.maps.Polyline({
+          path: flightPlanCoordinates,
+          geodesic: true,
+          strokeColor: '#000000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        flightPath.setMap(map);
+
       } else {
         $("#map").append("<p align='center'><i>No map data available.</i></p>");
       }
