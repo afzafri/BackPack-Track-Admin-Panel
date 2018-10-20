@@ -173,9 +173,17 @@
         map = new google.maps.Map(document.getElementById("map"), mapOptions);
         map.setTilt(45);
 
+        // Info Window Content
+        var infoWindowContent = new Array();
+        for( i = 0; i < coordinates.length; i++ ) {
+          infoWindowContent[i] = "<h4>"+coordinates[i]['place_name']+"</h4><p>"+coordinates[i]['activity']+"</p>";
+        }
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
         // Loop through our array of markers & place each one on the map
         for( i = 0; i < coordinates.length; i++ ) {
           var place_name = coordinates[i]['place_name'];
+          var activity = coordinates[i]['activity'];
           var lat = coordinates[i]['lat'];
           var lng = coordinates[i]['lng'];
           var position = new google.maps.LatLng(lat, lng);
@@ -184,6 +192,14 @@
               map: map,
               title: place_name
           });
+
+          // Allow each marker to have an info window
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i]);
+                infoWindow.open(map, marker);
+            }
+          })(marker, i));
         }
       } else {
         $("#map").append("<p align='center'><i>No map data available.</i></p>");
