@@ -25,7 +25,6 @@
 
     <!-- Vendor CSS -->
     <link href="{{ asset('vendor/lightbox2/dist/css/lightbox.css') }}" rel="stylesheet" media="all">
-    <link href="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fa/theme.min.css') }}" rel="stylesheet" media="all">
 
     <style media="screen">
       ul.timeline {
@@ -58,6 +57,12 @@
         height: 20px;
         z-index: 400;
       }
+
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 600px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
     </style>
   </head>
   <body>
@@ -128,7 +133,13 @@
                 @endforeach
 
            </div>
-           <div class="tab-pane fade" id="nav-map" role="tabpanel" aria-labelledby="nav-map-tab">...</div>
+           <div class="tab-pane fade" id="nav-map" role="tabpanel" aria-labelledby="nav-map-tab">
+
+             <!--The div element for the map -->
+             <div id="map"></div>
+             <br>
+
+           </div>
            <div class="tab-pane fade" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab">...</div>
            <div class="tab-pane fade" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">...</div>
          </div>
@@ -142,8 +153,50 @@
     <script src="{{ asset('vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
     <!-- Vendor JS -->
     <script src="{{ asset('vendor/chartjs/Chart.bundle.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fa/theme.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap-fileinput/themes/fa/theme.min.js') }}"></script>
     <script src="{{ asset('vendor/lightbox2/dist/js/lightbox.min.js') }}"></script>
+
+    <script>
+    // Initialize and add the map
+    function initMap() {
+      // get coordinates json from php into javascript
+      var coordinates = <?php echo json_encode($coordinates); ?>;
+      // only init map if there are coordinates
+      if(coordinates.length > 0) {
+        var map;
+        var mapOptions = {
+            mapTypeId: 'roadmap',
+            zoom: 12,
+            center: new google.maps.LatLng(coordinates[0]['lat'], coordinates[0]['lng']) // zoom to first marker
+        };
+
+        // Display a map on the page
+        map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        map.setTilt(45);
+
+        // Loop through our array of markers & place each one on the map
+        for( i = 0; i < coordinates.length; i++ ) {
+          var place_name = coordinates[i]['place_name'];
+          var lat = coordinates[i]['lat'];
+          var lng = coordinates[i]['lng'];
+          var position = new google.maps.LatLng(lat, lng);
+          marker = new google.maps.Marker({
+              position: position,
+              map: map,
+              title: place_name
+          });
+        }
+      } else {
+        $("#map").append("<p align='center'><i>No map data available.</i></p>");
+      }
+    }
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_lyCrDevPMnD_2TfcXRS8i60HRPQ1IM8&callback=initMap">
+    </script>
   </body>
 </html>
