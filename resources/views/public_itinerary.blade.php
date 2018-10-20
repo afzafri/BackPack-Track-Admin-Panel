@@ -27,6 +27,7 @@
     <link href="{{ asset('vendor/lightbox2/dist/css/lightbox.css') }}" rel="stylesheet" media="all">
 
     <style media="screen">
+      /*Timeline bar style*/
       ul.timeline {
         list-style-type: none;
         position: relative;
@@ -69,6 +70,49 @@
         height: 600px;  /* The height is 400 pixels */
         width: 100%;  /* The width is the width of the web page */
        }
+
+       /* comment style */
+       .comment-box {
+            margin-top: 10px !important;
+        }
+        /* CSS Test end */
+
+        .comment-box img {
+            width: 50px;
+            height: 50px;
+        }
+        .comment-box .media-left {
+            padding-right: 10px;
+            width: 65px;
+        }
+        .comment-box .media-body p {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .comment-box .media-body .media p {
+            margin-bottom: 0;
+        }
+        .comment-box .media-heading {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 7px 10px;
+            position: relative;
+            margin-bottom: -1px;
+        }
+        .comment-box .media-heading:before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-width: 1px 0 0 1px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            position: absolute;
+            top: 10px;
+            left: -6px;
+        }
+
     </style>
   </head>
   <body>
@@ -148,7 +192,34 @@
 
            </div>
            <div class="tab-pane fade" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab">...</div>
-           <div class="tab-pane fade" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">...</div>
+           <div class="tab-pane fade" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">
+
+             @foreach ($comments->comments as $comment)
+               <div class="media comment-box">
+                   <div class="media-left">
+                       <a href="#">
+                           @if ($comment->user->avatar_url != null && $comment->user->avatar_url != "")
+                             <img class="img-responsive user-photo rounded-circle" src="{{ $comment->user->avatar_url }}">
+                           @else
+                             <img class="img-responsive user-photo rounded-circle" src="{{ asset('images/icon/avatar.png') }}">
+                           @endif
+                       </a>
+                   </div>
+                   <div class="media-body">
+                       <h5 class="media-heading">
+                         {{ $comment->user->name }}
+                         <small class="text-muted">
+                           {{ "@".$comment->user->username }}
+                           &bull;
+                           {{ date_format(date_create($comment->created_at),"d/m/Y g:i a") }}
+                         </small>
+                       </h5>
+                       <p>{{ $comment->message }}</p>
+                   </div>
+               </div>
+             @endforeach
+
+           </div>
          </div>
 
      </div>
