@@ -58,11 +58,37 @@
                 </div>
                 <br>
 
-                @foreach ($data->activities as $date => $activity)
+                <?php $i = 1; ?>
+                @foreach ($data->activities as $date => $activities)
 
-                  {{ date_format(date_create($date),"d/m/Y") }}
+                  <h4>Day {{$i++}} ({{ date_format(date_create($date),"d/m/Y") }})</h4>
+
+                  @foreach ($activities as $activity)
+
+                    <div class="card" style="width: 28rem;">
+                      @if ($activity->pic_url != "" && $activity->pic_url != null)
+                        <a href="{{ $activity->pic_url }}" data-lightbox="{{ $activity->id }}" data-title="{{ $activity->place_name }} - {{ $activity->activity }}">
+                          <img class="card-img-top" src="{{ $activity->pic_url }}" height="250px"/>
+                        </a>
+                      @endif
+                      <div class="card-body">
+                        <h5 class="card-title">{{ $activity->activity }}</h5>
+                        <p class="card-text">{{ $activity->description }}</p>
+                        <table cellpadding="10">
+                          <tr>
+                            <td><i class="far fa-clock"></i> {{ $activity->time }}</td>
+                            <td><i class="fas fa-map-marker-alt"></i> {{ $activity->place_name }}</td>
+                            <td><i class="fas fa-dollar-sign"></i> {{ $data->country->currency }} {{ $activity->budget }} ({{ $activity->budgettype->type }})</td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                    <br>
+
+                  @endforeach
 
                   <br><br>
+
                 @endforeach
 
            </div>
@@ -82,5 +108,6 @@
     <script src="{{ asset('vendor/chartjs/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fa/theme.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap-fileinput/themes/fa/theme.min.js') }}"></script>
+    <script src="{{ asset('vendor/lightbox2/dist/js/lightbox.min.js') }}"></script>
   </body>
 </html>
