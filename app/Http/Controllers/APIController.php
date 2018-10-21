@@ -698,7 +698,7 @@ class APIController extends Controller
       $currency = (Itinerary::with('country')->find($itinerary_id))->country->currency;
       $result['currency'] = $currency;
 
-      return $result;
+      return json_encode($result);
     }
 
     // Post new comment to an itinerary
