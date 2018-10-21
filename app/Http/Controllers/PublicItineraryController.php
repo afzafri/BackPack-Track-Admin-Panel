@@ -21,7 +21,8 @@ class PublicItineraryController extends Controller
       $comments = json_decode($APIobj->listComments($request));
       $totallikes = json_decode($APIobj->getTotalLikes($request));
       $totalcomments = json_decode($APIobj->getTotalComments($request));
+      $dailybudget = json_decode($APIobj->getTotalBudgetPerDay($request));
 
-      return view('public_itinerary', ['data' => $result, 'coordinates' => $coordinates, 'comments' => $comments, 'totallikes' => $totallikes, 'totalcomments' => $totalcomments]);
+      return view('public_itinerary', ['data' => $result, 'coordinates' => $coordinates, 'comments' => $comments, 'totallikes' => $totallikes, 'totalcomments' => $totalcomments, 'dailybudget' => $dailybudget]);
     }
 }

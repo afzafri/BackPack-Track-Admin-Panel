@@ -192,7 +192,36 @@
              <br>
 
            </div>
-           <div class="tab-pane fade" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab">...</div>
+           <div class="tab-pane fade" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab">
+
+             <!-- Daily Budget Expense -->
+             <div class="card">
+                <div class="card-header">
+                  Daily Budget Expense
+                </div>
+                <div class="card-body table-responsive">
+                  <table class="table">
+                   <tbody>
+                     @foreach ($dailybudget->detail as $budget)
+                       <tr>
+                         <th scope="row">{{ $budget->day }}</th>
+                         <td>{{ $budget->totalBudget }}</td>
+                       </tr>
+                      @endforeach
+                   </tbody>
+                   <tfoot>
+                     <tr class="thead-light">
+                       <th scope="col">Grand Total</th>
+                       <th scope="col">{{ $dailybudget->currency }} {{ $dailybudget->grandTotal }}</th>
+                     </tr>
+                   </tfoot>
+                 </table>
+
+                </div>
+              </div>
+
+
+           </div>
            <div class="tab-pane fade" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">
 
              @foreach ($comments->comments as $comment)
