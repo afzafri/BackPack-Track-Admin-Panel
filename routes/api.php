@@ -134,12 +134,6 @@ Route::middleware('auth:api')->group(function () {
   // View specific article
   Route::get('/viewArticle/{article_id}', 'APIController@viewArticle');
 
-  // Get daily comments count and data, for user notification
-  Route::get('/getCommentsNotification', 'APIController@getCommentsNotification');
-
-  // Get daily likes count and data, for user notification
-  Route::get('/getLikesNotification', 'APIController@getLikesNotification');
-
   // Get daily likes and comments notifications data
   Route::get('/getNotifications', 'APIController@getNotifications');
 
