@@ -194,18 +194,40 @@
            </div>
            <div class="tab-pane fade" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab">
 
+             <!-- Total Budget Expense -->
+             <div class="card">
+                <h5 class="card-header">
+                  Total Budget Expense
+                </h5>
+                <div class="card-body table-responsive">
+                  <table class="table">
+                   <tbody>
+                     @foreach ($typebudget->detail as $budget)
+                       <tr>
+                         <th scope="row">{{ $budget->budget_type }}</th>
+                         <td>{{ $typebudget->currency }} {{ $budget->totalBudget }}</td>
+                       </tr>
+                      @endforeach
+                   </tbody>
+                 </table>
+
+                </div>
+              </div>
+
+              <br>
+
              <!-- Daily Budget Expense -->
              <div class="card">
-                <div class="card-header">
+                <h5 class="card-header">
                   Daily Budget Expense
-                </div>
+                </h5>
                 <div class="card-body table-responsive">
                   <table class="table">
                    <tbody>
                      @foreach ($dailybudget->detail as $budget)
                        <tr>
                          <th scope="row">{{ $budget->day }}</th>
-                         <td>{{ $budget->totalBudget }}</td>
+                         <td>{{ $dailybudget->currency }} {{ $budget->totalBudget }}</td>
                        </tr>
                       @endforeach
                    </tbody>
