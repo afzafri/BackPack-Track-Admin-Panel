@@ -202,9 +202,11 @@
                 <div class="card-body table-responsive">
 
                   <!-- pie chart -->
-                  <canvas id="budgetChart" width="400" height="400"></canvas>
+                  <center>
+                    <canvas id="budgetChart" width="400" height="400" style="max-height: 400px; max-width: 400px"></canvas>
+                  </center>
 
-                  <br>
+                  <br><br>
 
                   <!-- table -->
                   <table class="table">
@@ -378,6 +380,7 @@
     }
 
     var ctx = $("#budgetChart");
+    //ctx.attr('height',200);
     var data = {
   		"labels": labels,
   		"datasets": [{
