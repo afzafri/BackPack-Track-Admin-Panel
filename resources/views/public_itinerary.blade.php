@@ -200,6 +200,13 @@
                   Total Budget Expense
                 </h5>
                 <div class="card-body table-responsive">
+
+                  <!-- pie chart -->
+                  <canvas id="budgetChart" width="400" height="400"></canvas>
+
+                  <br>
+
+                  <!-- table -->
                   <table class="table">
                    <tbody>
                      @foreach ($typebudget->detail as $budget)
@@ -286,6 +293,7 @@
     <script src="{{ asset('vendor/lightbox2/dist/js/lightbox.min.js') }}"></script>
 
     <script>
+    // ----------- Google MAP ----------
     // Initialize and add the map
     function initMap() {
       // get coordinates json from php into javascript
@@ -348,7 +356,44 @@
         $("#map").append("<p align='center'><i>No map data available.</i></p>");
       }
     }
+
+    // --------- PIE CHART ----------
+    // assign chart data and colors
+    var typebudget = <?php echo json_encode($typebudget->detail); ?>;
+    var labels = new Array();
+    var chartData = new Array();
+    var colors = new Array();
+    var dynamicColors = function() {
+            var r = Math.floor(Math.random() * 255);
+            var g = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            return "rgb(" + r + "," + g + "," + b + ")";
+         };
+
+    for(i = 0; i < typebudget.length; i++) {
+      labels[i] = typebudget[i]['budget_type'];
+      chartData[i] = typebudget[i]['totalBudget'];
+      colors[i] = dynamicColors();
+    }
+
+    var ctx = $("#budgetChart");
+    var data = {
+  		"labels": labels,
+  		"datasets": [{
+  			"label": "Percentage for each budget types",
+  			"data": chartData,
+  			"backgroundColor": colors
+  		}]
+  	};
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: data,
+        options: {
+          responsive: true
+        }
+    });
     </script>
+
     <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
     * The key parameter will contain your own API key (which is not needed for this tutorial)
