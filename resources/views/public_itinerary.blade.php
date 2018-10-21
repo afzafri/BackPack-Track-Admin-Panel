@@ -290,6 +290,7 @@
     <script src="{{ asset('vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
     <!-- Vendor JS -->
     <script src="{{ asset('vendor/chartjs/Chart.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/chartjs/Chartjs-center-text-plugin.js') }}"></script>
     <script src="{{ asset('vendor/lightbox2/dist/js/lightbox.min.js') }}"></script>
 
     <script>
@@ -389,7 +390,30 @@
         type: 'doughnut',
         data: data,
         options: {
-          responsive: true
+            responsive: true,
+            elements: {
+                center: {
+                text: 'Percentage for each budget types',
+                //color: '#36A2EB', //Default black
+                fontStyle: 'Helvetica', //Default Arial
+                sidePadding: 15 //Default 20 (as a percentage)
+              }
+            },
+            tooltips: {
+              callbacks: {
+                label: function(tooltipItem, data) {
+                  var dataset = data.datasets[tooltipItem.datasetIndex];
+                  var meta = dataset._meta[Object.keys(dataset._meta)[0]];
+                  var total = meta.total;
+                  var currentValue = dataset.data[tooltipItem.index];
+                  var percentage = parseFloat((currentValue/total*100).toFixed(1));
+                  return ' ' + percentage + '%';
+                },
+                title: function(tooltipItem, data) {
+                  return data.labels[tooltipItem[0].index];
+                }
+              }
+            }
         }
     });
     </script>
