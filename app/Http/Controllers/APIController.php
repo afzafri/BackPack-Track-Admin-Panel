@@ -867,6 +867,45 @@ class APIController extends Controller
       return $totallikes;
     }
 
+    // Get daily likes count and data
+    public function getLikesNotification()
+    {
+      $user_id = Auth::user()->id;
+
+      // get list of comments on user's itinerary for today
+      $likes = Like::whereHas('itinerary', function ($q) use($user_id){
+          $q->where('user_id', $user_id);
+      })->with(['user', 'itinerary'])->whereDate('created_at', Carbon::today())->get();
+
+      $result['total_likes'] = count($likes); // include total number of comments
+      $result['likes'] = $likes;
+
+      return json_encode($result);
+    }
+
+    public function getNotifications()
+    {
+      $user_id = Auth::user()->id;
+
+      // get list of comments on user's itinerary for today
+      $comments = Comment::whereHas('itinerary', function ($q) use($user_id){
+          $q->where('user_id', $user_id);
+      })->with(['user', 'itinerary'])->whereDate('created_at', Carbon::today())->get();
+
+      $result['comments']['total_comments'] = count($comments); // include total number of comments
+      $result['comments']['data'] = $comments;
+
+      // get list of comments on user's itinerary for today
+      $likes = Like::whereHas('itinerary', function ($q) use($user_id){
+          $q->where('user_id', $user_id);
+      })->with(['user', 'itinerary'])->whereDate('created_at', Carbon::today())->get();
+
+      $result['likes']['total_likes'] = count($likes); // include total number of comments
+      $result['likes']['data'] = $likes;
+
+      return json_encode($result);
+    }
+
     // List all articles
     public function listArticles()
     {
