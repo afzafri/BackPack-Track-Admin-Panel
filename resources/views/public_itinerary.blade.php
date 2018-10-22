@@ -297,6 +297,12 @@
     <script src="{{ asset('vendor/lightbox2/dist/js/lightbox.min.js') }}"></script>
 
     <script>
+    // Auto launch BackPack Track Android App, Android deeplinking
+    var itId = <?php echo $data->id; ?>;
+    var itTitle = <?php echo $data->title; ?>;
+    var itUserId = <?php echo $data->user_id; ?>;
+    window.location.replace("backpacktrack://?itinerary_id="+itId+"&itinerary_title="+itTitle+"&itinerary_user_id="+itUserId);
+
     // ----------- Google MAP ----------
     // Initialize and add the map
     function initMap() {
