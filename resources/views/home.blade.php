@@ -26,7 +26,7 @@
                         <p class="text-center"><img src="{{ $user->avatar_url }}" width="150px" class="img-thumbnail"/><p>
                       @endif
                       @if($user->bio != null || $user->bio != "")
-                        <p><i>{{ $user->bio }}</i></p>
+                        <p align="center"><i>{{ $user->bio }}</i></p>
                       @endif
                       <table class="table">
                         <tr>
