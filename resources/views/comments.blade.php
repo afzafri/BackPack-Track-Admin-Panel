@@ -45,7 +45,7 @@
             @foreach ($comments as $comment)
               <tr>
                   <td>{{ $comment->id }}</td>
-                  <td>{{ $comment->user->name }}</td>
+                  <td><a href="/userprofile/{{ $comment->user->id }}" target="_blank">{{ $comment->user->name }}</a></td>
                   <td>{{ $comment->user->email }}</td>
                   <td>{{ $comment->message }}</td>
                   <td>{{ $comment->itinerary->title }}</td>

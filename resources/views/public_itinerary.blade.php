@@ -274,12 +274,12 @@
                    </div>
                    <div class="media-body">
                        <h5 class="media-heading">
-                         {{ $comment->user->name }}
-                         <small class="text-muted">
-                           {{ "@".$comment->user->username }}
-                           &bull;
-                           {{ date_format(date_create($comment->created_at),"d/m/Y g:i a") }}
-                         </small>
+                           <a href="/userprofile/{{ $comment->user->id }}">{{ $comment->user->name }}</a>
+                           <small class="text-muted">
+                             {{ "@".$comment->user->username }}
+                             &bull;
+                             {{ date_format(date_create($comment->created_at),"d/m/Y g:i a") }}
+                           </small>
                        </h5>
                        <p>{{ $comment->message }}</p>
                    </div>
