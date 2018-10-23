@@ -56,7 +56,7 @@
                     <td>{{ $itinerary->country->currency }} {{ $itinerary->totalbudget }}</td>
                     <td>
                         <div class="table-data-feature">
-                          <a href="/viewItinerary/{{ $itinerary->id }}" target="_blank" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Activities">
+                          <a href="/itinerary/{{ $itinerary->id }}" target="_blank" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Activities">
                               <i class="zmdi zmdi-view-list-alt"></i>
                           </a>
                           <a href="/itineraries/{{ $itinerary->id }}/edit" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit Itinerary">

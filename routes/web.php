@@ -16,13 +16,13 @@ Route::get('/', function () {
     return view('landing');
 });
 
-// View itineraries data
-Route::get('/viewItinerary/{itinerary_id}', 'PublicItineraryController@view');
-
 Auth::routes();
 
 // -------------- Backpacker Pages --------------
 Route::get('/home', 'HomeController@index')->name('home');
+
+// View itineraries data
+Route::get('/itinerary/{itinerary_id}', 'PublicItineraryController@view');
 
 // -------------- Administrator Pages --------------
 // Dashboard

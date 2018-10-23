@@ -88,7 +88,7 @@
                                     <td>{{ $itinerary->user->name }}</td>
                                     <td>{{ $itinerary->country->name }}</td>
                                     <td>
-                                      <a href="/viewItinerary/{{ $itinerary->id }}" target="_blank" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Activities">
+                                      <a href="/itinerary/{{ $itinerary->id }}" target="_blank" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Activities">
                                           {{ $itinerary->title }}
                                       </a>
                                     </td>
