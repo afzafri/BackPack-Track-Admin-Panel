@@ -47,6 +47,9 @@ Route::middleware('auth:api')->group(function () {
   // View specific itinerary
   Route::get('/viewItinerary/{itinerary_id}', 'APIController@viewItinerary');
 
+  // View specific itinerary with full details
+  Route::get('/viewItineraryDetails/{itinerary_id}', 'APIController@viewItineraryDetails');
+
   // List itineraries for specific Country
   Route::get('/listItinerariesByCountry/{country_id}', 'APIController@listItinerariesByCountry');
 
