@@ -37,7 +37,7 @@
                         </tr>
                         <tr>
                           <th>Username</th>
-                          <td>{{ $user->username }}</td>
+                          <td>{{ "@".$user->username }}</td>
                         </tr>
                         <tr>
                           <th>Phone</th>
