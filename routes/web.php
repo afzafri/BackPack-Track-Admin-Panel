@@ -25,7 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/itinerary/{itinerary_id}', 'PublicItineraryController@view');
 
 // View user profile
-Route::get('/userprofile/{user_id}', 'PublicProfileController@view');
+Route::get('/userprofile/{username}', 'PublicProfileController@view');
 
 // -------------- Administrator Pages --------------
 // Dashboard

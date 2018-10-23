@@ -21,7 +21,7 @@ class PublicProfileController extends Controller
 
     public function getUserData(Request $request)
     {
-        $user = User::find($request->user_id);
+        $user = User::where('username', $request->username)->first();
         $country = Country::find($user->country_id);
         $user->country_name = $country->name;
 
@@ -30,7 +30,8 @@ class PublicProfileController extends Controller
 
     public function getUserItineraries(Request $request)
     {
-        $user_id = $request->user_id;
+        $user = User::where('username', $request->username)->first();
+        $user_id = $user->id;
 
         $newReq = new Request();
         $newReq->setMethod('POST');
