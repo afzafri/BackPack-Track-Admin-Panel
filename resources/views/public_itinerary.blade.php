@@ -206,19 +206,21 @@
                     <canvas id="budgetChart" width="400" height="400" style="max-height: 400px; max-width: 400px"></canvas>
                   </center>
 
-                  <br><br>
+                  @if (property_exists($typebudget, 'detail'))
+                    <br><br>
 
-                  <!-- table -->
-                  <table class="table">
-                   <tbody>
-                     @foreach ($typebudget->detail as $budget)
-                       <tr>
-                         <th scope="row">{{ $budget->budget_type }}</th>
-                         <td>{{ $typebudget->currency }} {{ $budget->totalBudget }}</td>
-                       </tr>
-                      @endforeach
-                   </tbody>
-                 </table>
+                    <!-- table -->
+                    <table class="table">
+                     <tbody>
+                       @foreach ($typebudget->detail as $budget)
+                         <tr>
+                           <th scope="row">{{ $budget->budget_type }}</th>
+                           <td>{{ $typebudget->currency }} {{ $budget->totalBudget }}</td>
+                         </tr>
+                        @endforeach
+                       </tbody>
+                     </table>
+                   @endif
 
                 </div>
               </div>
@@ -231,22 +233,26 @@
                   Daily Budget Expense
                 </h5>
                 <div class="card-body table-responsive">
-                  <table class="table">
-                   <tbody>
-                     @foreach ($dailybudget->detail as $budget)
-                       <tr>
-                         <th scope="row">{{ $budget->day }}</th>
-                         <td>{{ $dailybudget->currency }} {{ $budget->totalBudget }}</td>
+                  @if (property_exists($dailybudget, 'detail'))
+                    <table class="table">
+                     <tbody>
+                       @foreach ($dailybudget->detail as $budget)
+                         <tr>
+                           <th scope="row">{{ $budget->day }}</th>
+                           <td>{{ $dailybudget->currency }} {{ $budget->totalBudget }}</td>
+                         </tr>
+                        @endforeach
+                     </tbody>
+                     <tfoot>
+                       <tr class="thead-light">
+                         <th scope="col">Grand Total</th>
+                         <th scope="col">{{ $dailybudget->currency }} {{ $dailybudget->grandTotal }}</th>
                        </tr>
-                      @endforeach
-                   </tbody>
-                   <tfoot>
-                     <tr class="thead-light">
-                       <th scope="col">Grand Total</th>
-                       <th scope="col">{{ $dailybudget->currency }} {{ $dailybudget->grandTotal }}</th>
-                     </tr>
-                   </tfoot>
-                 </table>
+                     </tfoot>
+                    </table>
+                 @else
+                   <p align="center"><i>No data available.</i></p>
+                 @endif
 
                 </div>
               </div>
@@ -371,7 +377,14 @@
 
     // --------- PIE CHART ----------
     // assign chart data and colors
-    var typebudget = <?php echo json_encode($typebudget->detail); ?>;
+    var typebudget = new Array();
+    <?php
+      if(property_exists($typebudget, 'detail')) {
+        ?>
+          typebudget = <?php echo json_encode($typebudget->detail); ?>;
+        <?php
+      }
+    ?>
     var labels = new Array();
     var chartData = new Array();
     var colors = new Array();
