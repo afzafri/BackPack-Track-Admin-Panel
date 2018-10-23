@@ -9,7 +9,7 @@
     <meta name="keywords" content="BackPack Track Itinerary">
 
     <!-- Title Page-->
-    <title>{{ $data->title }}</title>
+    <title>{{ $data->title }} | {{ config('app.name', 'BackPack Track') }}</title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('images/icon/logo-mini.png') }}">
