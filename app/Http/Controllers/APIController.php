@@ -219,30 +219,21 @@ class APIController extends Controller
     {
       $itinerary_id = $request->itinerary_id;
 
-      $initItinerary = Itinerary::with(['country','user'])->find($itinerary_id);
-      // Transform collection to include the durations and total budgets for each itinerary
-      $initItinerary->transform(function ($itinerary){
+      $itinerary = Itinerary::with(['country','user'])->find($itinerary_id);
 
-        $newReq = new Request();
-        $newReq->setMethod('POST');
-        $newReq->request->add(['itinerary_id' => $itinerary->id]);
+      $duration = json_decode($this->getDayDates($request),true)['trip_duration'];
+      $totalbudget = json_decode($this->getTotalBudget($request),true)['totalbudget'];
+      $totallikes = json_decode($this->getTotalLikes($request),true);
+      $totalcomments = json_decode($this->getTotalComments($request),true);
+      $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
 
-        $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
-        $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
-        $totallikes = json_decode($this->getTotalLikes($newReq),true);
-        $totalcomments = json_decode($this->getTotalComments($newReq),true);
-        $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
+      $itinerary->duration = $duration;
+      $itinerary->totalbudget = $totalbudget;
+      $itinerary->totallikes = $totallikes;
+      $itinerary->totalcomments = $totalcomments;
+      $itinerary->isLiked = $isLiked;
 
-        $itinerary->duration = $duration;
-        $itinerary->totalbudget = $totalbudget;
-        $itinerary->totallikes = $totallikes;
-        $itinerary->totalcomments = $totalcomments;
-        $itinerary->isLiked = $isLiked;
-
-        return $itinerary;
-      });
-
-      return $initItinerary;
+      return $itinerary;
     }
 
     // List itineraries for specific country
