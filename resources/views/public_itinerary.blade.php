@@ -369,7 +369,7 @@
         for( i = 0; i < coordinates.length; i++ ) {
           infoWindowContent[i] = "<h4>"+coordinates[i]['place_name']+"</h4>" +
                                   "<p>"+coordinates[i]['activity']+"</p>" +
-                                  "<br><a href='https://www.google.com/maps/dir/"+coordinates[i]['lat']+","+coordinates[i]['lng']+"/' target='_blank' class='btn btn-primary btn-sm'>Get Direction</a>";
+                                  "<div class='text-center'><a href='https://www.google.com/maps/dir/"+coordinates[i]['lat']+","+coordinates[i]['lng']+"/' target='_blank' class='btn btn-primary btn-sm'>Get Direction</a></div>";
           flightPlanCoordinates[i] = new google.maps.LatLng(coordinates[i]['lat'], coordinates[i]['lng']);
         }
         var infoWindow = new google.maps.InfoWindow(), marker, i;
