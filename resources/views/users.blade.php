@@ -60,13 +60,13 @@
                     @endif
                   </td>
                   <td><a href="/user/{{ $user->username }}" target="_blank">{{ $user->name }}</a></td>
-                  <td>{{ $user->username }}</td>
+                  <td>{{ "@".$user->username }}</td>
                   <td>{{ $user->phone }}</td>
                   <td>{{ $user->address }}</td>
                   <td>{{ $user->country->name }}</td>
                   <td>{{ $user->bio }}</td>
                   <td>{{ $user->website }}</td>
-                  <td>{{ $user->email }}</td>
+                  <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                   <td>{{ $user->role }}</td>
                   <td>
                       <div class="table-data-feature">
