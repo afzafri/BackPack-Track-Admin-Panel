@@ -47,7 +47,7 @@
               @foreach ($itineraries as $itinerary)
                 <tr>
                     <td>{{ $itinerary->id }}</td>
-                    <td><a href="/userprofile/{{ $itinerary->user->id }}" target="_blank">{{ $itinerary->user->name }}</a></td>
+                    <td><a href="/userprofile/{{ $itinerary->user->username }}" target="_blank">{{ $itinerary->user->name }}</a></td>
                     <td>{{ $itinerary->country->name }}</td>
                     <td>{{ $itinerary->title }}</td>
                     <td>{{ $itinerary->duration }}</td>
