@@ -305,7 +305,7 @@
                    </div>
                    <div class="media-body">
                        <h5 class="media-heading">
-                           <a href="/userprofile/{{ $comment->user->username }}">{{ $comment->user->name }}</a>
+                           <a href="/user/{{ $comment->user->username }}">{{ $comment->user->name }}</a>
                            <small class="text-muted">
                              {{ "@".$comment->user->username }}
                              &bull;

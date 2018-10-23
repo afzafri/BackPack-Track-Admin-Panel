@@ -59,7 +59,7 @@
                       <img src="/images/icon/avatar.png" width="150px">
                     @endif
                   </td>
-                  <td><a href="/userprofile/{{ $user->username }}" target="_blank">{{ $user->name }}</a></td>
+                  <td><a href="/user/{{ $user->username }}" target="_blank">{{ $user->name }}</a></td>
                   <td>{{ $user->username }}</td>
                   <td>{{ $user->phone }}</td>
                   <td>{{ $user->address }}</td>
