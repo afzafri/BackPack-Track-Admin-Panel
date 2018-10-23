@@ -63,7 +63,7 @@
                         </tr>
                         <tr>
                           <th>Date Registered</th>
-                          <td>{{ $user->created_at }}</td>
+                          <td>{{ date_format(date_create($user->created_at),"d/m/Y g:i a") }}</td>
                         </tr>
                       </table>
                   </div>
