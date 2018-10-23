@@ -24,6 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 // View itineraries data
 Route::get('/itinerary/{itinerary_id}', 'PublicItineraryController@view');
 
+// View user profile
+Route::get('/userprofile/{user_id}', 'PublicProfileController@view');
+
 // -------------- Administrator Pages --------------
 // Dashboard
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

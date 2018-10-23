@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', "Dashboard")
+@section('title')
+  {{ $user->name }}
+@endsection
 
 @section('content')
 <div class="container">
@@ -8,16 +10,13 @@
         <div class="col-md-10">
             <div class="card">
               <div class="card-header">
-                <h4 class="text-center">Dashboard</h4>
+                <h4 class="text-center">{{ $user->name }}</h4>
                 <ul class="nav nav-tabs card-header-tabs">
                   <li class="nav-item">
                     <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" id="itineraries-tab" data-toggle="tab" href="#itineraries" role="tab" aria-controls="itineraries" aria-selected="false">Itineraries</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="false">Comments</a>
                   </li>
                 </ul>
               </div>
@@ -38,10 +37,6 @@
                         <tr>
                           <th>Username</th>
                           <td>{{ $user->username }}</td>
-                        </tr>
-                        <tr>
-                          <th>Phone</th>
-                          <td>{{ $user->phone }}</td>
                         </tr>
                         <tr>
                           <th>Address</th>
@@ -104,36 +99,6 @@
                     </div>
                   </div>
 
-                  <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-                    <div class="table-responsive m-b-30">
-                      <table class="table table-striped" id="tableComments">
-                        <thead>
-                            <tr>
-                                <th>ID.</th>
-                                <th>Commenter</th>
-                                <th>Email</th>
-                                <th>Comment</th>
-                                <th>Date Time</th>
-                                <th>Itinerary Title</th>
-                                <th>Itinerary Owner</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($comments as $comment)
-                              <tr>
-                                  <td>{{ $comment->id }}</td>
-                                  <td>{{ $comment->user->name }}</td>
-                                  <td>{{ $comment->user->email }}</td>
-                                  <td>{{ $comment->message }}</td>
-                                  <td>{{ $comment->created_at }}</td>
-                                  <td>{{ $comment->itinerary->title }}</td>
-                                  <td>{{ $comment->itinerary->user->name }}</td>
-                              </tr>
-                            @endforeach
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
