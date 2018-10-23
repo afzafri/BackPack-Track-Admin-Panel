@@ -20,6 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/DataTables/datatables.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('vendor/lightbox2/dist/css/lightbox.css') }}" rel="stylesheet" media="all">
 </head>
 <body>
     <div id="app">
@@ -81,6 +82,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('vendor/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('vendor/DataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('vendor/lightbox2/dist/js/lightbox.min.js') }}"></script>
 
     @stack('scripts')
 </body>

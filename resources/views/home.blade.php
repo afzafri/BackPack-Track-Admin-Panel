@@ -25,7 +25,11 @@
                 <div class="tab-content pl-3 p-1" id="myTabContent">
                   <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                       @if($user->avatar_url != null || $user->avatar_url != "")
-                        <p class="text-center"><img src="{{ $user->avatar_url }}" width="150px" class="img-thumbnail"/><p>
+                        <p class="text-center">
+                          <a href="{{ $user->avatar_url }}" data-lightbox="{{ $user->id }}" data-title="{{ $user->name }} ({{ "@".$user->username }})">
+                            <img src="{{ $user->avatar_url }}" width="150px" class="img-thumbnail"/>
+                          </a>
+                        <p>
                       @endif
                       @if($user->bio != null || $user->bio != "")
                         <p align="center"><i>{{ $user->bio }}</i></p>
