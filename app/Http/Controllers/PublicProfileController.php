@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\PublicItineraryController;
 use App\User;
 use App\Country;
+use App\Itinerary;
 
 class PublicProfileController extends Controller
 {
