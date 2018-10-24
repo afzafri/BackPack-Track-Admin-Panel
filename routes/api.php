@@ -156,7 +156,7 @@ Route::middleware('auth:api')->group(function () {
   Route::get('user', 'AuthController@user');
 
   // Get specific user profile data
-  Route::get('/getUserData', 'APIController@getUserData');
+  Route::get('/getUserData/{user_id}', 'APIController@getUserData');
 
   // Upload user avatar
   Route::post('uploadAvatar', 'APIController@uploadAvatar');
