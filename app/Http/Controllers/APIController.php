@@ -996,6 +996,19 @@ class APIController extends Controller
        return $listItineraries;
     }
 
+    // Get user profile data for a specific user using id
+    public function getUserData(Request $request)
+    {
+        $user_id = $request->user_id;
+        $user = User::find($user_id);
+        $country = Country::find($user->country_id);
+        $totalitineraries = Itinerary::where('user_id', $user_id)->count();
+        $user->country_name = $country->name;
+        $user->totalitineraries = $totalitineraries;
+
+        return $user;
+    }
+
     // Upload user Avatar
     public function uploadAvatar(Request $request)
     {
