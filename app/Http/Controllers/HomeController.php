@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\APIController;
 use App\Country;
+use App\Itinerary;
 
 class HomeController extends Controller
 {
@@ -42,8 +43,11 @@ class HomeController extends Controller
     public function getUserData()
     {
         $user = Auth::user();
+        $user_id = $user->id;
         $country = Country::find($user->country_id);
+        $totalitineraries = Itinerary::where('user_id', $user_id)->count();
         $user->country_name = $country->name;
+        $user->totalitineraries = $totalitineraries;
 
         return $user;
     }
