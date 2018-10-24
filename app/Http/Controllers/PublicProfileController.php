@@ -23,6 +23,7 @@ class PublicProfileController extends Controller
     public function getUserData(Request $request)
     {
         $user = User::where('username', $request->username)->first();
+        $user_id = $user->id;
         $country = Country::find($user->country_id);
         $totalitineraries = Itinerary::where('user_id', $user_id)->count();
         $user->country_name = $country->name;
