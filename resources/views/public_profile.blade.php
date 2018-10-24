@@ -119,11 +119,17 @@
 
 @push('scripts')
   <script>
+    // Auto launch BackPack Track Android App, Android deeplinking
+    function launchApp() {
+      var usrId = <?php echo $user->id; ?>;
+      window.location.replace('backpacktrack://user?user_id='+usrId);
+    }
 
     $(document).ready(function() {
         $.noConflict();
         // DataTables
         $('#tableItineraries, #tableComments').DataTable();
+        launchApp();
     });
   </script>
 @endpush
