@@ -61,6 +61,11 @@
                           <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                         </tr>
                         <tr>
+                          <th>Total Itineraries</th>
+                          <td>{{ $user->totalitineraries }}</td>
+                        </tr>
+                        <tr>
+                        <tr>
                           <th>Date Registered</th>
                           <td>{{ date_format(date_create($user->created_at),"d/m/Y g:i a") }}</td>
                         </tr>
