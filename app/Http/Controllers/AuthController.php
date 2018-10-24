@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Validator;
 
 use App\User;
+use App\Itinerary;
 
 class AuthController extends Controller
 {
@@ -136,6 +137,8 @@ class AuthController extends Controller
     public function user()
     {
         $user = User::with(['country'])->find(Auth::user()->id);
+        $totalitineraries = Itinerary::where('user_id', Auth::user()->id)->count();
+        $user->totalitineraries = $totalitineraries;
         return $user;
     }
 }
