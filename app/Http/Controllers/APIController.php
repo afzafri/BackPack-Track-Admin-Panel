@@ -960,6 +960,7 @@ class APIController extends Controller
       $countries = DB::table('itineraries')
                  ->select('country_id', DB::raw('count(*) as total'))
                  ->groupBy('country_id')
+                 ->having('total', '>', 0)
                  ->orderBy('total', 'desc')
                  ->take(5)
                  ->get();
