@@ -979,8 +979,8 @@ class APIController extends Controller
     {
       $likes = DB::table('likes')
                  ->select('itinerary_id', DB::raw('count(*) as total'))
-                 ->where('count(*)', '>', 0)
                  ->groupBy('itinerary_id')
+                 ->having('total', '>', 0)
                  ->orderBy('total', 'desc')
                  ->take(5)
                  ->get();
@@ -1004,8 +1004,9 @@ class APIController extends Controller
 
       $likes = Itinerary::leftJoin('likes', 'itineraries.id', '=', 'likes.itinerary_id')
                   ->selectRaw('itineraries.id, count(likes.id) as total')
-                  ->where([['itineraries.user_id', $user_id], ['count(likes.id)', '>', 0]])
+                  ->where('itineraries.user_id', $user_id)
                   ->groupBy('itineraries.id')
+                  ->having('total', '>', 0)
                   ->orderBy('total', 'desc')
                   ->take(5)
                   ->get();
