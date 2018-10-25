@@ -996,6 +996,22 @@ class APIController extends Controller
        return $listItineraries;
     }
 
+    // Top 5 popular itineraries (most likes) for specific user
+    public function listUserPopularItineraries(Request $request)
+    {
+      $user_id = $request->user_id;
+
+      $itineraries = Itinerary::leftJoin('likes', 'itineraries.id', '=', 'likes.itinerary_id')
+                  ->selectRaw('itineraries.id, count(likes.id) as total')
+                  ->where('itineraries.user_id', $user_id)
+                  ->groupBy('itineraries.id')
+                  ->orderBy('total', 'desc')
+                  ->take(5)
+                  ->get();
+
+      return $itineraries;
+    }
+
     // Get user profile data for a specific user using id
     public function getUserData(Request $request)
     {

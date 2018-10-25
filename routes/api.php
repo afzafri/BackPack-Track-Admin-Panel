@@ -146,8 +146,11 @@ Route::middleware('auth:api')->group(function () {
   // Top 5 popular countries
   Route::get('/listPopularCountries', 'APIController@listPopularCountries');
 
-  // Top 5 most commented Itineraries
+  // Top 5 most likes Itineraries
   Route::get('/listPopularItineraries', 'APIController@listPopularItineraries');
+
+  // Top 5 user's most likes itineraries
+  Route::get('/listUserPopularItineraries/{user_id}', 'APIController@listUserPopularItineraries');
 
   // Logout user
   Route::get('logout', 'AuthController@logout');
