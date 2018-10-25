@@ -1001,7 +1001,7 @@ class APIController extends Controller
     {
       $user_id = $request->user_id;
 
-      $itineraries = Itinerary::leftJoin('likes', 'itineraries.id', '=', 'likes.itinerary_id')
+      $likes = Itinerary::leftJoin('likes', 'itineraries.id', '=', 'likes.itinerary_id')
                   ->selectRaw('itineraries.id, count(likes.id) as total')
                   ->where('itineraries.user_id', $user_id)
                   ->groupBy('itineraries.id')
@@ -1009,7 +1009,16 @@ class APIController extends Controller
                   ->take(5)
                   ->get();
 
-      return $itineraries;
+      $listItineraries = [];
+      foreach ($likes as $like)
+      {
+        $itinerary = Itinerary::with(['user'])->find($like->id);
+        $like->itinerary_title = $itinerary->title;
+        $like->itinerary_poster = $itinerary->user->name;
+        $listItineraries[] = $like;
+      }
+
+      return $listItineraries;
     }
 
     // Get user profile data for a specific user using id
