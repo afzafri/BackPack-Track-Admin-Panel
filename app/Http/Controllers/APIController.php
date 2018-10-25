@@ -1012,9 +1012,11 @@ class APIController extends Controller
       $listItineraries = [];
       foreach ($likes as $like)
       {
-        $itinerary = Itinerary::with(['user'])->find($like->id);
+        $itinerary = Itinerary::with(['user', 'country'])->find($like->id);
         $like->itinerary_title = $itinerary->title;
-        $like->itinerary_poster = $itinerary->user->name;
+        $like->itinerary_country = $itinerary->country->name;
+        $like->itinerary_poster_id = $itinerary->user->id;
+        $like->itinerary_poster_name = $itinerary->user->name;
         $listItineraries[] = $like;
       }
 
