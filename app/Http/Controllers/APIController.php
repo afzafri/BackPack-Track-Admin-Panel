@@ -1020,24 +1020,16 @@ class APIController extends Controller
     // Top 5 popular itineraries (most likes)
     public function listPopularItineraries()
     {
-      $likes = DB::table('likes')
-                 ->select('itinerary_id', DB::raw('count(*) as total'))
-                 ->groupBy('itinerary_id')
-                 ->having('total', '>', 0)
-                 ->orderBy('total', 'desc')
-                 ->take(5)
-                 ->get();
+      $itineraries = Itinerary::with(['user', 'country'])
+                  ->leftJoin('likes', 'itineraries.id', '=', 'likes.itinerary_id')
+                  ->selectRaw('itineraries.*, count(likes.id) as totallikes')
+                  ->groupBy('itineraries.id')
+                  ->having('totallikes', '>', 0)
+                  ->orderBy('totallikes', 'desc')
+                  ->take(5)
+                  ->get();
 
-       $listItineraries = [];
-       foreach ($likes as $like)
-       {
-         $itinerary = Itinerary::with(['user'])->find($like->itinerary_id);
-         $like->itinerary_title = $itinerary->title;
-         $like->itinerary_poster = $itinerary->user->name;
-         $listItineraries[] = $like;
-       }
-
-       return $listItineraries;
+       return $itineraries;
     }
 
     // Top 5 popular itineraries (most likes) for specific user
