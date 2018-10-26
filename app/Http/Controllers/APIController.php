@@ -437,7 +437,8 @@ class APIController extends Controller
       return $itineraries;
     }
 
-    // Search itineraries by title
+    // ----- Search itineraries by title -----
+    // (SORT NEWEST)
     public function searchItineraries(Request $request)
     {
       $searchTitle = $request->title;
@@ -460,6 +461,42 @@ class APIController extends Controller
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
         $itinerary->totallikes = $totallikes;
+        $itinerary->totalcomments = $totalcomments;
+        $itinerary->isLiked = $isLiked;
+
+        return $itinerary;
+      });
+
+      return $itineraries;
+    }
+
+    // (SORT TOP - MOST LIKES)
+    public function searchTopItineraries(Request $request)
+    {
+      $searchTitle = $request->title;
+      $numdata = 5; // set total contents to display per page
+      $itineraries = Itinerary::with(['country','user'])
+                              ->leftJoin('likes', 'itineraries.id', '=', 'likes.itinerary_id')
+                              ->selectRaw('itineraries.*, count(likes.id) as totallikes')
+                              ->where([['itineraries.country_id', $country_id], ['itineraries.title', 'like', '%' . $searchTitle . '%']])
+                              ->groupBy('itineraries.id')
+                              ->orderBy('totallikes', 'desc')
+                              ->paginate($numdata);
+
+      // Transform collection to include the durations and total budgets for each itinerary
+      $itineraries->getCollection()->transform(function ($itinerary){
+
+        $newReq = new Request();
+        $newReq->setMethod('POST');
+        $newReq->request->add(['itinerary_id' => $itinerary->id]);
+
+        $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
+        $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
+        $totalcomments = json_decode($this->getTotalComments($newReq),true);
+        $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
+
+        $itinerary->duration = $duration;
+        $itinerary->totalbudget = $totalbudget;
         $itinerary->totalcomments = $totalcomments;
         $itinerary->isLiked = $isLiked;
 

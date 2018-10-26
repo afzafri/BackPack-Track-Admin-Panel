@@ -68,9 +68,12 @@ Route::middleware('auth:api')->group(function () {
   Route::get('/listItinerariesByUserPaginated/{user_id}', 'APIController@listItinerariesByUserPaginated');
 
   // Search itineraries by title
+  // (SORT NEWEST)
   Route::get('/searchItineraries/{title}', 'APIController@searchItineraries');
+  // (SORT TOP)
+  Route::get('/searchTopItineraries/{title}', 'APIController@searchTopItineraries');
 
-  // List all itineraries that have been at least 1 itinerary (have been visited)
+  // List all countries that have been at least 1 itinerary (have been visited)
   Route::get('/listVisitedCountries', 'APIController@listVisitedCountries');
 
   // Create activity
