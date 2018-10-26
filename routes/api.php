@@ -72,6 +72,8 @@ Route::middleware('auth:api')->group(function () {
   Route::get('/searchItineraries/{title}', 'APIController@searchItineraries');
   // (SORT TOP)
   Route::get('/searchTopItineraries/{title}', 'APIController@searchTopItineraries');
+  // (SORT TRENDING)
+  Route::get('/searchTrendingItineraries/{country_id}', 'APIController@searchTrendingItineraries');
 
   // List all countries that have been at least 1 itinerary (have been visited)
   Route::get('/listVisitedCountries', 'APIController@listVisitedCountries');
