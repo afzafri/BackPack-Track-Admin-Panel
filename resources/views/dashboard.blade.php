@@ -65,11 +65,11 @@
                 @foreach ($popularItineraries as $itinerary)
 
                   <li class="list-group-item">
-                      <a href="/itineraries/{{ $itinerary->itinerary_id }}/view">
-                          {{ $itinerary->itinerary_title }} by {{ $itinerary->itinerary_poster }}
+                      <a href="/itinerary/{{ $itinerary->id }}">
+                          {{ $itinerary->title }} by {{ $itinerary->user->name }}
                       </a>
                       -
-                      <span class="badge badge-danger">{{ $itinerary->total }}</span> Likes
+                      <span class="badge badge-danger">{{ $itinerary->totallikes }}</span> Likes
                   </li>
 
                 @endforeach
