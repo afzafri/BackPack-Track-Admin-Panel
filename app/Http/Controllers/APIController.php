@@ -478,7 +478,7 @@ class APIController extends Controller
       $itineraries = Itinerary::with(['country','user'])
                               ->leftJoin('likes', 'itineraries.id', '=', 'likes.itinerary_id')
                               ->selectRaw('itineraries.*, count(likes.id) as totallikes')
-                              ->where([['itineraries.country_id', $country_id], ['itineraries.title', 'like', '%' . $searchTitle . '%']])
+                              ->where('itineraries.title', 'like', '%' . $searchTitle . '%')
                               ->groupBy('itineraries.id')
                               ->orderBy('totallikes', 'desc')
                               ->paginate($numdata);
