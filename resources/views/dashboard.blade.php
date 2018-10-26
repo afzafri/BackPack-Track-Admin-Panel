@@ -66,7 +66,7 @@
 
                   <li class="list-group-item">
                       <a href="/itinerary/{{ $itinerary->id }}">
-                          {{ $itinerary->title }} by {{ $itinerary->user->name }}
+                          {{ $itinerary->title }} ({{ $itinerary->country->name }}) by {{ $itinerary->user->name }}
                       </a>
                       -
                       <span class="badge badge-danger">{{ $itinerary->totallikes }}</span> Likes
