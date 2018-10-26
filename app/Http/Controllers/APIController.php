@@ -999,22 +999,16 @@ class APIController extends Controller
     // Top 5 popular countries
     public function listPopularCountries()
     {
-      $countries = DB::table('itineraries')
-                 ->select('country_id', DB::raw('count(*) as total'))
+
+      $countries = Itinerary::with(['country'])
+                 ->select('country_id', DB::raw('count(*) as totalitineraries'))
                  ->groupBy('country_id')
-                 ->having('total', '>', 0)
-                 ->orderBy('total', 'desc')
+                 ->having('totalitineraries', '>', 0)
+                 ->orderBy('totalitineraries', 'desc')
                  ->take(5)
                  ->get();
 
-      $listCountries = [];
-      foreach ($countries as $country)
-      {
-        $country->country_name = (Country::find($country->country_id))->name;
-        $listCountries[] = $country;
-      }
-
-      return $listCountries;
+      return $countries;
     }
 
     // Top 5 popular itineraries (most likes)

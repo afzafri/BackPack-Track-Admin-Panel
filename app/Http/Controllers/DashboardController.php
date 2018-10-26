@@ -44,8 +44,8 @@ class DashboardController extends Controller
         $popularCountries['data'] = [];
         foreach($countries as $country)
         {
-          $popularCountries['labels'][] = $country->country_name;
-          $popularCountries['data'][] = $country->total;
+          $popularCountries['labels'][] = $country->country->name;
+          $popularCountries['data'][] = $country->totalitineraries;
         }
 
         return $popularCountries;
