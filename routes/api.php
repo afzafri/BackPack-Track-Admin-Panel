@@ -65,7 +65,10 @@ Route::middleware('auth:api')->group(function () {
   Route::get('/listItinerariesByUser/{user_id}', 'APIController@listItinerariesByUser');
 
   // List itineraries for specific User in pages
+  // (SORT NEWEST)
   Route::get('/listItinerariesByUserPaginated/{user_id}', 'APIController@listItinerariesByUserPaginated');
+  // (SORT TOP)
+  Route::get('/listTopItinerariesByUserPaginated/{user_id}', 'APIController@listTopItinerariesByUserPaginated');
 
   // Search itineraries by title
   // (SORT NEWEST)
