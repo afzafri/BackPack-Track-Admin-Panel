@@ -50,8 +50,11 @@ Route::middleware('auth:api')->group(function () {
   // View specific itinerary with full details
   Route::get('/viewItineraryDetails/{itinerary_id}', 'APIController@viewItineraryDetails');
 
-  // List itineraries for specific Country
+  // List itineraries for specific Country (NEWEST)
   Route::get('/listItinerariesByCountry/{country_id}', 'APIController@listItinerariesByCountry');
+
+  // List itineraries for specific Country (TOP)
+  Route::get('/listTopItinerariesByCountry/{country_id}', 'APIController@listTopItinerariesByCountry');
 
   // List itineraries for auth User
   Route::get('/listItinerariesByAuthUser', 'APIController@listItinerariesByAuthUser');
