@@ -273,7 +273,6 @@ class APIController extends Controller
     }
 
     // (SORT TOP - MOST LIKES)
-    // Top 5 popular itineraries (most likes) for specific user
     public function listTopItinerariesByCountry(Request $request)
     {
       $country_id = $request->country_id;
@@ -295,13 +294,48 @@ class APIController extends Controller
 
         $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
         $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
-        $totallikes = json_decode($this->getTotalLikes($newReq),true);
         $totalcomments = json_decode($this->getTotalComments($newReq),true);
         $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
         $itinerary->totalcomments = $totalcomments;
+        $itinerary->isLiked = $isLiked;
+
+        return $itinerary;
+      });
+
+      return $itineraries;
+    }
+
+    // (SORT TRENDING - MOST COMMENTS)
+    public function listTrendingItinerariesByCountry(Request $request)
+    {
+      $country_id = $request->country_id;
+      $numdata = 5; // set total contents to display per page
+      $itineraries = Itinerary::with(['country','user'])
+                              ->leftJoin('comments', 'itineraries.id', '=', 'comments.itinerary_id')
+                              ->selectRaw('itineraries.*, count(comments.id) as totalcomments')
+                              ->where('itineraries.country_id', $country_id)
+                              ->groupBy('itineraries.id')
+                              ->orderBy('totalcomments', 'desc')
+                              ->paginate($numdata);
+
+      // Transform collection to include the durations and total budgets for each itinerary
+      $itineraries->getCollection()->transform(function ($itinerary){
+
+        $newReq = new Request();
+        $newReq->setMethod('POST');
+        $newReq->request->add(['itinerary_id' => $itinerary->id]);
+
+        $duration = json_decode($this->getDayDates($newReq),true)['trip_duration'];
+        $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
+        $totallikes = json_decode($this->getTotalLikes($newReq),true);
+        $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
+
+        $itinerary->duration = $duration;
+        $itinerary->totalbudget = $totalbudget;
+        $itinerary->totallikes = $totallikes;
         $itinerary->isLiked = $isLiked;
 
         return $itinerary;

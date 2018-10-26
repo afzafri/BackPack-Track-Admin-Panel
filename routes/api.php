@@ -50,11 +50,13 @@ Route::middleware('auth:api')->group(function () {
   // View specific itinerary with full details
   Route::get('/viewItineraryDetails/{itinerary_id}', 'APIController@viewItineraryDetails');
 
-  // List itineraries for specific Country (NEWEST)
+  // List itineraries for specific Country
+  // (SORT NEWEST)
   Route::get('/listItinerariesByCountry/{country_id}', 'APIController@listItinerariesByCountry');
-
-  // List itineraries for specific Country (TOP)
+  // (SORT TOP)
   Route::get('/listTopItinerariesByCountry/{country_id}', 'APIController@listTopItinerariesByCountry');
+  // (SORT TRENDING)
+  Route::get('/listTrendingItinerariesByCountry/{country_id}', 'APIController@listTrendingItinerariesByCountry');
 
   // List itineraries for auth User
   Route::get('/listItinerariesByAuthUser', 'APIController@listItinerariesByAuthUser');
