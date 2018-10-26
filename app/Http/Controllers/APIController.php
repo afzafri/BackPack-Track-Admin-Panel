@@ -278,12 +278,13 @@ class APIController extends Controller
     {
       $country_id = $request->country_id;
       $numdata = 5; // set total contents to display per page
-      $itineraries = Itinerary::leftJoin('likes', 'itineraries.id', '=', 'likes.itinerary_id')
-                  ->selectRaw('itineraries.*, count(likes.id) as totallikes')
-                  ->where('itineraries.country_id', $country_id)
-                  ->groupBy('itineraries.id')
-                  ->orderBy('totallikes', 'desc')
-                  ->paginate($numdata);
+      $itineraries = Itinerary::with(['country','user'])
+                              ->leftJoin('likes', 'itineraries.id', '=', 'likes.itinerary_id')
+                              ->selectRaw('itineraries.*, count(likes.id) as totallikes')
+                              ->where('itineraries.country_id', $country_id)
+                              ->groupBy('itineraries.id')
+                              ->orderBy('totallikes', 'desc')
+                              ->paginate($numdata);
 
       // Transform collection to include the durations and total budgets for each itinerary
       $itineraries->getCollection()->transform(function ($itinerary){
