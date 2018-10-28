@@ -66,8 +66,11 @@
                           <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                         </tr>
                         <tr>
-                          <th>Total Itineraries</th>
-                          <td>{{ $user->totalitineraries }}</td>
+                          <th>Rank</th>
+                          <td>
+                            <img src='{{ $user->rank["badge"] }}' width="30px"/>
+                            {{ $user->rank["rank"] }} ({{ $user->totalitineraries }} itineraries)
+                          </td>
                         </tr>
                         <tr>
                           <th>Date Registered</th>
