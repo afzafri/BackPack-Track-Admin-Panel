@@ -1240,15 +1240,19 @@ class APIController extends Controller
     // Set get rank, return badge
     public function getUserBadge($total)
     {
-      $badge = "";
+      $badge = [];
       if($total >= 0 && $total <= 5) {
-        $badge = url('/images/badges/bronze.png');
+        $badge['badge'] = url('/images/badges/bronze.png');
+        $badge['rank'] = "Bronze";
       } else if($total >= 6 && $total <= 10) {
-        $badge = url('/images/badges/silver.png');
+        $badge['badge'] = url('/images/badges/silver.png');
+        $badge['rank'] = "Silver";
       } else if($total >= 11 && $total <= 15) {
-        $badge = url('/images/badges/gold.png');
+        $badge['badge'] = url('/images/badges/gold.png');
+        $badge['rank'] = "Gold";
       } else if($total >= 16) {
-        $badge = url('/images/badges/diamond.png');
+        $badge['badge'] = url('/images/badges/diamond.png');
+        $badge['rank'] = "Diamond";
       }
       return $badge;
     }
