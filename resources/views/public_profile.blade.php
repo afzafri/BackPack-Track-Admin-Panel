@@ -61,8 +61,8 @@
                           <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                         </tr>
                         <tr>
-                          <th>Total Itineraries</th>
-                          <td>{{ $user->totalitineraries }}</td>
+                          <th>Rank</th>
+                          <td><img src='{{ $user->rank->rank }}' width="10px"/> {{ $user->rank->rank }} ({{ $user->totalitineraries }} itineraries)</td>
                         </tr>
                         <tr>
                         <tr>
