@@ -259,12 +259,14 @@ class APIController extends Controller
         $totallikes = json_decode($this->getTotalLikes($newReq),true);
         $totalcomments = json_decode($this->getTotalComments($newReq),true);
         $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
+        $user_rank = $this->getUserRank(Itinerary::where('user_id', $itinerary->user->id)->count());
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
         $itinerary->totallikes = $totallikes;
         $itinerary->totalcomments = $totalcomments;
         $itinerary->isLiked = $isLiked;
+        $itinerary->user->rank = $user_rank;
 
         return $itinerary;
       });
@@ -296,11 +298,13 @@ class APIController extends Controller
         $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
         $totalcomments = json_decode($this->getTotalComments($newReq),true);
         $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
+        $user_rank = $this->getUserRank(Itinerary::where('user_id', $itinerary->user->id)->count());
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
         $itinerary->totalcomments = $totalcomments;
         $itinerary->isLiked = $isLiked;
+        $itinerary->user->rank = $user_rank;
 
         return $itinerary;
       });
@@ -332,11 +336,13 @@ class APIController extends Controller
         $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
         $totallikes = json_decode($this->getTotalLikes($newReq),true);
         $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
+        $user_rank = $this->getUserRank(Itinerary::where('user_id', $itinerary->user->id)->count());
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
         $itinerary->totallikes = $totallikes;
         $itinerary->isLiked = $isLiked;
+        $itinerary->user->rank = $user_rank;
 
         return $itinerary;
       });
@@ -425,12 +431,14 @@ class APIController extends Controller
         $totallikes = json_decode($this->getTotalLikes($newReq),true);
         $totalcomments = json_decode($this->getTotalComments($newReq),true);
         $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
+        $user_rank = $this->getUserRank(Itinerary::where('user_id', $itinerary->user->id)->count());
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
         $itinerary->totallikes = $totallikes;
         $itinerary->totalcomments = $totalcomments;
         $itinerary->isLiked = $isLiked;
+        $itinerary->user->rank = $user_rank;
 
         return $itinerary;
       });
@@ -462,11 +470,13 @@ class APIController extends Controller
         $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
         $totalcomments = json_decode($this->getTotalComments($newReq),true);
         $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
+        $user_rank = $this->getUserRank(Itinerary::where('user_id', $itinerary->user->id)->count());
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
         $itinerary->totalcomments = $totalcomments;
         $itinerary->isLiked = $isLiked;
+        $itinerary->user->rank = $user_rank;
 
         return $itinerary;
       });
@@ -498,11 +508,13 @@ class APIController extends Controller
         $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
         $totallikes = json_decode($this->getTotalLikes($newReq),true);
         $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
+        $user_rank = $this->getUserRank(Itinerary::where('user_id', $itinerary->user->id)->count());
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
         $itinerary->totallikes = $totallikes;
         $itinerary->isLiked = $isLiked;
+        $itinerary->user->rank = $user_rank;
 
         return $itinerary;
       });
@@ -530,12 +542,14 @@ class APIController extends Controller
         $totallikes = json_decode($this->getTotalLikes($newReq),true);
         $totalcomments = json_decode($this->getTotalComments($newReq),true);
         $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
+        $user_rank = $this->getUserRank(Itinerary::where('user_id', $itinerary->user->id)->count());
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
         $itinerary->totallikes = $totallikes;
         $itinerary->totalcomments = $totalcomments;
         $itinerary->isLiked = $isLiked;
+        $itinerary->user->rank = $user_rank;
 
         return $itinerary;
       });
@@ -567,11 +581,13 @@ class APIController extends Controller
         $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
         $totalcomments = json_decode($this->getTotalComments($newReq),true);
         $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
+        $user_rank = $this->getUserRank(Itinerary::where('user_id', $itinerary->user->id)->count());
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
         $itinerary->totalcomments = $totalcomments;
         $itinerary->isLiked = $isLiked;
+        $itinerary->user->rank = $user_rank;
 
         return $itinerary;
       });
@@ -603,11 +619,13 @@ class APIController extends Controller
         $totalbudget = json_decode($this->getTotalBudget($newReq),true)['totalbudget'];
         $totallikes = json_decode($this->getTotalLikes($newReq),true);
         $isLiked = $this->isLiked(Auth::user()->id, $itinerary->id);
+        $user_rank = $this->getUserRank(Itinerary::where('user_id', $itinerary->user->id)->count());
 
         $itinerary->duration = $duration;
         $itinerary->totalbudget = $totalbudget;
         $itinerary->totallikes = $totallikes;
         $itinerary->isLiked = $isLiked;
+        $itinerary->user->rank = $user_rank;
 
         return $itinerary;
       });
