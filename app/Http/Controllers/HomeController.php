@@ -48,6 +48,8 @@ class HomeController extends Controller
         $totalitineraries = Itinerary::where('user_id', $user_id)->count();
         $user->country_name = $country->name;
         $user->totalitineraries = $totalitineraries;
+        $APIobj = new APIController();
+        $user->rank = $APIobj->getUserRank($totalitineraries);
 
         return $user;
     }

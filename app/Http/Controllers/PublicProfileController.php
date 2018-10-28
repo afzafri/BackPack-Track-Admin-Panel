@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\APIController;
 use App\Http\Controllers\PublicItineraryController;
 use App\User;
 use App\Country;
@@ -28,6 +29,8 @@ class PublicProfileController extends Controller
         $totalitineraries = Itinerary::where('user_id', $user_id)->count();
         $user->country_name = $country->name;
         $user->totalitineraries = $totalitineraries;
+        $APIobj = new APIController();
+        $user->rank = $APIobj->getUserRank($totalitineraries);
 
         return $user;
     }
