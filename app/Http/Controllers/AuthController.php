@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use Validator;
 
+use App\Http\Controllers\APIController;
 use App\User;
 use App\Itinerary;
 
@@ -139,6 +140,8 @@ class AuthController extends Controller
         $user = User::with(['country'])->find(Auth::user()->id);
         $totalitineraries = Itinerary::where('user_id', Auth::user()->id)->count();
         $user->totalitineraries = $totalitineraries;
+        $APIobj = new APIController();
+        $user->rank = $APIobj->getUserRank($totalitineraries);
         return $user;
     }
 }
