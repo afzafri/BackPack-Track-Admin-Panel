@@ -62,7 +62,10 @@
                         </tr>
                         <tr>
                           <th>Rank</th>
-                          <td><img src='{{ $user->rank->rank }}' width="10px"/> {{ $user->rank->rank }} ({{ $user->totalitineraries }} itineraries)</td>
+                          <td>
+                            <img src='{{ $user->rank["badge"] }}' width="30px"/>
+                            {{ $user->rank["rank"] }} ({{ $user->totalitineraries }} itineraries)
+                          </td>
                         </tr>
                         <tr>
                         <tr>
