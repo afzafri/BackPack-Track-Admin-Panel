@@ -1244,16 +1244,16 @@ class APIController extends Controller
       $badge = [];
       if($total >= 0 && $total <= 5) {
         $badge['badge'] = url('/images/badges/bronze.png');
-        $badge['rank'] = "Bronze";
+        $badge['rank'] = "Novice Wanderer";
       } else if($total >= 6 && $total <= 10) {
         $badge['badge'] = url('/images/badges/silver.png');
-        $badge['rank'] = "Silver";
+        $badge['rank'] = "Intermediate Traveller";
       } else if($total >= 11 && $total <= 15) {
         $badge['badge'] = url('/images/badges/gold.png');
-        $badge['rank'] = "Gold";
+        $badge['rank'] = "Competent Backpacker";
       } else if($total >= 16) {
         $badge['badge'] = url('/images/badges/diamond.png');
-        $badge['rank'] = "Diamond";
+        $badge['rank'] = "Proficient Expeditionist";
       }
       return $badge;
     }
