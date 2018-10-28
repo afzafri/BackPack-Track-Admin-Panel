@@ -1237,6 +1237,22 @@ class APIController extends Controller
         return $user;
     }
 
+    // Set get rank, return badge
+    public function getUserBadge($total)
+    {
+      $badge = "";
+      if($total >= 0 && $total <= 5) {
+        $badge = url('/images/badges/bronze.png');
+      } else if($total >= 6 && $total <= 10) {
+        $badge = url('/images/badges/silver.png');
+      } else if($total >= 11 && $total <= 15) {
+        $badge = url('/images/badges/gold.png');
+      } else if($total >= 16) {
+        $badge = url('/images/badges/diamond.png');
+      }
+      return $badge;
+    }
+
     // Upload user Avatar
     public function uploadAvatar(Request $request)
     {
