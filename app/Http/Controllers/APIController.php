@@ -1233,13 +1233,13 @@ class APIController extends Controller
         $totalitineraries = Itinerary::where('user_id', $user_id)->count();
         $user->country_name = $country->name;
         $user->totalitineraries = $totalitineraries;
-        $user->rank = $this->getUserBadge($totalitineraries);
+        $user->rank = $this->getUserRank($totalitineraries);
 
         return $user;
     }
 
     // Set get rank, return badge
-    public function getUserBadge($total)
+    public function getUserRank($total)
     {
       $badge = [];
       if($total >= 0 && $total <= 5) {
