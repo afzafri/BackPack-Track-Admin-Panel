@@ -1212,6 +1212,12 @@ class APIController extends Controller
                  ->take(5)
                  ->get();
 
+      // get users rank
+      $users->transform(function ($user){
+        $user->rank = $this->getUserRank($user->totalitineraries);
+        return $user;
+      });
+
       return $users;
     }
 
