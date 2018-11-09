@@ -1212,9 +1212,10 @@ class APIController extends Controller
                  ->take(5)
                  ->get();
 
-      // get users rank
+      // get users rank and country
       $users->transform(function ($user){
         $user->rank = $this->getUserRank($user->totalitineraries);
+        $user->user->country_name = (Country::select('name')->where('id', $user->user->country_id)->first())->name;
         return $user;
       });
 
