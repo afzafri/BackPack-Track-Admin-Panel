@@ -1201,10 +1201,23 @@ class APIController extends Controller
       return $article;
     }
 
+    // Top 5 top contributors (users with most itineraries)
+    public function listTopContributors()
+    {
+      $users = Itinerary::with(['user'])
+                 ->select('user_id', DB::raw('count(*) as totalitineraries'))
+                 ->groupBy('user_id')
+                 ->having('totalitineraries', '>', 0)
+                 ->orderBy('totalitineraries', 'desc')
+                 ->take(5)
+                 ->get();
+
+      return $users;
+    }
+
     // Top 5 popular countries
     public function listPopularCountries()
     {
-
       $countries = Itinerary::with(['country'])
                  ->select('country_id', DB::raw('count(*) as totalitineraries'))
                  ->groupBy('country_id')

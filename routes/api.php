@@ -158,6 +158,9 @@ Route::middleware('auth:api')->group(function () {
   // Get daily likes and comments notifications data
   Route::get('/getNotifications', 'APIController@getNotifications');
 
+  // Top 5 top contributors
+  Route::get('/listTopContributors', 'APIController@listTopContributors');
+
   // Top 5 popular countries
   Route::get('/listPopularCountries', 'APIController@listPopularCountries');
 
