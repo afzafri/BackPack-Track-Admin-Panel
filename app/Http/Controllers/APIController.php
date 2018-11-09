@@ -637,7 +637,12 @@ class APIController extends Controller
     public function listVisitedCountries()
     {
       $numdata = 6;
-      $countries = Country::has('itinerary')->paginate($numdata);
+      $countries = Itinerary::with(['country'])
+                 ->select('country_id', DB::raw('count(*) as totalitineraries'))
+                 ->groupBy('country_id')
+                 ->having('totalitineraries', '>', 0)
+                 ->orderBy('totalitineraries', 'desc')
+                 ->paginate($numdata);
       return $countries;
     }
 
