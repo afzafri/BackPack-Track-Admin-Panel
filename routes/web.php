@@ -27,8 +27,14 @@ Route::get('/itinerary/{itinerary_id}', 'PublicItineraryController@view');
 // View user profile
 Route::get('/user/{username}', 'PublicProfileController@view');
 
+// Currency converter widget
 Route::get('/currencyconverter', function () {
     return view('currencyconverter');
+});
+
+// Weather update widget
+Route::get('/weatherupdate', function () {
+    return view('weatherupdate');
 });
 
 // -------------- Administrator Pages --------------
