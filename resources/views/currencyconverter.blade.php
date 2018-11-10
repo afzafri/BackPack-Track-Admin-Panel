@@ -5,7 +5,6 @@
       <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
    </head>
    <body>
-      <br>
       <!-- Currency Converter Script - FxExchangeRate.com  -->
       <div style="width:100%;height:auto;text-align:center;font-size:24px;font-family:sans-serif,Arial,Helvetica;">
          
