@@ -642,7 +642,6 @@ class APIController extends Controller
                  ->select('country_id', DB::raw('count(*) as totalitineraries'))
                  ->groupBy('country_id')
                  ->havingRaw('count(*) > 0')
-                 ->orderBy('totalitineraries', 'desc')
                  ->paginate($numdata);
 
       return $countries;
