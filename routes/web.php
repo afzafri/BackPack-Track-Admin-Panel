@@ -33,8 +33,8 @@ Route::get('/currencyconverter', function () {
 });
 
 // Weather update widget
-Route::get('/weatherupdate', function () {
-    return view('weatherupdate');
+Route::get('/weatherforecast', function () {
+    return view('weatherforecast');
 });
 
 // -------------- Administrator Pages --------------
