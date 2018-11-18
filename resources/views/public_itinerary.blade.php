@@ -198,8 +198,8 @@
                             </a>
                           @endif
                           <div class="card-body">
-                            <h5 class="card-title">{{ $activity->activity }}</h5>
-                            <p class="card-text">{{ $activity->description }}</p>
+                            <h5 class="card-title">{!! $activity->activity !!}</h5>
+                            <p class="card-text">{!! $activity->description !!}</p>
                             <table cellpadding="10">
                               <tr>
                                 <td><i class="far fa-clock"></i> {{ date("g:i a", strtotime($activity->time)) }}</td>
