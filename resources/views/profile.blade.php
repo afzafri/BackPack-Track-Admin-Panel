@@ -180,9 +180,6 @@
       <form action="/profile/avatar" method="post" onsubmit="return confirm('Do you really want to update your profile picture?');" enctype="multipart/form-data">
           @csrf
           <div class="card-body card-block">
-                <label class="form-control-label" id="avatar_label">Current profile picture</label><br>
-                <img src="{{ $user->avatar_url }}" width="150px" id="preview_avatar"/><br><br>
-
                 <div class="form-group col-4">
                     <input type="file" name="avatar" id="avatar" class="form-control-file {{ $errors->has('avatar') ? ' is-invalid' : '' }}">
 
@@ -213,6 +210,10 @@
     allowedFileExtensions: ['png','jpg','jpeg'],
     maxFileSize: 5000,
     msgPlaceholder: 'Choose new profile picture...',
+    // for image files
+    initialPreview: [
+        "<img src='{{ $user->avatar_url }}' class='file-preview-image'>",
+    ],
   });
   </script>
 @endpush
