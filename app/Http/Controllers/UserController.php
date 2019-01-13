@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\APIController;
 use App\User;
+use App\Itinerary;
 
 class UserController extends Controller
 {
@@ -27,6 +28,9 @@ class UserController extends Controller
     {
         $user_id = $request->user_id;
 
+        // delete all user's itineraries
+        $this->deleteUserItineraries($user_id);
+
         $user = User::find($user_id);
 
         // delete image
@@ -38,5 +42,21 @@ class UserController extends Controller
         $user->delete();
 
         return redirect('users')->with('deletestatus', 'Delete user ID: '.$request->user_id.' success!');
+    }
+
+    // Delete all user's itineraries
+    public function deleteUserItineraries($user_id)
+    {
+      $APIobj = new APIController();
+
+      $itineraries = Itinerary::where('user_id', $user_id)->get();
+
+      foreach ($itineraries as $itinerary) {
+        // delete itinerary
+        $newReq = new Request();
+        $newReq->setMethod('POST');
+        $newReq->request->add(['itinerary_id' => $itinerary->id]);
+        $APIobj->deleteItinerary($newReq);
+      }
     }
 }
