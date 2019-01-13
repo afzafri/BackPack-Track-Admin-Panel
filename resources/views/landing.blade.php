@@ -412,7 +412,7 @@
 	<div class="container">
 		<div class="row bg-elipse-red">
 			<div class="col-lg-4">
-				<div class="image"><img src="{{ asset('landingpage/images/phones/pixel-budgets.png') }}" alt="backpacktrack-app"></div>
+				<div class="image"><img class="img-fluid" src="{{ asset('landingpage/images/phones/pixel-budgets.png') }}" alt="backpacktrack-app"></div>
 			</div>
 			<div class="col-lg-8 align-self-center">
 				<div class="content">
