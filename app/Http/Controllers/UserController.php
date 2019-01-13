@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\APIController;
 use App\User;
 use App\Itinerary;
+use App\Comment;
+use App\Like;
 
 class UserController extends Controller
 {
@@ -30,6 +32,10 @@ class UserController extends Controller
 
         // delete all user's itineraries
         $this->deleteUserItineraries($user_id);
+        // delete all user's comments
+        $this->deleteUserComments($user_id);
+        // delete all user's likes
+        $this->deleteUserLikes($user_id);
 
         $user = User::find($user_id);
 
@@ -57,6 +63,26 @@ class UserController extends Controller
         $newReq->setMethod('POST');
         $newReq->request->add(['itinerary_id' => $itinerary->id]);
         $APIobj->deleteItinerary($newReq);
+      }
+    }
+
+    // Delete all user's comments
+    public function deleteUserComments($user_id)
+    {
+      $comments = Comment::where('user_id', $user_id)->get();
+
+      foreach ($comments as $comment) {
+        $comment->delete();
+      }
+    }
+
+    // Delete all user's likes
+    public function deleteUserLikes($user_id)
+    {
+      $likes = Like::where('user_id', $user_id)->get();
+
+      foreach ($likes as $like) {
+        $like->delete();
       }
     }
 }
