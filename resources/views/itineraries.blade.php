@@ -67,7 +67,7 @@
                               <input type="hidden" name="itinerary_id" value="{{ $itinerary->id }}">
                               <button type="submit" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete Itinerary">
                                   <i class="zmdi zmdi-delete"></i>
-                              </buton>
+                              </button>
                           </form>
                         </div>
                     </td>

@@ -75,7 +75,7 @@
                             <input type="hidden" name="user_id" value="{{ $user->id }}">
                             <button type="submit" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete User Account">
                                 <i class="zmdi zmdi-delete"></i>
-                            </buton>
+                            </button>
                         </form>
                       </div>
                   </td>
