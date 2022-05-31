@@ -110,19 +110,19 @@
                             <a href="{{ route('dashboard') }}">
                               <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <li {{{ (Request::is('articles') ? 'class=active' : '') }}}>
+                        <li {{{ (Request::is('articles*') ? 'class=active' : '') }}}>
                             <a href="{{ route('articles') }}">
                               <i class="fa fa-newspaper-o"></i>Articles</a>
                         </li>
-                        <li {{{ (Request::is('itineraries') ? 'class=active' : '') }}}>
+                        <li {{{ (Request::is('itineraries*') ? 'class=active' : '') }}}>
                             <a href="{{ route('itineraries') }}">
                               <i class="fa fa-list-alt"></i>View Itineraries</a>
                         </li>
-                        <li {{{ (Request::is('users') ? 'class=active' : '') }}}>
+                        <li {{{ (Request::is('users*') ? 'class=active' : '') }}}>
                             <a href="{{ route('users') }}">
                               <i class="fa fa-users"></i>Manage Users' Account</a>
                         </li>
-                        <li {{{ (Request::is('comments') ? 'class=active' : '') }}}>
+                        <li {{{ (Request::is('comments*') ? 'class=active' : '') }}}>
                             <a href="{{ route('comments') }}">
                               <i class="fa fa-commenting"></i>Manage Users' Comments</a>
                         </li>
